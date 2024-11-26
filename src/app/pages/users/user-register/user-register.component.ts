@@ -9,5 +9,8 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./user-register.component.scss']
 })
 export class UserRegisterComponent {
-
+  onSubmit() {
+    // Aquí puedes manejar el envío del formulario
+    console.log('Formulario enviado');
+  }
 }
