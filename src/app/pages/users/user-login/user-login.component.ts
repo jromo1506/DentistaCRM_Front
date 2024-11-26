@@ -6,8 +6,11 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './user-login.component.html',
-  styleUrls: ['./user-login.component.scss']
+  styleUrls: ['./user-login.component.scss'],
 })
 export class UserLoginComponent {
-
+  onSubmit() {
+    // Aquí puedes manejar el envío del formulario
+    console.log('Formulario enviado');
+  }
 }

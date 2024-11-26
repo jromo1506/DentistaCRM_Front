@@ -1,0 +1,97 @@
+.register-page {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden; /* Evita desbordamientos de contenido */
+    background: url('../../../../assets/ImgsLogin/imgLoginRegister.jpg') no-repeat center center; /* Reemplaza con la ruta de tu imagen */
+    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
+
+    .register-form-container {
+        z-index: 1; /* Mantiene el formulario encima de la imagen */
+        position: relative; /* Asegura que esté dentro del flujo del documento */
+        max-width: 400px;
+        padding: 2rem;
+        background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+
+        .title {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0077b6;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .register-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                label {
+                    font-size: 1rem;
+                    color: #00509e;
+                    font-weight: 500;
+                }
+
+                input,
+                select {
+                    padding: 0.8rem;
+                    font-size: 1rem;
+                    border: 1px solid #d1e3f8;
+                    border-radius: 5px;
+                    outline: none;
+                    transition: border 0.3s ease;
+
+                    &:focus {
+                        border-color: #0077b6;
+                        box-shadow: 0 0 5px rgba(0, 119, 182, 0.2);
+                    }
+                }
+            }
+
+            .btn-register {
+                background: #0077b6;
+                color: #ffffff;
+                padding: 0.8rem;
+                border: none;
+                border-radius: 5px;
+                font-size: 1rem;
+                font-weight: bold;
+                cursor: pointer;
+                transition: background 0.3s ease;
+
+                &:hover {
+                    background: #00509e;
+                }
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+
+        .background-image {
+            display: none; /* Oculta la imagen en pantallas pequeñas */
+        }
+    }
+
+    .form-icon {
+        text-align: center;
+        margin-bottom: 1rem; /* Espaciado entre el icono y el título */
+    }
+    
+    .form-icon i {
+        font-size: 3rem; /* Tamaño grande para el icono */
+        color: #0077b6; /* Color del icono */
+    }
+}
+
