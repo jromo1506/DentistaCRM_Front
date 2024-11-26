@@ -1,0 +1,143 @@
+$background:#373737;
+$color:#fff;
+
+
+
+.navbar{
+    background-color: $background;
+    color: $color;
+    height: 4rem;
+    display: flex;
+    width: 100%;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.logo-options-cont{
+    width: 40%;
+    display: flex;
+    box-sizing: border-box;
+    padding: 0 1rem;
+
+}
+
+
+.logo-cont{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+}
+
+.logo{
+    width: 3rem;
+
+}
+
+
+.options-cont{
+    display: flex;
+    flex: 1;
+}
+
+
+.option{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 1;
+    transition: all ease 0.3s;
+    cursor: pointer;
+}
+
+.option:hover{
+    background-color: rgb(115, 115, 115);
+}
+
+.option div{
+    text-align: center;
+}
+
+
+.search-bar-cont{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    box-sizing: border-box;
+  
+}
+
+.search{
+   height: 2rem;
+    width: 90%;
+}
+
+
+.icons-menu{
+    display: flex;
+    width: 20%;
+    justify-content: space-around;
+    
+}
+
+.icon{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+@media (max-width: 1100px) {
+    
+.navbar{
+    background-color: $background;
+    color: $color;
+    height: auto;
+
+    width: 100%;
+    display: block;
+}
+
+.logo-options-cont{
+    width: 100%;
+    display: block;
+}
+
+.logo-cont{
+    height: 100%;
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    width: 100%;
+}
+
+.options-cont{
+    padding: 15px 0px;
+}
+
+.resp-search-bar{
+    display: flex;
+    justify-content: center;
+}
+
+
+.icons-menu{
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.search-bar-cont input{
+    width: 90%;
+}
+
+
+.search-bar-cont i{
+    display: none;
+}
+
+
+}
+
