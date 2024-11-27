@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -9,5 +9,20 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./dropdown.component.scss']
 })
 export class DropdownComponent {
+  @Input() options: string[] = [];
+
+  isOpen = false;
+
+  selectedOption: string | null = null;
+
+
+  toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
+
+  selectOption(option: string) {
+    this.selectedOption = option;
+    this.isOpen = false;
+  }
 
 }
