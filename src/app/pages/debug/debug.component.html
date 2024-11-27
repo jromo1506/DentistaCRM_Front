@@ -1,4 +1,25 @@
 <app-notification></app-notification>
-<app-modal></app-modal>
+
+<!-- Modal con un formulario -->
+<app-modal 
+  [isVisible]="isModalVisible" 
+  [title]="'Formulario en el Modal'" 
+  (close)="onModalClose()">
+  <form>
+    <div>
+      <label for="username">Nombre de usuario:</label>
+      <input id="username" type="text" />
+    </div>
+    <div>
+      <label for="email">Correo electrónico:</label>
+      <input id="email" type="email" />
+    </div>
+    <button type="submit">Enviar</button>
+  </form>
+</app-modal>
+
+<!-- Botón para abrir el modal -->
+<button (click)="openModal()">Abrir Modal</button>
 <app-finder></app-finder>
 <app-list></app-list>
+<app-form></app-form>
