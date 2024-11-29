@@ -1,5 +1,7 @@
+// dropdown.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-dropdown',
@@ -24,5 +26,4 @@ export class DropdownComponent {
     this.selectedOption = option;
     this.isOpen = false;
   }
-
 }
