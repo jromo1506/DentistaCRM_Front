@@ -5,6 +5,7 @@ import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { FinderComponent } from 'src/app/components/finder/finder.component';
 import { ListComponent } from 'src/app/components/list/list.component';
 import { FormComponent } from 'src/app/components/form/form.component';
+import { MessageBoxComponent } from 'src/app/components/message-box/message-box.component';
 
 @Component({
   selector: 'app-debug',
@@ -15,7 +16,8 @@ import { FormComponent } from 'src/app/components/form/form.component';
     ModalComponent,
     FinderComponent,
     ListComponent,
-    FormComponent
+    FormComponent,
+    MessageBoxComponent
   ],
   templateUrl: './debug.component.html',
   styleUrls: ['./debug.component.scss']
