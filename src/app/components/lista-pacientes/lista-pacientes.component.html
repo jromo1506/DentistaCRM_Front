@@ -1,6 +1,14 @@
 <div class="lista-container">
     <h3>Pacientes Registrados en base al formulario en localhost</h3>
-    <div *ngFor="let paciente of pacientes">
-        <app-element-paciente [paciente]="paciente"></app-element-paciente>
+    <div class="paciente-header">
+      <div class="paciente-cell">Nombre</div>
+      <div class="paciente-cell">Edad</div>
+      <div class="paciente-cell">Teléfono</div>
+      <div class="paciente-cell">Correo</div>
+      <div class="paciente-cell">Acciones</div>
     </div>
-</div>
+    <div *ngFor="let paciente of pacientes">
+      <app-element-paciente [paciente]="paciente"></app-element-paciente>
+    </div>
+  </div>
+  

@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ModalComponent } from '../modal/modal.component';
-import { PacienteDetalleComponent } from '../paciente-detalle/paciente-detalle.component';
 import { Router } from '@angular/router';
 import { ElementPacienteComponent } from '../element-paciente/element-paciente.component';
 
@@ -25,10 +23,6 @@ export class ListaPacientesComponent {
     }
   }
 
-  verDetalles(paciente: any) {
-    // Redirigimos a la página de detalles pasando el id del paciente
-    this.router.navigate(['/detallespaciente', paciente.nombre]); // O usa 'paciente.id' si tienes un campo id único
-  }
 
   ngOnInit() {
     this.cargarPacientes();

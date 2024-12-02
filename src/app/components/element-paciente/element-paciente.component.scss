@@ -1,42 +1,33 @@
-.paciente-item {
-    background-color: #fff;
-    margin-bottom: 20px;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .paciente-item h4 {
-    font-size: 1.2rem;
-    color: #333;
+.paciente-row {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 10px;
   }
   
-  .paciente-item ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  .paciente-cell {
+    flex: 1;
+    padding: 10px;
+    text-align: center; /* Centra el texto en la celda */
+    display: flex;
+    justify-content: center; /* Centra el contenido en la celda */
+    align-items: center; /* Asegura que el contenido esté alineado verticalmente */
   }
   
-  .paciente-item li {
-    margin-bottom: 8px;
-  }
-  
-  .paciente-item li strong {
-    color: #333;
-  }
-  
-  button {
+  .paciente-cell button {
     padding: 8px 15px;
     background-color: #007bff;
-    color: #fff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
+    margin-right: 5px;
   }
   
-  button:hover {
+  .paciente-cell button:hover {
     background-color: #0056b3;
+  }
+  
+  .paciente-row:hover {
+    background-color: #f1f1f1;
   }
   

@@ -1,11 +1,12 @@
-<div class="paciente-item">
-    <h4>{{ paciente.nombre }}</h4>
-    <ul>
-      <li><strong>Fecha de nacimiento:</strong> {{ paciente.fechaNacimiento }}</li>
-      <li><strong>Edad:</strong> {{ paciente.edad }}</li>
-      <li><strong>Teléfono:</strong> {{ paciente.telefono }}</li>
-      <li><strong>Correo:</strong> {{ paciente.correo }}</li>
-    </ul>
-    <button (click)="verDetalles(paciente)">Ver Detalles</button>
-  </div>
-  
+<div class="paciente-row">
+    <div class="paciente-cell">{{ paciente.nombre }}</div>
+    <div class="paciente-cell">{{ paciente.edad }}</div>
+    <div class="paciente-cell">{{ paciente.telefono }}</div>
+    <div class="paciente-cell">{{ paciente.correo }}</div>
+    <div class="paciente-cell">
+        <button (click)="verDetalles(paciente)"><i class="fa-solid fa-eye"></i></button>
+        <button><i class="fa-regular fa-trash-can"></i></button>
+        <button><i class="fa-solid fa-pen-to-square"></i></button>
+        <button> <i class="fa-solid fa-message"></i></button>
+    </div>
+</div>
