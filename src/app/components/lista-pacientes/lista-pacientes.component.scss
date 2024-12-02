@@ -1,0 +1,55 @@
+.lista-container {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+  }
+  
+  .lista-container h3 {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #333;
+  }
+  
+  .paciente-item {
+    background-color: #fff;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .paciente-item h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  .paciente-item ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .paciente-item li {
+    margin-bottom: 8px;
+  }
+  
+  .paciente-item li strong {
+    color: #333;
+  }
+  
+  button {
+    padding: 8px 15px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  

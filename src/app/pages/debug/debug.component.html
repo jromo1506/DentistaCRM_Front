@@ -1,51 +1,16 @@
 <app-notification></app-notification>
-
-<!-- Modal con un formulario -->
-<app-modal 
-  [isVisible]="isModalVisible" 
-  [title]="'Formulario en el Modal'" 
-  (close)="onModalClose()">
-  <form>
-    <div>
-      <label for="username">Nombre de usuario:</label>
-      <input id="username" type="text" />
-    </div>
-    <div>
-      <label for="email">Correo electrónico:</label>
-      <input id="email" type="email" />
-    </div>
-    <button type="submit">Enviar</button>
-  </form>
-</app-modal>
-
-<!-- Botón para abrir el modal -->
-<button (click)="openModal()">Abrir Modal</button>
 <app-finder></app-finder>
 <app-list></app-list>
 <app-form></app-form>
+<app-lista-pacientes></app-lista-pacientes>
 <app-message-box></app-message-box>
 
 <app-product-card
   [imageUrl]="'assets/ImgsLogin/imgLoginRegister.jpg'"
-  [title]="'Cubot Kingkong 9 Dual Sim 512 Gb Negro 12 Gb Ram'"
+  [title]="'Cubot'"
   [price]="5106"
   [originalPrice]="9801"
   [discount]="47"
   [freeShipping]="true">
 </app-product-card>
-<app-product-card
-  [imageUrl]="'assets/ImgsLogin/imgLoginRegister.jpg'"
-  [title]="'Cubot Kingkong 9 Dual Sim 512 Gb Negro 12 Gb Ram'"
-  [price]="5106"
-  [originalPrice]="9801"
-  [discount]="47"
-  [freeShipping]="true">
-</app-product-card>
-<app-product-card
-  [imageUrl]="'assets/ImgsLogin/imgLoginRegister.jpg'"
-  [title]="'Cubot Kingkong 9 Dual Sim 512 Gb Negro 12 Gb Ram'"
-  [price]="5106"
-  [originalPrice]="9801"
-  [discount]="47"
-  [freeShipping]="true">
-</app-product-card>
+
