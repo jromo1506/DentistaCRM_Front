@@ -1,13 +1,10 @@
 <div class="form-container">
-    <h2>Registro de Pacientes</h2>
-    <button (click)="abrirModal()">Nuevo Paciente</button>
+  <h2>Registro de Pacientes</h2>
+  <button (click)="abrirModal()">Nuevo Paciente</button>
 </div>
 
 <!-- Modal para registrar un nuevo paciente -->
-<app-modal 
-  [isVisible]="isModalVisible" 
-  [title]="'Registro de Pacientes'" 
-  (close)="cerrarModal()">
+<app-modal [isVisible]="isModalVisible" [title]="'Registro de Pacientes'" (close)="cerrarModal()">
   <form (submit)="agregarPaciente(); $event.preventDefault()">
     <label>
       Nombre completo:
@@ -61,42 +58,42 @@
   </form>
 </app-modal>
 
-<div class="table-container">
-    <h3>Pacientes Registrados</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Nombre</th>
-                <th>Fecha de nacimiento</th>
-                <th>Edad</th>
-                <th>Teléfono</th>
-                <th>Correo</th>
-                <th>Dirección</th>
-                <th>Condiciones Médicas</th>
-                <th>Alergias</th>
-                <th>Cirugías Previas</th>
-                <th>Seguro Dental</th>
-                <th>Peso</th>
-                <th>Altura</th>
-                <th>Tensión Arterial</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let paciente of pacientes">
-                <td>{{ paciente.nombre }}</td>
-                <td>{{ paciente.fechaNacimiento }}</td>
-                <td>{{ paciente.edad }}</td>
-                <td>{{ paciente.telefono }}</td>
-                <td>{{ paciente.correo }}</td>
-                <td>{{ paciente.direccion }}</td>
-                <td>{{ paciente.condicionesMedicas }}</td>
-                <td>{{ paciente.alergias }}</td>
-                <td>{{ paciente.cirugiasPrevias }}</td>
-                <td>{{ paciente.seguroDental ? 'Sí' : 'No' }}</td>
-                <td>{{ paciente.peso }}</td>
-                <td>{{ paciente.altura }}</td>
-                <td>{{ paciente.tensionArterial ? 'Sí' : 'No' }}</td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<!-- <div class="table-container">
+  <h3>Pacientes Registrados</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha de nacimiento</th>
+        <th>Edad</th>
+        <th>Teléfono</th>
+        <th>Correo</th>
+        <th>Dirección</th>
+        <th>Condiciones Médicas</th>
+        <th>Alergias</th>
+        <th>Cirugías Previas</th>
+        <th>Seguro Dental</th>
+        <th>Peso</th>
+        <th>Altura</th>
+        <th>Tensión Arterial</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let paciente of pacientes">
+        <td>{{ paciente.nombre }}</td>
+        <td>{{ paciente.fechaNacimiento }}</td>
+        <td>{{ paciente.edad }}</td>
+        <td>{{ paciente.telefono }}</td>
+        <td>{{ paciente.correo }}</td>
+        <td>{{ paciente.direccion }}</td>
+        <td>{{ paciente.condicionesMedicas }}</td>
+        <td>{{ paciente.alergias }}</td>
+        <td>{{ paciente.cirugiasPrevias }}</td>
+        <td>{{ paciente.seguroDental ? 'Sí' : 'No' }}</td>
+        <td>{{ paciente.peso }}</td>
+        <td>{{ paciente.altura }}</td>
+        <td>{{ paciente.tensionArterial ? 'Sí' : 'No' }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->

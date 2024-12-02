@@ -6,6 +6,8 @@ import { ListComponent } from './components/list/list.component';
 import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { TableComponent } from './components/table/table.component';
 import { SemaforoComponent } from './components/semaforo/semaforo.component';
+import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { PacienteDetalleComponent } from './components/paciente-detalle/paciente-detalle.component';
 
 export const routes: Routes = [
     {path:"debug",component:DebugComponent},
@@ -15,5 +17,7 @@ export const routes: Routes = [
     {path:"dropdown",component:DropdownComponent},
     {path:"table",component:TableComponent},
     {path:"semaforo",component:SemaforoComponent},
+    {path:"listapacientes", component:ListaPacientesComponent},
+    { path: "detallespaciente/:id", component: PacienteDetalleComponent }
     
 ];

@@ -1,0 +1,11 @@
+<div class="paciente-item">
+    <h4>{{ paciente.nombre }}</h4>
+    <ul>
+      <li><strong>Fecha de nacimiento:</strong> {{ paciente.fechaNacimiento }}</li>
+      <li><strong>Edad:</strong> {{ paciente.edad }}</li>
+      <li><strong>Teléfono:</strong> {{ paciente.telefono }}</li>
+      <li><strong>Correo:</strong> {{ paciente.correo }}</li>
+    </ul>
+    <button (click)="verDetalles(paciente)">Ver Detalles</button>
+  </div>
+  
