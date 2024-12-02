@@ -7,6 +7,7 @@ import { ListComponent } from 'src/app/components/list/list.component';
 import { FormComponent } from 'src/app/components/form/form.component';
 import { MessageBoxComponent } from 'src/app/components/message-box/message-box.component';
 import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
+import { ListaPacientesComponent } from 'src/app/components/lista-pacientes/lista-pacientes.component';
 
 @Component({
   selector: 'app-debug',
@@ -19,7 +20,8 @@ import { ProductCardComponent } from 'src/app/components/product-card/product-ca
     ListComponent,
     FormComponent,
     MessageBoxComponent,
-    ProductCardComponent
+    ProductCardComponent,
+    ListaPacientesComponent
   ],
   templateUrl: './debug.component.html',
   styleUrls: ['./debug.component.scss']
