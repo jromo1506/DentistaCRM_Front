@@ -7,19 +7,18 @@ import { DropdownComponent } from './components/dropdown/dropdown.component';
 import { TableComponent } from './components/table/table.component';
 import { SemaforoComponent } from './components/semaforo/semaforo.component';
 import { ListElementCitaComponent } from './components/list-elements/list-element-cita/list-element-cita.component';
-import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { ListCitaComponent } from './components/list-elements/list-cita/list-cita.component';
 import { PacienteDetalleComponent } from './components/paciente-detalle/paciente-detalle.component';
 
 export const routes: Routes = [
-    {path:"debug",component:DebugComponent},
-    {path:"login",component:UserLoginComponent},
-    {path:"registro",component:UserRegisterComponent},
-    {path:"list",component:ListComponent},
-    {path:"dropdown",component:DropdownComponent},
-    {path:"table",component:TableComponent},
-    {path:"semaforo",component:SemaforoComponent},
-    {path:"listCita",component:ListElementCitaComponent},
-    {path:"listapacientes", component:ListaPacientesComponent},
+    { path: "debug", component: DebugComponent },
+    { path: "login", component: UserLoginComponent },
+    { path: "registro", component: UserRegisterComponent },
+    { path: "list", component: ListComponent },
+    { path: "dropdown", component: DropdownComponent },
+    { path: "table", component: TableComponent },
+    { path: "semaforo", component: SemaforoComponent },
+    { path: "cita", component: ListElementCitaComponent },
+    { path: "prueba", component: ListCitaComponent },
     { path: "detallespaciente/:id", component: PacienteDetalleComponent }
-    
 ];
