@@ -1,47 +1,56 @@
-
-    <div class="navbar">
-        <div class="logo-options-cont">
-            <div class="logo-cont">
-                <img class="logo" src="../../../assets/logos/logo.png">
-            </div>
-            <div class="options-cont">
-                <div class="option" >
-                    <div>
-                        <a href="debug">Debug</a>
-                    </div>
-                </div>
-                <div class="option">
-                    <div>Option 1</div>
-                    
-              
-                </div>
-                <div class="option">
-                    <div>Option 1</div>
-                    
-              
-                </div>
-                <div class="option">
-                    <div>Option 1</div>
-                    
-              
-                </div>
-            </div>
-           
-        
-        </div>
-        <div class="search-bar-cont">
-          
-            <div  class="resp-search-bar">
-                <input class="search" type="text">
-                <i class="fa-solid fa-magnifying-glass p-1"></i>
-            </div>
-            
-        </div>
-        <div class="icons-menu">
-            <div class="icon"><i class="fa-solid fa-bell"></i></div>
-            <div class="icon"><i class="fa-solid fa-envelope"></i></div>
-            <div class="icon"><i class="fa-solid fa-right-to-bracket"></i></div>
-        </div>
+<nav class="navbar">
+    <!-- Botón del menú hamburguesa -->
+    <div class="navbar-hamburger" (click)="toggleMenu()">
+      <i class="fas fa-bars"></i>
     </div>
-
-
+  
+    <!-- Menú inicial (pantallas grandes) -->
+    <ul class="navbar-left">
+      <li><a href="#">Modelos</a></li>
+      <li><a href="#">Comprar</a></li>
+      <li><a href="#">Servicios</a></li>
+      <li><a href="#">Marca</a></li>
+    </ul>
+  
+    <!-- Logo centrado -->
+    <div class="navbar-center">
+      <img src="../../../assets/logos/logoDentista.png" alt="Logo" class="logo" />
+    </div>
+  
+    <!-- Íconos en la derecha -->
+    <div class="navbar-right">
+      <a href="#" class="icon"><i class="fas fa-search"></i></a>
+      <a href="#" class="icon"><i class="fas fa-user"></i> <span>Iniciar sesión</span></a>
+    </div>
+  
+    <!-- Menú hamburguesa desplegable (pantallas pequeñas) -->
+    <div class="hamburger-menu" [class.active]="menuActive">
+      <div class="menu-header">
+        <div class="close-button" (click)="toggleMenu()">
+          <i class="fas fa-times"></i>
+        </div>
+        <div class="navbar-center">
+          <img src="../../../assets/logos/logoDentista.png" alt="Logo" class="logo" />
+        </div>
+        <div class="navbar-right">
+          <a href="#" class="icon"><i class="fas fa-star"></i></a>
+          <a href="#" class="icon"><i class="fas fa-user"></i></a>
+        </div>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="Tu búsqueda / Código del configurador" />
+        <i class="fas fa-search"></i>
+      </div>
+      <ul class="menu-options">
+        <li><a href="/modelos">Modelos <i class="fas fa-chevron-right"></i></a></li>
+        <li><a href="/comprar">Comprar <i class="fas fa-chevron-right"></i></a></li>
+        <li><a href="/servicios">Servicios <i class="fas fa-chevron-right"></i></a></li>
+        <li><a href="/marca">Marca <i class="fas fa-chevron-right"></i></a></li>
+      </ul>
+      <hr />
+      <div class="footer">
+        <a href="/privacidad">Proveedor/Protección de datos</a>
+      </div>
+    </div>
+  </nav>
+  
