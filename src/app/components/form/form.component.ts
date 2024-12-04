@@ -2,13 +2,15 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../modal/modal.component';
+import { SwalService } from 'src/app/services/swal.service';
+
 
 @Component({
   selector: 'app-form',
   standalone: true,
   imports: [CommonModule, FormsModule, ModalComponent],
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
 })
 export class FormComponent {
   pacientes: Array<any> = [];
@@ -28,8 +30,10 @@ export class FormComponent {
     seguroDental: false,
     peso: null,
     altura: null,
-    tensionArterial: false
+    tensionArterial: false,
   };
+
+  constructor(private swalService: SwalService) {} // Inyecta el servicio
 
   abrirModal() {
     this.isModalVisible = true; // Muestra el modal
@@ -70,12 +74,12 @@ export class FormComponent {
         seguroDental: false,
         peso: null,
         altura: null,
-        tensionArterial: false
+        tensionArterial: false,
       };
 
       this.cerrarModal(); // Cierra el modal después de registrar
     } else {
-      alert('Por favor completa los campos obligatorios.');
+      this.swalService.errorCampos('Debes completar todos los campos.');
     }
   }
 

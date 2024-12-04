@@ -27,7 +27,7 @@ export class SwalService {
     });
   }
   // Alerta de error
-  errorCampos(message: string, title: string = '¡Error! Por favor completa todos los campos'): void {
+  errorCampos(message: string, title: string = '¡Error!'): void {
     Swal.fire({
       title: title,
       text: message,
