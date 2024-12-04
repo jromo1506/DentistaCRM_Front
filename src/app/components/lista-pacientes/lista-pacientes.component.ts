@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ElementPacienteComponent } from '../element-paciente/element-paciente.component';
+import { FormComponent } from '../form/form.component';
 
 @Component({
   selector: 'app-lista-pacientes',
   standalone: true,
-  imports: [CommonModule, FormsModule, ElementPacienteComponent],
+  imports: [CommonModule, FormsModule, ElementPacienteComponent, FormComponent],
   templateUrl: './lista-pacientes.component.html',
   styleUrls: ['./lista-pacientes.component.scss']
 })

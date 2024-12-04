@@ -9,6 +9,9 @@ import { SemaforoComponent } from './components/semaforo/semaforo.component';
 import { ListElementCitaComponent } from './components/list-elements/list-element-cita/list-element-cita.component';
 import { ListCitaComponent } from './components/list-elements/list-cita/list-cita.component';
 import { PacienteDetalleComponent } from './components/paciente-detalle/paciente-detalle.component';
+import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
+import { CalendarioComponent } from './components/calendario/calendario.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -19,6 +22,9 @@ export const routes: Routes = [
     { path: "table", component: TableComponent },
     { path: "semaforo", component: SemaforoComponent },
     { path: "cita", component: ListElementCitaComponent },
-    { path: "prueba", component: ListCitaComponent },
-    { path: "detallespaciente/:id", component: PacienteDetalleComponent }
+    { path: "lista-citas", component: ListCitaComponent },
+    { path: "detallespaciente/:id", component: PacienteDetalleComponent },
+    { path: "lista-pacientes", component:ListaPacientesComponent},
+    { path: "configuracion", component:ConfiguracionComponent},
+    { path: "calendario", component: CalendarioComponent}
 ];
