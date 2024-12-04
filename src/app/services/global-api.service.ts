@@ -1,9 +1,13 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class GlobalApiService {
+  constructor() {}
+  private url: string = 'http://localhost:5000/DeltalArce'; 
 
-  constructor() { }
+  getApiUrl() {
+    return this.url;
+  }
 }
