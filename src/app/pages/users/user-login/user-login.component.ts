@@ -14,16 +14,5 @@ export class UserLoginComponent {
   constructor(private loginService: LoginService) {}
 
   onSubmit(event: Event): void {
-    event.preventDefault(); // Evitar el comportamiento predeterminado del formulario
-
-    const usuario = (document.getElementById('usuario') as HTMLInputElement).value;
-    const password = (document.getElementById('password') as HTMLInputElement).value;
-
-    if (usuario && password) {
-      this.loginService.login(usuario, password);
-      alert('Inicio de sesión exitoso');
-    } else {
-      alert('Por favor, completa todos los campos');
-    }
   }
 }
