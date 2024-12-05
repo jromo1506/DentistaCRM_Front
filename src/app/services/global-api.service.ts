@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class GlobalApiService {
   constructor() {}
-  private url: string = 'http://localhost:5000/DeltalArce'; 
+  private url: string = 'http://localhost:5000/DentalArce'; 
 
   getApiUrl() {
     return this.url;

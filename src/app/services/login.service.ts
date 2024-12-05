@@ -1,31 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { GlobalApiService } from './global-api.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  constructor() {}
+  constructor(private http: HttpClient, private api: GlobalApiService) {}
 
-  login(usuario: string, password: string): void {
-    // Guardar los datos del usuario en localStorage, incluyendo la contraseña
-    const userData = {
-      usuario,
-      password, // Contraseña almacenada directamente
-      token: 'dummy-token', // Este es un token simulado
-    };
-
-    // Guardar en localStorage
-    localStorage.setItem('userData', JSON.stringify(userData));
-    console.log('Usuario logueado y datos guardados en localStorage');
-  }
-
-  getLoggedUser(): any {
-    const userData = localStorage.getItem('userData');
-    return userData ? JSON.parse(userData) : null;
-  }
-
-  logout(): void {
-    localStorage.removeItem('userData');
-    console.log('Usuario deslogueado');
+  // Método para autenticar al usuario
+  autenticarUsuario(datos: { usuario: string; password: string }): Observable<any> {
+    return this.http.post<any>(`${this.api.getApiUrl()}/usuarios/auth`, datos);
   }
 }
