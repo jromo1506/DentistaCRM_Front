@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import * as $ from 'jquery';
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -12,4 +12,18 @@ export class NavbarComponent {
   toggleMenu(): void {
     this.menuActive = !this.menuActive;
   }
+
+  ngOnInit() {
+    $(document).ready(() => {
+      console.log("jQuery is working!");
+    });
+  }
+
+
+  openMobile(){
+
+    $('#navbar-mobile').slideToggle(1000);
+  }
+
+
 }

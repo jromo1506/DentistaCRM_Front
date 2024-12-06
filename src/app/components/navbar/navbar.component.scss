@@ -1,28 +1,23 @@
 /* Estilo general del navbar */
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Gruppo&display=swap');
+
+@import '../../../colors.scss';
 .navbar {
     display: flex;
-    justify-content: space-between; /* Espacio entre elementos (izquierda, centro, derecha) */
-    align-items: center; /* Alineación vertical centrada */
-    background-color: #000;
+    // justify-content: space-between; /* Espacio entre elementos (izquierda, centro, derecha) */
+    // align-items: center; /* Alineación vertical centrada */
+    background-color: $background-4;
     padding: 28px 20px;
     color: #fff;
-    font-family: Arial, sans-serif;
-    position: relative;
+   
+    font-family: "Gruppo", sans-serif;
+
+   
   }
   
-  .navbar-center {
-    flex: 0; /* Asegura que el logo no se estire */
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%); /* Centra horizontalmente */
-  }
-  
-  .navbar-center .logo {
-    width: 50px; /* Tamaño del logo */
-    display: block;
-    margin: 0 auto;
-  }
-  
+
+
   
   .navbar-left,
   .navbar-right {
@@ -31,167 +26,178 @@
   }
   
   .navbar-left {
-    flex: 1;
-    justify-content: flex-start;
-    list-style: none;
+    width: 33%;
+    
     margin: 0;
     padding: 0;
+    font-size: 1.5rem;
   }
-  
-  .navbar-left li {
-    margin: 0 15px;
+
+  .navbar-left img{
+    max-height: 3rem;
   }
+
+  .navbar-center{
   
-  .navbar-left a {
-    text-decoration: none;
-    color: #ccc;
-    font-size: 16px;
-  }
-  
-  .navbar-left a:hover {
-    color: #fff;
-  }
-  
-  .navbar-right .icon {
-    margin-right: 35px;
-    margin-left: 15px;
-    color: #ccc;
-    font-size: 18px;
     display: flex;
-    align-items: center;
-  }
-  
-  .navbar-right .icon span {
-    margin-left: 5px;
-    font-size: 16px;
-  }
-  
-  .navbar-right .icon:hover {
-    color: #fff;
-  }
-  
-  .navbar-hamburger {
-    display: none;
-    cursor: pointer;
-    font-size: 24px;
-    color: #fff;
-  }
-  
-  /* Menú hamburguesa */
-  .hamburger-menu {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #fff;
-    color: #000;
-    z-index: 1000;
-    padding-top: 60px; /* Espacio para el fondo negro */
-    overflow-y: auto;
-  }
-  
-  .hamburger-menu.active {
-    display: block;
-  }
-  
-  .menu-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 60px;
-    background-color: #000;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 20px;
-    z-index: 1001;
-  }
-  
-  .menu-header .close-button {
-    cursor: pointer;
-    font-size: 24px;
-    color: #fff;
-  }
-  
-  .search-bar {
-    display: flex;
-    align-items: center;
-    margin: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  .search-bar input {
     flex: 1;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    padding: 5px;
+    justify-content: center;
   }
-  
-  .search-bar i {
-    margin-left: 10px;
-    font-size: 18px;
-    color: #ccc;
-  }
-  
-  .menu-options {
-    list-style: none;
-    padding: 0 20px;
-    margin: 20px 0;
-  }
-  
-  .menu-options li {
+
+  .navbar-right{
+    width: 33%;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 0;
-    border-bottom: 1px solid #ccc;
-    font-size: 18px;
+    justify-content:right;
+    box-sizing: border-box;
+    margin-right: 20px;
+    font-size: 1.5rem;
+   
+  }
+
+  .navbar-right-container{
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+  }
+
+
+  .dental-clinic{
+  
+    font-family: "Gruppo", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    color: $txt-light-3;
+  }
+
+  .dr-arce{
+    font-family: "Alex Brush", cursive;
+    font-weight: 100;
+    color: $txt-light-2;
+  }
+
+  .txt-option{
+    transition: all ease 0.3s;
   }
   
-  .menu-options li a {
-    text-decoration: none;
-    color: #000;
-    flex: 1;
-  }
+
   
-  .menu-options li a i {
-    font-size: 16px;
-    color: #ccc;
-  }
-  
-  .menu-options li a:hover {
-    color: #0078d7;
-  }
-  
-  .footer {
-    margin: 20px;
-    font-size: 14px;
-    text-align: center;
-  }
-  
-  .footer a {
-    text-decoration: none;
-    color: #000;
-  }
+  .txt-option:hover{
+    color: $txt-light-2;
+    cursor: pointer;
+}
+
+.navbar-mobile, 
+.menu-button{
+  display: none;
+}
   
   /* Responsivo */
   @media (max-width: 768px) {
-    .navbar-left {
-      display: none; /* Ocultar menú inicial */
+
+    .navbar{
+      display: flex;
+      flex-direction: column;
+      padding: 0;
+    }
+
+    .navbar-left{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .navbar-left img{
+      max-height: 1.5rem;
+    }
+
+
+    .dental-clinic{
+  
+      font-family: "Gruppo", sans-serif;
+      font-weight: 100;
+      font-style: normal;
+      color: $txt-light-3;
+      font-size: 1.2rem;
     }
   
-    .navbar-right .icon span {
-      display: none; /* Ocultar "Iniciar sesión" */
+    .dr-arce{
+      font-family: "Alex Brush", cursive;
+      font-weight: 100;
+      color: $txt-light-2;
+      font-size: 0.8rem;
     }
-  
-    .navbar-hamburger {
-      display: block; /* Mostrar botón hamburguesa */
+
+
+    
+    .navbar-pc{
+      display: none;
     }
+
+    .navbar-right{
+      width: 100%;
+      background-color:transparent ;
+    }
+
+    .mobile-menubar{
+      
+    }
+
+    .navbar-mobile{
+         
+      font-family: "Gruppo", sans-serif;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      display:none;
+      background-color: $background-3;
+      color:$txt-light-3;
+      
+   
+
+
+    }
+
+    .navbar-mobile .txt-option{
+      font-size: 1.2rem;
+    }
+
+    .navbar-mobile div{
+      padding: 5px;
+      box-shadow: 0px 2px 2px rgba(255, 255, 255, 0.125);
+      padding: 10px;
+
+    }
+
+    .navbar-mobile div i{
+      font-size: 1rem;
+      transition: all ease 1.5s;
+    }
+    
+    .navbar-mobile div:hover{
+    
+      padding: 10px;
+      background-color: $background-3-hover;
+    }
+
+    .txt-option:hover{
+      
+      color: $txt-light-3 !important;
+      cursor: pointer;
+    }
+
+
+    .menu-button{
+      font-family: "Gruppo", sans-serif;
+      width: 100%;
+      display: flex;
+      background-color:$background-3;
+      background-color:$txt-light-3;
+    }
+
+    
+
+
+
   }
   
