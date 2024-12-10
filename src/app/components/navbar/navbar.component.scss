@@ -50,12 +50,12 @@
     justify-content:right;
     box-sizing: border-box;
     margin-right: 20px;
-    font-size: 1.5rem;
+    font-size: 0.8rem;
    
   }
 
   .navbar-right-container{
-    width: 70%;
+    width: 80%;
     display: flex;
     justify-content: space-around;
   }
@@ -90,9 +90,10 @@
 .menu-button{
   display: none;
 }
+
   
   /* Responsivo */
-  @media (max-width: 768px) {
+  @media (max-width: 920px) {
 
     .navbar{
       display: flex;
