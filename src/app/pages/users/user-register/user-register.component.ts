@@ -1,16 +1,61 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from 'src/app/services/user.service';
+import { HttpClientModule } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { SwalService } from 'src/app/services/swal.service'; // Importa SwalService
 
 @Component({
   selector: 'app-user-register',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule, HttpClientModule],
   templateUrl: './user-register.component.html',
-  styleUrls: ['./user-register.component.scss']
+  styleUrls: ['./user-register.component.scss'],
 })
-export class UserRegisterComponent {
-  onSubmit() {
-    // Aquí puedes manejar el envío del formulario
-    console.log('Formulario enviado');
+export class UserRegisterComponent implements OnInit {
+  registerForm: FormGroup;
+
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router,
+    private swalService: SwalService // Inyecta SwalService
+  ) {
+    this.registerForm = this.fb.group({
+      usuario: ['', [Validators.required]],
+      password: ['', [Validators.required]],
+      tipoUsuario: ['', [Validators.required]],
+      telefono: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
+    });
+  }
+
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    if (this.registerForm.invalid) {
+      this.swalService.errorCampos('Por favor, complete todos los campos');
+      return;
+    }
+    this.nuevoUsuario();
+  }
+
+  nuevoUsuario(): void {
+    const userData = this.registerForm.value;
+    this.userService.addUser(userData).subscribe({
+      next: (response) => {
+        this.swalService.success('Usuario registrado con éxito');
+        this.registerForm.reset();
+        this.router.navigate(['/login']); 
+      },
+      error: (error) => {
+        if (error.status === 400) {
+          // Usuario ya existe
+          this.swalService.error('El usuario ya existe', 'Registro fallido');
+        } else {
+          this.swalService.error('Error al registrar el usuario', 'Registro fallido');
+        }
+      },
+    });
   }
 }

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Gruppo&display=swap');
+
+@import '../../../../colors.scss';
+
+
 .register-page {
     display: flex;
     flex-wrap: wrap;
@@ -6,9 +12,9 @@
     min-height: 100vh;
     position: relative;
     overflow: hidden; /* Evita desbordamientos de contenido */
-    background: url('../../../../assets/ImgsLogin/imgLoginRegister.jpg') no-repeat center center; /* Reemplaza con la ruta de tu imagen */
+    background: url('../../../../assets/ImgsLogin/fondo-login-responsive.jpg') no-repeat center center; /* Reemplaza con la ruta de tu imagen */
     background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-
+    font-family: "Gruppo", sans-serif;
     .register-form-container {
         z-index: 1; /* Mantiene el formulario encima de la imagen */
         position: relative; /* Asegura que esté dentro del flujo del documento */
@@ -21,7 +27,7 @@
         .title {
             font-size: 2rem;
             font-weight: bold;
-            color: #0077b6;
+            color: $txt-med-2;
             text-align: center;
             margin-bottom: 1.5rem;
         }
@@ -35,10 +41,10 @@
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-
+                font-family: "Gruppo", sans-serif;
                 label {
                     font-size: 1rem;
-                    color: #00509e;
+                    color: $txt-dark-3;
                     font-weight: 500;
                 }
 
@@ -50,7 +56,7 @@
                     border-radius: 5px;
                     outline: none;
                     transition: border 0.3s ease;
-
+                    font-family: "Gruppo", sans-serif;
                     &:focus {
                         border-color: #0077b6;
                         box-shadow: 0 0 5px rgba(0, 119, 182, 0.2);
@@ -59,7 +65,7 @@
             }
 
             .btn-register {
-                background: #0077b6;
+                background: $txt-dark-3;
                 color: #ffffff;
                 padding: 0.8rem;
                 border: none;
@@ -68,6 +74,7 @@
                 font-weight: bold;
                 cursor: pointer;
                 transition: background 0.3s ease;
+                font-family: "Gruppo", sans-serif;
 
                 &:hover {
                     background: #00509e;

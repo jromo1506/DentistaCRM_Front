@@ -57,20 +57,20 @@
   <div id="navbar-mobile"  class=" navbar-mobile">
     <div class="flex-ai">
       <i class="fa-solid fa-user-doctor"></i>
-      <label class="txt-option ml-1">Login </label>
+      <label class="txt-option ml-1" (click)="navigate('/login')">Login</label>
     </div>
     <div class="flex-ai">
       <i class="fa-solid fa-hospital-user"></i>
-      <label class="txt-option ml-1">Register </label>
+      <label class="txt-option ml-1" (click)="navigate('/registro')">Register </label>
     </div>
     <div class="flex-ai">
       <i class="fa-regular fa-address-book"></i>
-      <label class="txt-option ml-1">Patient list </label>
+      <label class="txt-option ml-1" (click)="navigate('/lista-pacientes')">Patient list </label>
     </div>
   
     <div class="flex-ai">
       <i class="fa-regular fa-calendar-check"></i>
-      <label class="txt-option ml-1">Appointments </label>
+      <label class="txt-option ml-1" (click)="navigate('/lista-citas')">Appointments </label>
     </div>
   </div>
 
