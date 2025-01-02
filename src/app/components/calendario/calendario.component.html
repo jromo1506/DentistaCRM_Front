@@ -1,7 +1,15 @@
-
-<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Qnk8LRuynoOTuSUSbzvh0KMJn1_Zqh7Xm-2Kk5zPr7veXyCKCJCJQ5NdJPUblaH91y_vwE45D?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
-
-<div class="calendar">
-    <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FMexico_City&showPrint=0&src=bmFvbWkuaGVybnJvbW9AZ21haWwuY29t&color=%23039BE5" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-
-</div>
+<div class="calendar-container">
+    <div class="button-container">
+      <button (click)="showAppointmentsCalendar()">Agendar Cita</button>
+      <button (click)="showFullCalendar()">Visualizar Calendario Completo</button>
+    </div>
+  
+    <div *ngIf="isAppointmentsCalendarVisible" class="calendar">
+      <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ2Qnk8LRuynoOTuSUSbzvh0KMJn1_Zqh7Xm-2Kk5zPr7veXyCKCJCJQ5NdJPUblaH91y_vwE45D?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+    </div>
+  
+    <div *ngIf="isFullCalendarVisible" class="calendar">
+      <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&ctz=America%2FMexico_City&showPrint=0&src=bmFvbWkuaGVybnJvbW9AZ21haWwuY29t&color=%23039BE5" style="border: 0"  width="800" height="600" frameborder="0" scrolling="no"></iframe>
+    </div>
+  </div>
+  

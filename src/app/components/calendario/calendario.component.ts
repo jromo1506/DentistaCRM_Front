@@ -10,5 +10,16 @@ import { RouterModule } from '@angular/router';
   styleUrls: ['./calendario.component.scss']
 })
 export class CalendarioComponent {
+  isAppointmentsCalendarVisible = false;
+  isFullCalendarVisible = false;
 
+  showAppointmentsCalendar() {
+    this.isAppointmentsCalendarVisible = true;
+    this.isFullCalendarVisible = false;
+  }
+
+  showFullCalendar() {
+    this.isFullCalendarVisible = true;
+    this.isAppointmentsCalendarVisible = false;
+  }
 }
