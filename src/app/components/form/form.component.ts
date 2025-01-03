@@ -16,6 +16,8 @@ export class FormComponent {
   pacientes: Array<any> = [];
 
   isModalVisible: boolean = false; // Controla la visibilidad del modal
+  esEdicion: boolean = false;
+  pacienteEdicion: number | null = null;
 
   // Modelo para un nuevo paciente
   nuevoPaciente = {
@@ -41,6 +43,7 @@ export class FormComponent {
 
   cerrarModal() {
     this.isModalVisible = false; // Oculta el modal
+    this.limpiarFormulario();
   }
 
   calcularEdad(fechaNacimiento: string): number {
@@ -57,30 +60,59 @@ export class FormComponent {
   agregarPaciente() {
     if (this.nuevoPaciente.nombre && this.nuevoPaciente.fechaNacimiento && this.nuevoPaciente.telefono) {
       const edad = this.calcularEdad(this.nuevoPaciente.fechaNacimiento);
-      const pacienteConEdad = { ...this.nuevoPaciente, edad };
-      this.pacientes.push(pacienteConEdad);
 
+      if(this.esEdicion && this.pacienteEdicion !== null) {
+        console.log("Entro en EDICION")
+        this.pacientes[this.pacienteEdicion] = {
+          ...this.nuevoPaciente,
+          edad,
+        };
+        this.swalService.success('Paciente actualizado correctamente');
+      } else {
+        const pacienteConEdad = { ...this.nuevoPaciente, edad };
+        this.pacientes.push(pacienteConEdad);
+        this.swalService.success('Paciente registrado correctamente');
+      }
+      
       localStorage.setItem('pacientes', JSON.stringify(this.pacientes));
-
-      this.nuevoPaciente = {
-        nombre: '',
-        fechaNacimiento: '',
-        telefono: '',
-        correo: '',
-        direccion: '',
-        condicionesMedicas: '',
-        alergias: '',
-        cirugiasPrevias: '',
-        seguroDental: false,
-        peso: null,
-        altura: null,
-        tensionArterial: false,
-      };
 
       this.cerrarModal(); // Cierra el modal después de registrar
     } else {
       this.swalService.errorCampos('Debes completar todos los campos.');
     }
+  }
+
+  editarPacienteDesdeLista(paciente: any) {
+    this.nuevoPaciente = { ...paciente }; // Carga los datos del paciente en el formulario
+    this.esEdicion = true;
+    this.pacienteEdicion = this.pacientes.findIndex (
+      (p) =>
+        p.nombre === paciente.nombre &&
+        p.fechaNacimiento === paciente.fechaNacimiento
+    );
+    console.log("esEdicion: ",this.esEdicion)
+    console.log("pacienteEdicion: ",this.pacienteEdicion)
+    this.abrirModal();
+  }
+
+  limpiarFormulario() {
+    this.nuevoPaciente = {
+      nombre: '',
+      fechaNacimiento: '',
+      telefono: '',
+      correo: '',
+      direccion: '',
+      condicionesMedicas: '',
+      alergias: '',
+      cirugiasPrevias: '',
+      seguroDental: false,
+      peso: null,
+      altura: null,
+      tensionArterial: false,
+    };
+    this.esEdicion = false;
+    console.log("esEdicion: ",this.esEdicion)
+    this.pacienteEdicion = null;
   }
 
   cargarPacientes() {

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 
@@ -11,10 +11,16 @@ import { Router } from '@angular/router';
 })
 export class ElementPacienteComponent {
   @Input() paciente: any; // Recibe el paciente como entrada
+  @Output() editarPacienteEvent = new EventEmitter<any>();
 
   constructor(private router: Router) {}
+
   verDetalles(paciente: any) {
     // Redirigimos a la página de detalles pasando el id del paciente
     this.router.navigate(['/detallespaciente', paciente.nombre]); // O usa 'paciente.id' si tienes un campo id único
+  }
+
+  editarPaciente() {
+    this.editarPacienteEvent.emit(this.paciente);
   }
 }

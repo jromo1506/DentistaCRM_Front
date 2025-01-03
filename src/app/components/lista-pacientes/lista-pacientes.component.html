@@ -12,7 +12,10 @@
       <div class="paciente-cell">Acciones</div>
     </div>
     <div *ngFor="let paciente of pacientes">
-      <app-element-paciente [paciente]="paciente"></app-element-paciente>
+      <app-element-paciente 
+        [paciente]="paciente"
+        (editarPacienteEvent)="editarPaciente($event)">
+      </app-element-paciente>
     </div>
   </div>
   
