@@ -17,7 +17,7 @@ export class ElementPacienteComponent {
 
   verDetalles(paciente: any) {
     // Redirigimos a la página de detalles pasando el id del paciente
-    this.router.navigate(['/detallespaciente', paciente.nombre]); // O usa 'paciente.id' si tienes un campo id único
+    this.router.navigate(['/perfil', "paciente", paciente.nombre]); // O usa 'paciente.id' si tienes un campo id único
   }
 
   editarPaciente() {

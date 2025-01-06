@@ -1,0 +1,23 @@
+<div class="combined-container">
+  <h2>Mensajes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Info</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let mensaje of mensajes">
+        <td>
+          <app-list-element-mensaje [mensaje]="mensaje"></app-list-element-mensaje>
+        </td>
+        <td>
+          <div class="semaforo-container">
+            <app-semaforo [status]="mensaje.status"></app-semaforo>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
