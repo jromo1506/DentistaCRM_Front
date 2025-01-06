@@ -1,0 +1,48 @@
+<div *ngIf="tipo === 'paciente' && data" class="paciente-detalles">
+    <h2 class="titulo">Detalles del Paciente: <span>{{ data.nombre }}</span></h2>
+    <div class="detalles-container">
+      <ul class="detalles-lista">
+        <li><strong>Fecha de nacimiento:</strong> {{ data.fechaNacimiento }}</li>
+        <li><strong>Edad:</strong> {{ data.edad }}</li>
+        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
+        <li><strong>Correo electrónico:</strong> {{ data.correo }}</li>
+        <li><strong>Dirección:</strong> {{ data.direccion }}</li>
+        <li><strong>Condiciones Médicas:</strong> {{ data.condicionesMedicas }}</li>
+        <li><strong>Alergias:</strong> {{ data.alergias }}</li>
+        <li><strong>Cirugías Previas:</strong> {{ data.cirugiasPrevias }}</li>
+        <li><strong>Seguro Dental:</strong> {{ data.seguroDental ? 'Sí' : 'No' }}</li>
+        <li><strong>Peso:</strong> {{ data.peso }} kg</li>
+        <li><strong>Altura:</strong> {{ data.altura }} m</li>
+        <li><strong>Tensión Arterial:</strong> {{ data.tensionArterial ? 'Sí' : 'No' }}</li>
+      </ul>
+    </div>
+</div>
+
+<div *ngIf="tipo === 'doctor' && data" class="paciente-detalles">
+    <h2 class="titulo">Detalles del Doctor: <span>{{ data.nombre }}</span></h2>
+    <div class="detalles-container">
+      <ul class="detalles-lista">
+        <li><strong>Fecha de nacimiento:</strong> {{ data.fechaNacimiento }}</li>
+        <li><strong>Edad:</strong> {{ data.edad }}</li>
+        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
+        <li><strong>Correo electrónico:</strong> {{ data.correo }}</li>
+        <li><strong>Dirección:</strong> {{ data.direccion }}</li>
+      </ul>
+    </div>
+</div>
+
+
+<div *ngIf="tipo === 'usuario' && data" class="paciente-detalles">
+    <h2 class="titulo">Detalles del Usuario: <span>{{ data.nombre }}</span></h2>
+    <div class="detalles-container">
+      <ul class="detalles-lista">
+        <li><strong>Fecha de nacimiento:</strong> {{ data.fechaNacimiento }}</li>
+        <li><strong>Edad:</strong> {{ data.edad }}</li>
+        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
+        <li><strong>Correo electrónico:</strong> {{ data.correo }}</li>
+        <li><strong>Dirección:</strong> {{ data.direccion }}</li>
+      </ul>
+    </div>
+</div>
+
+  

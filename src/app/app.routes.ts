@@ -12,6 +12,8 @@ import { PacienteDetalleComponent } from './components/paciente-detalle/paciente
 import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
 import { ConfiguracionComponent } from './components/configuracion/configuracion.component';
 import { CalendarioComponent } from './components/calendario/calendario.component';
+import { PerfilComponent } from './components/perfil/perfil.component';
+import { ListMensajeComponent } from './components/list-elements/list-mensaje/list-mensaje.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -23,7 +25,9 @@ export const routes: Routes = [
     { path: "semaforo", component: SemaforoComponent },
     { path: "cita", component: ListElementCitaComponent },
     { path: "lista-citas", component: ListCitaComponent },
+    { path: "lista-mensajes", component: ListMensajeComponent },
     { path: "detallespaciente/:id", component: PacienteDetalleComponent },
+    { path: "perfil/:name/:id", component: PerfilComponent },
     { path: "lista-pacientes", component:ListaPacientesComponent},
     { path: "configuracion", component:ConfiguracionComponent},
     { path: "calendario", component: CalendarioComponent}

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -14,7 +14,7 @@ import { FormComponent } from '../form/form.component';
 })
 export class ListaPacientesComponent {
   pacientes: Array<any> = [];
-
+  @ViewChild(FormComponent) formComponent!: FormComponent;
   constructor(private router: Router) {}
 
   cargarPacientes() {
@@ -27,5 +27,9 @@ export class ListaPacientesComponent {
 
   ngOnInit() {
     this.cargarPacientes();
+  }
+
+  editarPaciente(paciente: any) {
+    this.formComponent.editarPacienteDesdeLista(paciente);
   }
 }

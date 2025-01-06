@@ -4,7 +4,7 @@
 </div>
 
 <!-- Modal para registrar un nuevo paciente -->
-<app-modal [isVisible]="isModalVisible" [title]="'Registro de Pacientes'" (close)="cerrarModal()">
+<app-modal [isVisible]="isModalVisible" [title]="esEdicion ? 'Editar Paciente' : 'Registro de Pacientes'" (close)="cerrarModal()">
   <form (submit)="agregarPaciente(); $event.preventDefault()">
     <label>
       Nombre completo:
@@ -54,7 +54,7 @@
       Tensión arterial:
       <input type="checkbox" [(ngModel)]="nuevoPaciente.tensionArterial" name="tensionArterial" />
     </label>
-    <button type="submit">Registrar</button>
+    <button type="submit">{{ esEdicion ? 'Actualizar' : 'Registrar' }}</button>
   </form>
 </app-modal>
 
