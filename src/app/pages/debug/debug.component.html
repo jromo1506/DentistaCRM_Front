@@ -1,4 +1,4 @@
-<app-notification></app-notification>
+<!-- <app-notification></app-notification>
 <app-finder></app-finder>
 <app-list></app-list>
 <app-lista-pacientes></app-lista-pacientes>
@@ -12,4 +12,11 @@
   [discount]="47"
   [freeShipping]="true">
 </app-product-card>
+ -->
 
+ <div *ngFor="let day of horarios | keyvalue" (click)="apartar(day)">
+    <h3>{{ day.key }}</h3>
+    <p>Fecha: {{ day.value.date }}</p>
+    <p>Inicio: {{ day.value.start }}</p>
+    <p>Fin: {{ day.value.end }}</p>
+ </div>
