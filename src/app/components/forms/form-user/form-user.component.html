@@ -1,0 +1,23 @@
+<div class="form-container">
+    <h2>Registro de usuarios</h2>
+    <button (click)="abrirModal()">Nuevo Usuario</button>
+</div>
+
+  <!-- Modal para registrar un nuevo usuario -->
+  <app-modal [isVisible]="isModalVisible" [title]="esEdicion ? 'Editar Usuario' : 'Registro de Usuarios'" (close)="cerrarModal()">
+    <form (submit)="agregarUsuario(); $event.preventDefault()">
+      <label>
+        Nombre completo:
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Tipo:
+        <input type="text" [(ngModel)]="nuevoUsuario.tipo" name="direccion" required />
+      </label>
+      <label>
+        Teléfono:
+        <input type="number" [(ngModel)]="nuevoUsuario.telefono" name="telefono" required />
+      </label>
+      <button type="submit">{{ esEdicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+</app-modal>

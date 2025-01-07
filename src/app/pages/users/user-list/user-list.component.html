@@ -1,15 +1,18 @@
-
-
+<div class="m-1">
+  <app-form-user></app-form-user>
+</div>
   <div class="lista-container">
       <h3>Usuarios Registrados en base al formulario en localhost</h3>
       <div class="paciente-header">
         <div class="paciente-cell">Usuario</div>
         <div class="paciente-cell">Tipo de usuario</div>
         <div class="paciente-cell">Teléfono</div>
+        <div class="paciente-cell">Acciones</div>
       </div>
       <div *ngFor="let usuario of usuarios">
         <app-user-view
-          [usuario]="usuario">
+          [usuario]="usuario"
+        (editarUsuarioEvent)="editarUsuario($event)">
         </app-user-view>
       </div>
     </div>

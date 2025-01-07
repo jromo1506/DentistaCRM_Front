@@ -1,17 +1,23 @@
 
-  <div class="lista-container">
-      <h3>Doctores Registrados en base al formulario en localhost</h3>
-      <div class="paciente-header">
-        <div class="paciente-cell">Nombre</div>
-        <div class="paciente-cell">Edad</div>
-        <div class="paciente-cell">Teléfono</div>
-        <div class="paciente-cell">Correo</div>
-        <div class="paciente-cell">Especialidad</div>
-      </div>
-      <div *ngFor="let paciente of pacientes">
-        <app-element-doctor 
-          [paciente]="paciente"
-         >
-        </app-element-doctor>
-      </div>
+<div class="m-1">
+  <app-form-doctor></app-form-doctor>
+</div>
+
+<div class="lista-container">
+    <h3>Doctores Registrados en base al formulario en localhost</h3>
+    <div class="paciente-header">
+      <div class="paciente-cell">Nombre</div>
+      <div class="paciente-cell">Edad</div>
+      <div class="paciente-cell">Teléfono</div>
+      <div class="paciente-cell">Correo</div>
+      <div class="paciente-cell">Especialidad</div>
+      <div class="paciente-cell">Acciones</div>
     </div>
+    <div *ngFor="let doctor of doctores">
+      <app-element-doctor 
+        [doctor]="doctor"
+        (editarDoctorEvent)="editarDoctor($event)"
+       >
+      </app-element-doctor>
+    </div>
+</div>

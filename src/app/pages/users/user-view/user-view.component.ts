@@ -10,7 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./user-view.component.scss']
 })
 export class UserViewComponent {
-  @Input() usuario: any; // Recibe el paciente como entrada
+  @Input() usuario: any; // Recibe el usuario como entrada
+  @Output() editarUsuarioEvent = new EventEmitter<any>();
 
   constructor(private router: Router) {}
+
+  verDetalles(usuario: any) {
+    // Redirigimos a la página de detalles pasando el id del usuario
+    this.router.navigate(['/perfil', "usuario", usuario.nombre]); // O usa 'usuario.id' si tienes un campo id único
+  }
+
+  editarUsuario() {
+    this.editarUsuarioEvent.emit(this.usuario);
+  }
 }

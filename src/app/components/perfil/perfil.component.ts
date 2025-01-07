@@ -32,17 +32,18 @@ export class PerfilComponent {
       }
       this.data = this.pacientes.find(p => p.nombre === id);
     } else if (this.tipo === 'doctor') {
-      const doctoresGuardados = localStorage.getItem('doctores');
+      const doctoresGuardados = localStorage.getItem('dotores');
       if (doctoresGuardados) {
         this.doctores = JSON.parse(doctoresGuardados);
       }
-      this.data = this.doctores.find(d => d.id === id);
+
+      this.data = this.doctores.find(d => d.nombre === id);
     } else if (this.tipo === 'usuario') {
-      const usuariosGuardados = localStorage.getItem('usuarios');
+      const usuariosGuardados = localStorage.getItem('usuario');
       if (usuariosGuardados) {
         this.usuarios = JSON.parse(usuariosGuardados);
       }
-      this.data = this.usuarios.find(u => u.id === id);
+      this.data = this.usuarios.find(u => u.nombre === id);
     }
   
   }

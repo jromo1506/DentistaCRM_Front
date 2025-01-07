@@ -10,10 +10,17 @@ import { Router } from '@angular/router';
   styleUrls: ['./element-doctor.component.scss']
 })
 export class ElementDoctorComponent {
-  @Input() paciente: any; // Recibe el paciente como entrada
-  @Output() editarPacienteEvent = new EventEmitter<any>();
+  @Input() doctor: any; // Recibe el doctor como entrada
+  @Output() editarDoctorEvent = new EventEmitter<any>();
 
   constructor(private router: Router) {}
 
+  verDetalles(doctor: any) {
+    // Redirigimos a la página de detalles pasando el id del doctor
+    this.router.navigate(['/perfil', "doctor", doctor.nombre]); // O usa 'doctor.id' si tienes un campo id único
+  }
 
+  editarDoctor() {
+    this.editarDoctorEvent.emit(this.doctor);
+  }
 }
