@@ -13,7 +13,8 @@
       <div *ngFor="let usuario of usuarios">
         <app-user-view
           [usuario]="usuario"
-        (editarUsuarioEvent)="editarUsuario($event)">
+          (editarUsuarioEvent)="editarUsuario($event)"
+          (eliminarUsuarioEvent)="eliminarUsuario($event)">
         </app-user-view>
       </div>
     </div>

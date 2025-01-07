@@ -9,7 +9,13 @@
   align-items: center;
   justify-content: center;
 }
-
+.close {
+  border: none;
+  border-radius: 5px;
+  background-color: #3a571b;
+  color: white;
+  padding: 8px 12px;
+}
 .modal {
   background: white;
   padding: 20px;
