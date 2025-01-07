@@ -1,0 +1,17 @@
+
+  <div class="lista-container">
+      <h3>Doctores Registrados en base al formulario en localhost</h3>
+      <div class="paciente-header">
+        <div class="paciente-cell">Nombre</div>
+        <div class="paciente-cell">Edad</div>
+        <div class="paciente-cell">Teléfono</div>
+        <div class="paciente-cell">Correo</div>
+        <div class="paciente-cell">Especialidad</div>
+      </div>
+      <div *ngFor="let paciente of pacientes">
+        <app-element-doctor 
+          [paciente]="paciente"
+         >
+        </app-element-doctor>
+      </div>
+    </div>
