@@ -2,8 +2,9 @@
 <div class="m-1">
   <app-form></app-form>
 </div>
+<br>
 <div class="lista-container">
-    <h3>Pacientes Registrados en base al formulario en localhost</h3>
+    <h3>Pacientes</h3>
     <div class="paciente-header">
       <div class="paciente-cell">Nombre</div>
       <div class="paciente-cell">Edad</div>
@@ -14,7 +15,8 @@
     <div *ngFor="let paciente of pacientes">
       <app-element-paciente 
         [paciente]="paciente"
-        (editarPacienteEvent)="editarPaciente($event)">
+        (editarPacienteEvent)="editarPaciente($event)"
+        (eliminarPacienteEvent)="eliminarPaciente($event)">
       </app-element-paciente>
     </div>
   </div>

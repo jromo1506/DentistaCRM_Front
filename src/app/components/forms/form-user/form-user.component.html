@@ -1,0 +1,53 @@
+<div class="p-2">
+    <button (click)="abrirModal()">Nuevo Usuario</button>
+</div>
+
+  <!-- Modal para registrar un nuevo usuario -->
+  <app-modal [isVisible]="isModalVisible" [title]="esEdicion ? 'Editar Usuario' : 'Registro de Usuarios'" (close)="cerrarModal()">
+    <form (submit)="agregarUsuario(); $event.preventDefault()">
+      <label>
+        Usuario :
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Contraseña :
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Nombre :
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Apellido Paterno :
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Apellido Materno :
+        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+      </label>
+      <label>
+        Teléfono:
+        <input type="number" [(ngModel)]="nuevoUsuario.telefono" name="telefono" required />
+      </label>
+      <label>
+        Correo:
+        <input type="text" [(ngModel)]="nuevoUsuario.tipo" name="direccion" required />
+      </label>
+      <label>
+        Tipo:
+        <select class="p-1 w-50">
+          <option>Administrador</option>
+          <option>Atencion a clientes</option>
+          <option>Doctor</option>
+        </select>
+      </label>
+     
+      
+      <label>
+        Especialiddad:
+        <input type="text" [(ngModel)]="nuevoUsuario.tipo" name="direccion" required />
+      </label>
+      
+      <button type="submit">{{ esEdicion ? 'Actualizar' : 'Registrar' }}</button>
+    </form>
+</app-modal>

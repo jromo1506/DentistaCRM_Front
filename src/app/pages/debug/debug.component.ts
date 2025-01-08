@@ -4,7 +4,7 @@ import { NotificationComponent } from 'src/app/components/notification/notificat
 import { ModalComponent } from 'src/app/components/modal/modal.component';
 import { FinderComponent } from 'src/app/components/finder/finder.component';
 import { ListComponent } from 'src/app/components/list/list.component';
-import { FormComponent } from 'src/app/components/form/form.component';
+import { FormComponent } from 'src/app/components/forms/form/form.component';
 import { MessageBoxComponent } from 'src/app/components/message-box/message-box.component';
 import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
 import { ListaPacientesComponent } from 'src/app/components/lista-pacientes/lista-pacientes.component';

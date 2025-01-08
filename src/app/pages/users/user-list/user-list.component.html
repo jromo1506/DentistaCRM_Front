@@ -1,1 +1,22 @@
-<p>user-list works!</p>
+<div class="m-1">
+  <app-form-user></app-form-user>
+  <div class="m-2">
+    <div class="lista-container">
+      <div class="paciente-header">
+        <div class="paciente-cell">Usuario</div>
+        <div class="paciente-cell">Tipo de usuario</div>
+        <div class="paciente-cell">Teléfono</div>
+        <div class="paciente-cell">Acciones</div>
+      </div>
+      <div *ngFor="let usuario of usuarios">
+        <app-user-view
+          [usuario]="usuario"
+          (editarUsuarioEvent)="editarUsuario($event)"
+          (eliminarUsuarioEvent)="eliminarUsuario($event)">
+        </app-user-view>
+      </div>
+    </div>
+  </div>
+</div>
+
+ 

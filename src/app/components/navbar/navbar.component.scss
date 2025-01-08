@@ -76,11 +76,13 @@
 
   .txt-option{
     transition: all ease 0.3s;
+    font-family: "Gruppo", sans-serif;
   }
   
 
   
   .txt-option:hover{
+   
     color: $txt-light-2;
     cursor: pointer;
 }
@@ -181,8 +183,10 @@
       background-color: $background-3-hover;
     }
 
+    
+
     .txt-option:hover{
-      
+    
       color: $txt-light-3 !important;
       cursor: pointer;
     }

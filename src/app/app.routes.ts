@@ -14,6 +14,8 @@ import { ConfiguracionComponent } from './components/configuracion/configuracion
 import { CalendarioComponent } from './components/calendario/calendario.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { ListMensajeComponent } from './components/list-elements/list-mensaje/list-mensaje.component';
+import { UserListComponent } from './pages/users/user-list/user-list.component';
+import { ListaDoctoresComponent } from './components/lista-doctores/lista-doctores.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -25,10 +27,13 @@ export const routes: Routes = [
     { path: "semaforo", component: SemaforoComponent },
     { path: "cita", component: ListElementCitaComponent },
     { path: "lista-citas", component: ListCitaComponent },
+    { path: "lista-usuarios", component:UserListComponent},
     { path: "lista-mensajes", component: ListMensajeComponent },
     { path: "detallespaciente/:id", component: PacienteDetalleComponent },
     { path: "perfil/:name/:id", component: PerfilComponent },
     { path: "lista-pacientes", component:ListaPacientesComponent},
     { path: "configuracion", component:ConfiguracionComponent},
-    { path: "calendario", component: CalendarioComponent}
+    { path: "calendario", component: CalendarioComponent},
+    { path: "lista-doctores", component: ListaDoctoresComponent}
+    
 ];

@@ -1,7 +1,8 @@
 .lista-container {
-
+  width: 100%;
   background-color: #f4f4f4;
   border-radius: 8px;
+  margin: 0 auto;
 }
 
 .lista-container h3 {
@@ -23,13 +24,13 @@
 
 .paciente-header {
   font-weight: bold;
-  background-color: #007bff;
+  background-color: #29331e;
   color: white;
 }
 
 .paciente-cell button {
   padding: 8px 15px;
-  background-color: #007bff;
+  background-color: #29331e;
   color: white;
   border: none;
   border-radius: 5px;
@@ -38,7 +39,7 @@
 }
 
 .paciente-cell button:hover {
-  background-color: #0056b3;
+  background-color: #3a571b;
 }
 
 .paciente-header .paciente-cell {
