@@ -104,3 +104,17 @@
     }
 }
 
+@media (min-width: 1000px) {
+    .register-form-container{
+        max-width: none !important;
+        width: 60vw;
+    }
+
+    .register-page{
+        min-height: 80vh !important;
+        height:80vh !important;
+        overflow: hidden;
+        background: none;
+    }
+  }
+  

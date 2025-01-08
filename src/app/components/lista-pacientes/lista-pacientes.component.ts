@@ -25,8 +25,6 @@ export class ListaPacientesComponent {
       this.pacientes = JSON.parse(pacientesGuardados);
     }
   }
-
-
   ngOnInit() {
     this.cargarPacientes();
   }
