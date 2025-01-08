@@ -1,14 +1,13 @@
 /* Estilos generales para el contenedor del formulario */
 .form-container {
-    width: 30%;
-    max-width: 900px;
+    width: 90%;
+    // max-width: 500px;
     margin: 0 auto;
+    display: grid;
+    gap: 15px;
     padding: 20px;
-    background-color: #f9f9f9;
+    background: #fff;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    
   }
   
   /* Títulos */
@@ -24,18 +23,10 @@
     font-size: 1.5rem;
     color: #333;
   }
-  
-  /* Estilo para el formulario */
-  form {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 15px;
-    margin-top: 20px;
-  }
+
   
   /* Etiquetas */
   label {
-    display: block;
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -43,30 +34,27 @@
   }
   
   /* Campos de entrada */
-  input[type="text"],
-  input[type="date"],
-  input[type="tel"],
-  input[type="email"],
-  input[type="number"],
+  input,
+  select,
   textarea {
     width: 100%;
     padding: 10px;
     font-size: 1rem;
     border: 1px solid #ccc;
     border-radius: 4px;
-    box-sizing: border-box;
+  }
+
+  @media (max-width: 425px) { 
+    input {
+      max-width: 90%;
+    }
   }
   
-  input[type="checkbox"] {
-    margin-right: 10px;
-  }
-  
-  textarea {
-    height: 120px;
-    resize: vertical;
-  }
-  
+
   /* Estilo para el botón de submit */
+  button.enviar {
+    width: 100%;
+  }
   button {
     padding: 10px 20px;
     background-color: #29331e;
