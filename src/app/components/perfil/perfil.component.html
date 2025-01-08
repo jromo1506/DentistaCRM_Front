@@ -1,44 +1,187 @@
-<div *ngIf="tipo === 'paciente' && data" class="paciente-detalles">
-    <h2 class="titulo">Detalles del Paciente: <span>{{ data.nombre }}</span></h2>
-    <div class="detalles-container">
-      <ul class="detalles-lista">
-        <li><strong>Fecha de nacimiento:</strong> {{ data.fechaNacimiento }}</li>
-        <li><strong>Edad:</strong> {{ data.edad }}</li>
-        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
-        <li><strong>Correo electrónico:</strong> {{ data.correo }}</li>
-        <li><strong>Dirección:</strong> {{ data.direccion }}</li>
-        <li><strong>Condiciones Médicas:</strong> {{ data.condicionesMedicas }}</li>
-        <li><strong>Alergias:</strong> {{ data.alergias }}</li>
-        <li><strong>Cirugías Previas:</strong> {{ data.cirugiasPrevias }}</li>
-        <li><strong>Seguro Dental:</strong> {{ data.seguroDental ? 'Sí' : 'No' }}</li>
-        <li><strong>Peso:</strong> {{ data.peso }} kg</li>
-        <li><strong>Altura:</strong> {{ data.altura }} m</li>
-        <li><strong>Tensión Arterial:</strong> {{ data.tensionArterial ? 'Sí' : 'No' }}</li>
-      </ul>
-    </div>
-</div>
 
-<div *ngIf="tipo === 'doctor' && data" class="paciente-detalles">
-    <h2 class="titulo">Detalles del Doctor: <span>{{ data.nombre }}</span></h2>
-    <div class="detalles-container">
-      <ul class="detalles-lista">
-        <li><strong>Edad:</strong> {{ data.edad }}</li>
-        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
-        <li><strong>Correo electrónico:</strong> {{ data.correo }}</li>
-        <li><strong>Especialidad:</strong> {{ data.especialidad }}</li>
-      </ul>
+<div>
+  <div class="p-1 flex">
+   
+    <div>
+
+      <div class="profile-side">
+        <div class="profile-side-pic">
+          <img class="profile-img">
+          <div class="p-1">
+            <div class="flex-col">
+              <label><strong>Jorge Ruben Romo Diaz de Leon</strong></label>
+            </div>
+            
+            <div class="flex-sb ">
+              <label><strong>Telefono:</strong> 449 549 4260</label>
+            </div>
+            <div class="flex-sb ">
+              <label><strong>Email:</strong> jrrdl1506mx@gmail.com</label>
+            </div>
+
+            <div class="flex-sb mt-1 ">
+              <label>Altura: 1.80m</label>
+      
+            </div>
+            <div>
+              <label>Peso: 80kg</label>
+            </div>
+            <div class="flex-sb ">
+              <label>Edad: 24</label>
+              <label>Genero : H</label>
+            </div>
+
+            <div class="flex-sb mt-1 ">
+              <label><strong>Dirección:</strong><br>
+                 Mision de santo tomas 211
+                </label>
+            </div>
+         
+          </div>
+        </div>
+       
     </div>
-</div>
+  
+  
+    <div class="profile-side mt-1">
+      <div class="list-title flex-sb">
+        <div> Alergias</div>
+        <div>
+          <i class="fa-solid fa-square-plus"></i>
+        </div>
+      </div>
+  
+      <div class="list">
+        <div class="list-element">
+          hola a todos
+        </div>
+        <div class="list-element">
+          hola a todos
+        </div>
+        <div class="list-element">
+          hola a todos
+        </div>
+      </div>
+  
+  
+      <div class="list-title flex-sb mt-2">
+        <div> Medicamentos</div>
+        <div>
+          <i class="fa-solid fa-square-plus"></i>
+        </div>
+      </div>
+  
+      <div class="list">
+        <div class="list-element">
+          hola a todos
+        </div>
+        <div class="list-element">
+          hola a todos
+        </div>
+        <div class="list-element">
+          hola a todos
+        </div>
+      </div>
+    </div>
 
 
-<div *ngIf="tipo === 'usuario' && data" class="paciente-detalles">
-    <h2 class="titulo">Detalles del Usuario: <span>{{ data.nombre }}</span></h2>
-    <div class="detalles-container">
-      <ul class="detalles-lista">
-        <li><strong>Tipo:</strong> {{ data.tipo }}</li>
-        <li><strong>Teléfono:</strong> {{ data.telefono }}</li>
-      </ul>
+
+   
+  
+
+
+  </div>
+
+  <div class="appointment-side ml-1">
+    <div class="p-2 flex-sb">
+      <div>
+        <h3>Citas y trabajos realizados</h3>
+      </div>
+      <div>
+        <p (click)="register()">Registrar cita</p>
+      </div>
+  
+      
     </div>
-</div>
+    <div class="mlr-2">
+      <div class="list-citas mb-2">
+
+        <div class="list-element p-2">
+            <div class="w-100 flex-sb ">
+                <p>Aqui va el motivo de la cita</p>
+                <p>Fecha</p>
+            </div>
+            <div class="comment w-100 flex-sb txt-j">
+              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat unde veritatis repellendus labore? Nisi enim veniam beatae qui tenetur accusantium magnam ducimus deserunt necessitatibus maiores atque dolore sit laborum fugiat a harum, id voluptatem nam suscipit nesciunt ad voluptatibus rerum quasi minus. Id quis molestiae veniam delectus magni placeat cum explicabo, illo repellendus incidunt libero animi dignissimos numquam quam quidem beatae fugiat, corrupti dolorem maiores dolores aliquid eligendi. Exercitationem, numquam. Adipisci soluta, sint earum sequi id pariatur laudantium tempore deserunt minus dicta perferendis cupiditate accusantium molestias quos maxime error atque mollitia, corrupti, nulla nisi veritatis quasi velit deleniti. Corrupti, vel.</p>
+          </div>
+          <div class="w-100 ">
+            <p>Realizo: Dr Calamardo gagaga</p>
+         </div>
+          <div class="w-100 ">
+            <p>Coste: $500.00</p>
+         </div>
+        
+        </div>
+
+
+
+        
+      </div>
+    </div>
+    
+  
+  </div>
+
 
   
+<app-modal 
+[title]="'Registrar cita'"
+[isVisible]="showModal"
+(close)="onCloseModal()">
+  <form>
+    <div class="bar"></div>
+    <div>
+      <label for="Motivo">Tratamiento</label><br>
+      <input id="Motivo" type="text" class="input-modal w-50">
+    </div>
+    <br>
+    <div>
+      <label for="Comentarios">Comentarios</label><br>
+      <textarea id="Comentarios"   rows="4" cols="50" class="w-75"></textarea>
+    </div>
+    <div class="mt-1">
+      <label for="Dr">Tratamiento realizado por </label>
+      <input id="Dr" type="text" class="input-modal">
+    </div><br>
+    <div>
+      <label for="Pago">Pago: </label>
+      $ <input id="Pagp" type="number" class="input-modal ">
+    </div>
+    <br>
+    <div class="bar"></div>
+    <button class="btn-aceptar">
+      Aceptar
+    </button>
+
+  </form>
+
+
+
+
+</app-modal>
+
+  
+
+
+
+
+  
+
+
+  </div>
+  
+
+</div>
+
+
+

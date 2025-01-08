@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,ModalComponent],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss']
 })
@@ -15,6 +16,15 @@ export class PerfilComponent {
   pacientes: Array<any> = []; 
   doctores: Array<any> = []; 
   usuarios: Array<any> = []; 
+
+
+  showModal: boolean = false;
+
+  
+
+  onCloseModal() {
+    this.showModal = false;
+  }
 
   
   constructor(private route: ActivatedRoute) {}
@@ -46,5 +56,10 @@ export class PerfilComponent {
       this.data = this.usuarios.find(u => u.nombre === id);
     }
   
+  }
+
+
+  register(){
+    this.showModal = true;
   }
 }

@@ -1,23 +1,25 @@
 
 <div class="m-1">
   <app-form></app-form>
-</div>
-<br>
-<div class="lista-container">
-    <h3>Pacientes</h3>
-    <div class="paciente-header">
-      <div class="paciente-cell">Nombre</div>
-      <div class="paciente-cell">Edad</div>
-      <div class="paciente-cell">Teléfono</div>
-      <div class="paciente-cell">Correo</div>
-      <div class="paciente-cell">Acciones</div>
+
+  <div class="p-2">
+    <div class="lista-container">
+      <div class="paciente-header">
+        <div class="paciente-cell">Nombre</div>
+        <div class="paciente-cell">Edad</div>
+        <div class="paciente-cell">Teléfono</div>
+        <div class="paciente-cell">Correo</div>
+        <div class="paciente-cell">Acciones</div>
+      </div>
+      <div *ngFor="let paciente of pacientes">
+        <app-element-paciente 
+          [paciente]="paciente"
+          (editarPacienteEvent)="editarPaciente($event)"
+          (eliminarPacienteEvent)="eliminarPaciente($event)">
+        </app-element-paciente>
+      </div>
     </div>
-    <div *ngFor="let paciente of pacientes">
-      <app-element-paciente 
-        [paciente]="paciente"
-        (editarPacienteEvent)="editarPaciente($event)"
-        (eliminarPacienteEvent)="eliminarPaciente($event)">
-      </app-element-paciente>
-    </div>
+    
   </div>
-  
+</div>
+
