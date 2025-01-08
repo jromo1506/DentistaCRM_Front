@@ -12,12 +12,17 @@ import { Router } from '@angular/router';
 export class ElementDoctorComponent {
   @Input() doctor: any; // Recibe el doctor como entrada
   @Output() editarDoctorEvent = new EventEmitter<any>();
+  @Output() eliminarDoctorEvent = new EventEmitter<any>();
 
   constructor(private router: Router) {}
 
   verDetalles(doctor: any) {
     // Redirigimos a la página de detalles pasando el id del doctor
     this.router.navigate(['/perfil', "doctor", doctor.nombre]); // O usa 'doctor.id' si tienes un campo id único
+  }
+
+  eliminarDoctor() {
+    this.eliminarDoctorEvent.emit(this.doctor);
   }
 
   editarDoctor() {
