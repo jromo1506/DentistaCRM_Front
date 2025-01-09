@@ -4,14 +4,14 @@
 
   <!-- Modal para registrar un nuevo usuario -->
   <app-modal [isVisible]="isModalVisible" [title]="esEdicion ? 'Editar Usuario' : 'Registro de Usuarios'" (close)="cerrarModal()">
-    <form (submit)="agregarUsuario(); $event.preventDefault()">
+    <form (submit)="agregarUsuario(); $event.preventDefault()" class="form-container">
       <label>
         Usuario :
-        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.user" name="user" required />
       </label>
       <label>
         Contraseña :
-        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.password" name="password" required />
       </label>
       <label>
         Nombre :
@@ -19,11 +19,11 @@
       </label>
       <label>
         Apellido Paterno :
-        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.paterno" name="paterno" required />
       </label>
       <label>
         Apellido Materno :
-        <input type="text" [(ngModel)]="nuevoUsuario.nombre" name="nombre" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.materno" name="materno" required />
       </label>
       <label>
         Teléfono:
@@ -31,23 +31,23 @@
       </label>
       <label>
         Correo:
-        <input type="text" [(ngModel)]="nuevoUsuario.tipo" name="direccion" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.correo" name="correo" required />
       </label>
       <label>
         Tipo:
-        <select class="p-1 w-50">
-          <option>Administrador</option>
-          <option>Atencion a clientes</option>
-          <option>Doctor</option>
+        <select [(ngModel)]="nuevoUsuario.tipo" name="tipo" required>
+          <option value="Administrador">Administrador</option>
+          <option value="Atención a Clientes">Atención a clientes</option>
+          <option value="Doctor">Doctor</option>
         </select>
       </label>
      
       
       <label>
         Especialiddad:
-        <input type="text" [(ngModel)]="nuevoUsuario.tipo" name="direccion" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.especialidad" name="especialidad" required />
       </label>
       
-      <button type="submit">{{ esEdicion ? 'Actualizar' : 'Registrar' }}</button>
+      <button type="submit" class="enviar">{{ esEdicion ? 'Actualizar' : 'Registrar' }}</button>
     </form>
 </app-modal>

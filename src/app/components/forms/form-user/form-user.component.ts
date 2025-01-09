@@ -20,9 +20,15 @@ export class FormUserComponent {
 
   // Modelo para un nuevo usuario
   nuevoUsuario = {
+    user: '',
+    password: '',
     nombre: '',
+    paterno: '',
+    materno: '',
+    telefono: '',
+    correo: '',
     tipo: '',
-    telefono: ''
+    especialidad: ''
   };
 
   constructor(private swalService: SwalService) {} // Inyecta el servicio
@@ -37,16 +43,18 @@ export class FormUserComponent {
   }
 
   agregarUsuario() {
-    if (this.nuevoUsuario.nombre && this.nuevoUsuario.tipo && this.nuevoUsuario.telefono) {
+    if (this.nuevoUsuario.user && this.nuevoUsuario.nombre && this.nuevoUsuario.password && this.nuevoUsuario.paterno) {
       if(this.esEdicion && this.usuarioEdicion !== null) {
         console.log("Entro en EDICION")
         this.usuarios[this.usuarioEdicion] = {
           ...this.nuevoUsuario
         };
+        console.log("Objeto guardado en jason: ", this.nuevoUsuario)
         this.swalService.success('Usuario actualizado correctamente');
       } else {
         const usuario = { ...this.nuevoUsuario };
         this.usuarios.push(usuario);
+        console.log("Objeto guardado en jason: ", usuario)
         this.swalService.success('Usuario registrado correctamente');
       }
       
@@ -73,9 +81,15 @@ export class FormUserComponent {
 
   limpiarFormulario() {
     this.nuevoUsuario = {
+      user: '',
+      password: '',
       nombre: '',
+      paterno: '',
+      materno: '',
+      telefono: '',
+      correo: '',
       tipo: '',
-      telefono: ''
+      especialidad: ''
     };
     this.esEdicion = false;
     console.log("esEdicion: ",this.esEdicion)

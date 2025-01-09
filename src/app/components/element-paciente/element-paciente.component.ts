@@ -28,4 +28,9 @@ export class ElementPacienteComponent {
   editarPaciente() {
     this.editarPacienteEvent.emit(this.paciente);
   }
+
+
+  verPerfil(){
+    this.router.navigate(['/perfil',"paciente","Nombre del paciente"])
+  }
 }

@@ -1,4 +1,4 @@
-<div class="paciente-row">
+<!-- <div class="paciente-row">
     <div class="paciente-cell">{{ paciente.nombre }}</div>
     <div class="paciente-cell">{{ paciente.edad }}</div>
     <div class="paciente-cell">{{ paciente.telefono }}</div>
@@ -7,6 +7,29 @@
         <button (click)="verDetalles(paciente)"><i class="fa-solid fa-eye"></i></button>
         <button (click)="eliminarPaciente()"><i class="fa-regular fa-trash-can"></i></button>
         <button (click)="editarPaciente()"><i class="fa-solid fa-pen-to-square"></i></button>
-        <!-- <button> <i class="fa-solid fa-message"></i></button> -->
+    </div>
+</div> -->
+
+
+
+<div class="list-element" (click)="verPerfil()">
+    <div class="list-info">
+        <div class="name-date">
+            <div>Jorge Ruben Romo Diaz de Leon</div>
+            <div>02/01/2000</div>
+        </div>
+       
+        <div class="desc">
+            <div> <strong>Correo: </strong>jrrdl1506@mx.gmail.com - <strong> Telefono: </strong>449 549 4260</div>
+            
+          
+        </div>
+      
+       
+    </div>
+    <div class="list-options">
+        <button>Asignar</button>
+   
+        <button>Eliminar</button>
     </div>
 </div>
