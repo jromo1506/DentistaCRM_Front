@@ -7,13 +7,7 @@
           <div class="paciente-cell">Lista de usuarios</div>
           
         </div>
-        <div *ngFor="let usuario of usuarios">
-          <app-user-view
-            [usuario]="usuario"
-            (editarUsuarioEvent)="editarUsuario($event)"
-            (eliminarUsuarioEvent)="eliminarUsuario($event)">
-          </app-user-view>
-        </div>
+        <app-user-list-element></app-user-list-element>
       </div>
       
     </div>

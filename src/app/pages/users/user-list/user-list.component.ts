@@ -5,11 +5,12 @@ import { Router } from '@angular/router';
 import { UserViewComponent } from '../user-view/user-view.component';
 import { FormUserComponent } from "../../../components/forms/form-user/form-user.component";
 import { SwalService } from 'src/app/services/swal.service';
+import { UserListElementComponent } from '../user-list-element/user-list-element.component';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserViewComponent, FormUserComponent],
+  imports: [CommonModule, FormsModule, UserViewComponent, FormUserComponent,UserListComponent,UserListElementComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })

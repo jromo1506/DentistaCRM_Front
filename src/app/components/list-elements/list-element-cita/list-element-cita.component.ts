@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListElementPhotoComponent } from '../list-element-photo/list-element-photo.component';
-import { SemaforoComponent } from '../../semaforo/semaforo.component';
+import { SemaforoComponent } from '../../mensajes/semaforo/semaforo.component';
 
 @Component({
   selector: 'app-list-element-cita',

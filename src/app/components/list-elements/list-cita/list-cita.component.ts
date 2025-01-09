@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListElementCitaComponent } from '../list-element-cita/list-element-cita.component';
-import { SemaforoComponent } from "../../semaforo/semaforo.component";
+import { SemaforoComponent } from "../../mensajes/semaforo/semaforo.component";
 import { RouterModule } from '@angular/router';
 import { CitaService } from 'src/app/services/cita.service';
 

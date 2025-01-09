@@ -6,8 +6,7 @@ import { FinderComponent } from 'src/app/components/finder/finder.component';
 import { ListComponent } from 'src/app/components/list/list.component';
 import { FormComponent } from 'src/app/components/forms/form/form.component';
 import { MessageBoxComponent } from 'src/app/components/message-box/message-box.component';
-import { ProductCardComponent } from 'src/app/components/product-card/product-card.component';
-import { ListaPacientesComponent } from 'src/app/components/lista-pacientes/lista-pacientes.component';
+import { ListaPacientesComponent } from 'src/app/components/pacientes/lista-pacientes/lista-pacientes.component';
 import { DebugService } from 'src/app/services/debug.service';
 
 @Component({
@@ -21,7 +20,6 @@ import { DebugService } from 'src/app/services/debug.service';
     ListComponent,
     FormComponent,
     MessageBoxComponent,
-    ProductCardComponent,
     ListaPacientesComponent
   ],
   templateUrl: './debug.component.html',
