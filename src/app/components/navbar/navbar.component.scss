@@ -205,4 +205,15 @@
 
 
   }
+
+
+  /*arreglo de bug de menu*/
+  
+  @media (min-width: 920px) {
+    #navbar-mobile{
+      display: none !important;
+    }
+  }
+
+
   
