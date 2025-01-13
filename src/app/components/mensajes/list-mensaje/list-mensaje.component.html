@@ -5,10 +5,8 @@
       <div class="paciente-header">
         <div class="paciente-cell">Lista de mensajes</div> 
       </div>
-      <div >
-        <app-list-element-mensaje [mensaje]="mensajes"></app-list-element-mensaje>
-        <app-list-element-mensaje [mensaje]="mensajes"></app-list-element-mensaje>
-
+      <div class="p-1" *ngFor="let mensaje of mensajes">
+        <app-list-element-mensaje [mensaje]="mensaje"></app-list-element-mensaje>
       </div>
     </div>
     

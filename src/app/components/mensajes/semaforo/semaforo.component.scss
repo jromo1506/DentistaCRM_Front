@@ -5,11 +5,12 @@
   }
   
   .circle {
-    width: 24px; /* Tamaño ajustable */
-    height: 24px;
+    
+    width: 1rem; /* Tamaño ajustable */
+    height: 1rem;
     border-radius: 50%;
     background-color: gray; /* Color por defecto */
-    opacity: 0.5; /* Opacidad para círculos inactivos */
+    opacity: 0.2; /* Opacidad para círculos inactivos */
     transition: opacity 0.3s, transform 0.3s;
   }
   
@@ -31,7 +32,7 @@
   
   /* Estilo para el círculo activo */
   .active {
-    opacity: 6; /* Mayor opacidad para resaltar */
-    transform: scale(1.4); /* Escala para destacar */
+    opacity: 100; /* Mayor opacidad para resaltar */
+    // transform: scale(1.4); /* Escala para destacar */
   }
   

@@ -10,8 +10,9 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./semaforo.component.scss']
 })
 export class SemaforoComponent {
-  // @Input() status: number = 0; // Valor por defecto
-status = 0;
+  @Input() estado:string="";
+
+  status = 0;
   // Mapea cada estado al color correspondiente
   colors: { [key: number]: string } = {
     0: 'gray',
@@ -20,8 +21,24 @@ status = 0;
     3: 'red'
   };
 
+  estadoMapping: { [key: string]: number } = {
+    'noLeido': 0,
+    'leido': 1,
+    'esperandoRespuesta': 2,
+    'urgente': 3
+  };
+
+
+  ngOnInit(){
+   this.status = this.estadoMapping[this.estado] || 0;
+  }
+
+
+
   // Obtiene el color activo basado en el estado
   get activeColor(): string {
     return this.colors[this.status] || 'gray';
   }
+
+
 }
