@@ -5,8 +5,12 @@
       <div class="paciente-header">
         <div class="paciente-cell">Lista de mensajes</div> 
       </div>
-      <div class="p-1" *ngFor="let mensaje of mensajes">
+      <div class="p-1" *ngFor="let mensaje of mensajes | paginate: { itemsPerPage: 10, currentPage: p }">
         <app-list-element-mensaje [mensaje]="mensaje"></app-list-element-mensaje>
+       
+      </div>
+      <div class="flex-c">
+        <pagination-controls (pageChange)="p = $event"></pagination-controls>
       </div>
     </div>
     

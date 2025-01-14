@@ -2,14 +2,15 @@
 
 <div class="list-element ">
     <div class="w-100 flex-sb">
-        <h3>Jorge Ruben Romo Diaz de Leon</h3>
+        <h3>{{mensaje.nombrePaciente}}</h3>
         <app-semaforo [estado]="mensaje.estado"></app-semaforo>
     </div>
     <div class="bar"></div>
     <div>
         <div class="name-date flex-sb">
-            <div>{{mensaje.telefono}} <i class="fa-brands fa-whatsapp"></i></div>
-            <div>{{mensaje.fecha}}</div>
+            <div>{{mensaje.telefono  }} <i class="fa-brands fa-whatsapp"></i></div>
+            <div>{{ mensaje.fecha | date:'dd/MM/yyyy hh:mm a':'GMT-0600' }}</div>
+            
         </div>
         <div class="desc">
                  {{mensaje.mensaje}}

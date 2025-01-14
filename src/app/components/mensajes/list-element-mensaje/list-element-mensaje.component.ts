@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SemaforoComponent } from '../semaforo/semaforo.component';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list-element-mensaje',
@@ -11,4 +12,6 @@ import { SemaforoComponent } from '../semaforo/semaforo.component';
 })
 export class ListElementMensajeComponent {
   @Input() mensaje: any;
+ 
+  
 }
