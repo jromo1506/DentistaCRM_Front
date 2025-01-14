@@ -5,6 +5,8 @@ import { SemaforoComponent } from '../../mensajes/semaforo/semaforo.component';
 import { RouterModule } from '@angular/router';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+
+
 @Component({
   selector: 'app-list-mensaje',
   standalone: true,

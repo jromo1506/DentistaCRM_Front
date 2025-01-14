@@ -149,3 +149,18 @@ tbody tr:hover {
 
 
 
+pagination-controls .pagination {
+  background-color: #f5f5f5;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+pagination-controls .pagination li a {
+  color: #0c4582;
+  font-weight: bold;
+}
+
+pagination-controls .pagination li a:hover {
+  background-color: #0056b3;
+  color: white;
+}

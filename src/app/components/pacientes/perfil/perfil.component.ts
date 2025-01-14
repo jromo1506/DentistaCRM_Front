@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ModalComponent } from '../../modal/modal.component';
+import { PacientesService } from 'src/app/services/pacientes.service';
 
 @Component({
   selector: 'app-perfil',
@@ -20,6 +21,8 @@ export class PerfilComponent {
 
   showModal: boolean = false;
 
+  paciente:any;
+
   
 
   onCloseModal() {
@@ -27,11 +30,21 @@ export class PerfilComponent {
   }
 
   
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute,private pacienteService:PacientesService) {}
   
   ngOnInit(): void {
     this.tipo = this.route.snapshot.paramMap.get('name') || '';
     const id = this.route.snapshot.paramMap.get('id');
+    if(id){
+      this.pacienteService.getPacienteById(id).subscribe(res=>{
+        this.paciente=res;
+        console.log(this.paciente,"PACIENTE");
+      });
+    }
+
+    
+  
+
     
     console.log("datos obtenidos: ",this.tipo, id)
     // Cargamos los pacientes (por ejemplo, desde localStorage o servicio)

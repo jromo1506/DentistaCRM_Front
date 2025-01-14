@@ -12,15 +12,15 @@
 
 
 
-<div class="list-element" (click)="verPerfil()">
+<div class="list-element" (click)="verPerfil(paciente._id)">
     <div class="list-info">
         <div class="name-date">
-            <div>Jorge Ruben Romo Diaz de Leon</div>
+            <div>{{paciente.nombre}} {{paciente.apeP}} {{paciente.apeM}}</div>
             <div>02/01/2000</div>
         </div>
        
         <div class="desc">
-            <div> <strong>Correo: </strong>jrrdl1506@mx.gmail.com - <strong> Telefono: </strong>449 549 4260</div>
+            <div> <strong>Telefono: </strong>{{paciente.telefonoWhatsapp}}- <strong> Correo: </strong>{{paciente.correoElectronico}}</div>
             
           
         </div>

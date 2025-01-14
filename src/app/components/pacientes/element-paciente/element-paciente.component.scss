@@ -41,7 +41,9 @@
   
 .list-element{
   display: flex;
-  width: 100%;
+  margin: 10px 2px;
+  border-radius: 5px;
+  // width: 100%;
   background-color: rgb(233, 233, 233);
   border-bottom: solid 5px rgb(255, 255, 255);
 }

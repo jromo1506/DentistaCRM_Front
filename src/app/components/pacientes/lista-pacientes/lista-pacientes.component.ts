@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { ElementPacienteComponent } from '../element-paciente/element-paciente.component';
 import { FormComponent } from '../../forms/form/form.component';
 import { SwalService } from 'src/app/services/swal.service';
+import { PacientesService } from 'src/app/services/pacientes.service';
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -14,19 +15,26 @@ import { SwalService } from 'src/app/services/swal.service';
   styleUrls: ['./lista-pacientes.component.scss']
 })
 export class ListaPacientesComponent {
-  pacientes: Array<any> = [];
+  pacientes: any[]=[];
   @ViewChild(FormComponent) formComponent!: FormComponent;
   
-  constructor(private router: Router, private swalService: SwalService) {}
+  constructor(private router: Router, private swalService: SwalService,private pacienteService:PacientesService) {}
+
+ 
+  ngOnInit() {
+    this.pacienteService.paciente$.subscribe((pacientes:any[])=>{
+      this.pacientes=pacientes;
+    })
+    this.pacienteService.obtenerPacientes();
+  }
+
+
 
   cargarPacientes() {
     const pacientesGuardados = localStorage.getItem('pacientes');
     if (pacientesGuardados) {
       this.pacientes = JSON.parse(pacientesGuardados);
     }
-  }
-  ngOnInit() {
-    this.cargarPacientes();
   }
 
   eliminarPaciente(paciente: any) {
