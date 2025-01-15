@@ -82,6 +82,12 @@
               <p>{{ cita.observaciones || 'Sin observaciones' }}</p> <!-- Mostrar observaciones o un texto por defecto -->
             </div>
             <div class="w-100">
+              <p>Hora Inicio: {{ cita.horaInicio || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
+            </div>
+            <div class="w-100">
+              <p>Hora Fin: {{ cita.horaFin || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
+            </div>
+            <div class="w-100">
               <p>Realizó: {{ cita.realizo || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
             </div>
             <div class="w-100">
@@ -112,6 +118,16 @@
           <label for="realizo">Tratamiento realizado por</label>
           <input id="realizo" type="text" class="input-modal" [(ngModel)]="realizo" name="realizo">
         </div><br>
+        <div>
+          <label for="horaInicio">Hora Inicio:</label>
+           <input id="horaInicio" type="text" class="input-modal" [(ngModel)]="horaInicio" name="horaInicio">
+        </div>
+        <br>
+        <div>
+          <label for="horaFin">Hora Fin:</label>
+           <input id="horaFin" type="text" class="input-modal" [(ngModel)]="horaFin" name="horaFin">
+        </div>
+        <br>
         <div>
           <label for="pago">Pago:</label>
           $ <input id="pago" type="number" class="input-modal" [(ngModel)]="pago" name="pago">

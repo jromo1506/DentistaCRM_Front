@@ -21,10 +21,10 @@ export class PerfilComponent {
   observaciones: string = '';
   realizo: string = '';
   pago: number = 0;
-
+  horaInicio: string = '';
+  horaFin: string = '';
 
   citas: Cita[] = []; // Arreglo para almacenar las citas
-
 
   onCloseModal() {
     this.showModal = false;
@@ -40,7 +40,7 @@ export class PerfilComponent {
         console.log(this.paciente, "PACIENTE");
       });
     }
-
+    
     this.obtenerCitas(); 
   }
 
@@ -53,10 +53,13 @@ export class PerfilComponent {
   nuevaCita() {
     const nuevaCita = {
       tratamiento: this.tratamiento,
-      observaciones: this.observaciones || '', // Opcional, enviar vacío si no hay valor
-      realizo: this.realizo || '', // Opcional, enviar vacío si no hay valor
-      pago: this.pago || 0, // Opcional, enviar 0 si no hay valor
-      fecha: new Date() // Puedes usar la fecha actual
+      observaciones: this.observaciones || '', 
+      realizo: this.realizo || '', 
+      pago: this.pago || 0, 
+      horaInicio: this.horaInicio || '',
+      horaFin: this.horaFin || '' ,
+      fecha: new Date() 
+
     };
 
     this.citaService.addCita(nuevaCita).subscribe(

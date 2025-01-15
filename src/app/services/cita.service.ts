@@ -21,4 +21,7 @@ export class CitaService {
   getCita(): Observable<Cita[]> {
     return this.http.get<Cita[]>(`${this.apiUrl}/citas`);
   }
+
+ 
+
 }

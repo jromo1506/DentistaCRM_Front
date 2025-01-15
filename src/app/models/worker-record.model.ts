@@ -12,5 +12,8 @@ export interface Cita {
     observaciones: string; // Campo opcional
     pago: number; // Campo opcional
     realizo: string; // Campo opcional
+   id: string;
+    horaFin: string;
+    horaInicio: string;
   }
   
