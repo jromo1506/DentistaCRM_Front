@@ -3,51 +3,86 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { ModalComponent } from '../../modal/modal.component';
 import { PacientesService } from 'src/app/services/pacientes.service';
+import { CitaService } from 'src/app/services/cita.service';
+import { FormsModule } from '@angular/forms';
+import { Cita } from 'src/app/models/worker-record.model';
 
 @Component({
   selector: 'app-perfil',
   standalone: true,
-  imports: [CommonModule,ModalComponent],
+  imports: [CommonModule, ModalComponent, FormsModule],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.scss']
 })
 export class PerfilComponent {
-
-
-
-
   showModal: boolean = false;
+  paciente: any;
+  tratamiento: string = '';
+  observaciones: string = '';
+  realizo: string = '';
+  pago: number = 0;
 
-  paciente:any;
 
-  
+  citas: Cita[] = []; // Arreglo para almacenar las citas
+
 
   onCloseModal() {
     this.showModal = false;
   }
 
-  
-  constructor(private route: ActivatedRoute,private pacienteService:PacientesService) {}
-  
+  constructor(private route: ActivatedRoute, private pacienteService: PacientesService, private citaService: CitaService) { }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    if(id){
-      this.pacienteService.getPacienteById(id).subscribe(res=>{
-        this.paciente=res;
-        console.log(this.paciente,"PACIENTE");
+    if (id) {
+      this.pacienteService.getPacienteById(id).subscribe(res => {
+        this.paciente = res;
+        console.log(this.paciente, "PACIENTE");
       });
     }
+
+    this.obtenerCitas(); 
   }
 
 
-  register(){
+  register() {
     this.showModal = true;
   }
 
-    
-  
 
-    
+  nuevaCita() {
+    const nuevaCita = {
+      tratamiento: this.tratamiento,
+      observaciones: this.observaciones || '', // Opcional, enviar vacío si no hay valor
+      realizo: this.realizo || '', // Opcional, enviar vacío si no hay valor
+      pago: this.pago || 0, // Opcional, enviar 0 si no hay valor
+      fecha: new Date() // Puedes usar la fecha actual
+    };
 
+    this.citaService.addCita(nuevaCita).subscribe(
+      (response) => {
+        console.log('Cita creada:', response);
+        alert('La cita se creó correctamente.');
+      },
+      (error: any) => {
+        console.error('Error al crear la cita:', error);
+        alert('No se pudo crear la cita. Por favor, inténtalo de nuevo.');
+      }
+    );
+  }
+
+
+  obtenerCitas() {
+    this.citaService.getCita().subscribe(
+      (response: Cita[]) => {
+        this.citas = response; // Guardar las citas obtenidas
+        console.log('Citas:', this.citas); // Solo para depuración
+      },
+      (error) => {
+        console.error('Error al obtener las citas:', error);
+        alert('Error al obtener las citas.');
+      }
+    );
+  }
 
 }

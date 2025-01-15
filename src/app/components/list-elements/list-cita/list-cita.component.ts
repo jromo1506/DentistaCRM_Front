@@ -18,18 +18,18 @@ export class ListCitaComponent implements OnInit {
   constructor(private citaService: CitaService) {}
 
   ngOnInit(): void {
-    this.obtenerCitas();
+    // this.obtenerCitas();
   }
 
-  obtenerCitas(): void {
-    this.citaService.obtenerCitas().subscribe(
-      (data) => {
-        this.citas = data; // Almacenamos las citas en la variable citas
-      },
-      (error) => {
-        console.error('Error al obtener las citas', error);
-      }
-    );
-  }
+  // obtenerCitas(): void {
+  //   this.citaService.obtenerCitas().subscribe(
+  //     (data) => {
+  //       this.citas = data; // Almacenamos las citas en la variable citas
+  //     },
+  //     (error) => {
+  //       console.error('Error al obtener las citas', error);
+  //     }
+  //   );
+  // }
 
 }

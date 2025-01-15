@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GlobalApiService } from './global-api.service';
 import { Observable } from 'rxjs';
+import { Cita } from '../models/worker-record.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,11 @@ export class CitaService {
     this.apiUrl = this.globalApi.getApiUrl();
   }
 
-  obtenerCitas(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.apiUrl}/citas`);
+  addCita(nuevo: any): Observable<Cita> {
+    return this.http.post<Cita>(`${this.apiUrl}/citas`, nuevo);
+  }
+
+  getCita(): Observable<Cita[]> {
+    return this.http.get<Cita[]>(`${this.apiUrl}/citas`);
   }
 }
