@@ -4,6 +4,23 @@
       <h1 class="title">Registro</h1>
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="register-form">
         <div class="form-group">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" placeholder="Ingrese su nombre" formControlName="nombre" required />
+        </div>
+        <div class="form-group">
+          <label for="apeM">Apellido Materno</label>
+          <input type="text" id="apeM" placeholder="Ingrese su apellido materno" formControlName="apeM" required />
+        </div>
+        <div class="form-group">
+          <label for="apeP">Apellido Paterno</label>
+          <input type="text" id="apeP" placeholder="Ingrese su apellido paterno" formControlName="apeP" required />
+        </div>
+        <div class="form-group">
+          <label for="correo">Correo electronico</label>
+          <input type="email" id="correo" placeholder="Ingrese su correo electronico" formControlName="correo"
+            required />
+        </div>
+        <div class="form-group">
           <label for="usuario">Usuario</label>
           <input type="text" id="usuario" placeholder="Ingrese su usuario" formControlName="usuario" required />
         </div>
@@ -13,19 +30,25 @@
             required />
         </div>
         <div class="form-group">
-          <label for="tipoUsuario">Tipo de Usuario</label>
-          <select formControlName="tipoUsuario" id="tipoUsuario" required>
-            <option value="usuario">Usuario</option>
-            <option value="administrador">Administrador</option>
+          <label for="tipo">Tipo de Usuario</label>
+          <select formControlName="tipo" id="tipo" required>
+            <option value="Recepcionista">Recepcionista</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Doctor">Doctor</option>
           </select>
+        </div>
+        <div class="form-group">
+          <label for="especialidad">Especialidad</label>
+          <input type="text" id="especialidad" placeholder="Ingrese su especialidad" formControlName="especialidad"
+            required />
         </div>
         <div class="form-group">
           <label for="telefono">Teléfono</label>
           <input type="tel" id="telefono" placeholder="Ingrese su teléfono" formControlName="telefono" required />
         </div>
-        <button type="submit" class="btn-register" [disabled]="registerForm.invalid">
+        <button type="submit" class="btn-register">
           Registrar
-        </button>
+        </button>        
       </form>
     </div>
   </div>

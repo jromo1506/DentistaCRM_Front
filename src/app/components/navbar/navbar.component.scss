@@ -53,11 +53,20 @@
    
   }
 
-  .navbar-right-container{
-    width: 80%;
+  .navbar-right-container {
+    width: 100%; /* Mantener esta regla */
     display: flex;
-    justify-content: space-around;
-  }
+    justify-content: space-between; /* Cambiar de space-around a space-between */
+    gap: 3px; /* Agregar espacio uniforme entre los elementos */
+    align-items: center; /* Asegurarse de que estén alineados verticalmente */
+}
+
+.navbar-right-container div {
+  flex: 1; /* Distribuir uniformemente el espacio entre los elementos */
+  text-align: center; /* Centrar el texto dentro de cada contenedor */
+}
+
+
 
 
   .dental-clinic{
@@ -74,10 +83,11 @@
     color: $txt-light-2;
   }
 
-  .txt-option{
+  .txt-option {
     transition: all ease 0.3s;
     font-family: "Gruppo", sans-serif;
-  }
+    padding: 0 1px; /* Espaciado interno adicional si es necesario */
+}
   
 
   

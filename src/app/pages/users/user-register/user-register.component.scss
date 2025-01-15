@@ -3,24 +3,29 @@
 
 @import '../../../../colors.scss';
 
-
+*{
+    font-family: "Gruppo", sans-serif;
+}
 .register-page {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Asegura que los elementos se apilen verticalmente */
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+    height: 100%; /* Asegura que use todo el alto disponible */
     position: relative;
-    overflow: hidden; /* Evita desbordamientos de contenido */
-    background: url('../../../../assets/ImgsLogin/fondo-login-responsive.jpg') no-repeat center center; /* Reemplaza con la ruta de tu imagen */
-    background-size: cover; /* Ajusta la imagen para que cubra todo el contenedor */
-    font-family: "Gruppo", sans-serif;
+    overflow: auto; /* Permite desplazamiento si el contenido excede el alto */
+    background: url('../../../../assets/ImgsLogin/fondo-login-responsive.jpg') no-repeat center center;
+    background-size: cover;
+  
+
     .register-form-container {
-        z-index: 1; /* Mantiene el formulario encima de la imagen */
-        position: relative; /* Asegura que esté dentro del flujo del documento */
+        z-index: 1;
+        position: relative;
         max-width: 400px;
+        width: 90%; /* Se ajusta al 90% del ancho en pantallas pequeñas */
         padding: 2rem;
-        background: rgba(255, 255, 255, 0.9); /* Fondo blanco semitransparente */
+        background: rgba(255, 255, 255, 0.9);
         box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
 
@@ -41,7 +46,6 @@
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
-                font-family: "Gruppo", sans-serif;
                 label {
                     font-size: 1rem;
                     color: $txt-dark-3;
@@ -56,7 +60,6 @@
                     border-radius: 5px;
                     outline: none;
                     transition: border 0.3s ease;
-                    font-family: "Gruppo", sans-serif;
                     &:focus {
                         border-color: #0077b6;
                         box-shadow: 0 0 5px rgba(0, 119, 182, 0.2);
@@ -74,7 +77,6 @@
                 font-weight: bold;
                 cursor: pointer;
                 transition: background 0.3s ease;
-                font-family: "Gruppo", sans-serif;
 
                 &:hover {
                     background: #00509e;
@@ -84,35 +86,26 @@
     }
 
     @media (max-width: 768px) {
-        flex-direction: column;
+        .register-form-container {
+            width: 90%; /* Se asegura de que el formulario se ajuste a pantallas pequeñas */
+        }
 
         .background-image {
-            display: none; /* Oculta la imagen en pantallas pequeñas */
+            display: none;
         }
     }
 
-    .form-icon {
-        text-align: center;
-        margin-bottom: 1rem; /* Espaciado entre el icono y el título */
-    }
-    
-    .form-icon i {
-        font-size: 3rem; /* Tamaño grande para el icono */
-        color: #0077b6; /* Color del icono */
+    @media (min-width: 1000px) {
+        .register-form-container {
+            max-width: none;
+            width: 50vw; /* Ancho más grande en pantallas grandes */
+        }
+
+        .register-page {
+            min-height: 80vh;
+            height: 80vh;
+            overflow: hidden;
+            background: none;
+        }
     }
 }
-
-@media (min-width: 1000px) {
-    .register-form-container{
-        max-width: none !important;
-        width: 60vw;
-    }
-
-    .register-page{
-        min-height: 80vh !important;
-        height:80vh !important;
-        overflow: hidden;
-        background: none;
-    }
-  }
-  
