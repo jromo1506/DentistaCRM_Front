@@ -9,31 +9,31 @@
           <img class="profile-img">
           <div class="p-1">
             <div class="flex-col">
-              <label><strong>Jorge Ruben Romo Diaz de Leon</strong></label>
+              <label><strong>{{paciente.nombre}} {{paciente.apeP}} {{paciente.apeM}}</strong></label>
             </div>
             
             <div class="flex-sb ">
-              <label><strong>Telefono:</strong> 449 549 4260</label>
+              <label><strong>Telefono:</strong> {{paciente.telefonoWhatsapp}}</label>
             </div>
             <div class="flex-sb ">
-              <label><strong>Email:</strong> jrrdl1506mx@gmail.com</label>
+              <label><strong>Email:</strong>{{paciente.correoElectronico}}</label>
             </div>
 
             <div class="flex-sb mt-1 ">
-              <label>Altura: 1.80m</label>
+              <label>Altura: {{paciente.altura}}</label>
       
             </div>
             <div>
-              <label>Peso: 80kg</label>
+              <label>Peso: {{paciente.peso}}</label>
             </div>
             <div class="flex-sb ">
-              <label>Edad: 24</label>
-              <label>Genero : H</label>
+              <label>Edad: {{paciente.edad}}</label>
+              <label>Genero : {{paciente.medicamentos}}</label>
             </div>
 
             <div class="flex-sb mt-1 ">
               <label><strong>Dirección:</strong><br>
-                 Mision de santo tomas 211
+                 {{paciente.direccion}}
                 </label>
             </div>
          
@@ -50,19 +50,11 @@
           <i class="fa-solid fa-square-plus"></i>
         </div>
       </div>
-  
-      <div class="list">
-        <div class="list-element">
-          hola a todos
-        </div>
-        <div class="list-element">
-          hola a todos
-        </div>
-        <div class="list-element">
-          hola a todos
-        </div>
+      <div>
+        <textarea class="w-100 bs-bb" rows="5"></textarea>
       </div>
   
+    
   
       <div class="list-title flex-sb mt-2">
         <div> Medicamentos</div>
@@ -70,17 +62,8 @@
           <i class="fa-solid fa-square-plus"></i>
         </div>
       </div>
-  
-      <div class="list">
-        <div class="list-element">
-          hola a todos
-        </div>
-        <div class="list-element">
-          hola a todos
-        </div>
-        <div class="list-element">
-          hola a todos
-        </div>
+      <div>
+        <textarea class="w-100 bs-bb" rows="5"></textarea>
       </div>
     </div>
 

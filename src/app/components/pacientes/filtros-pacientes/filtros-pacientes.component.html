@@ -1,0 +1,48 @@
+<p>filtros-pacientes works!</p>
+<div class="w-100 ">
+    <div class="m-1 filtros">
+        <div class="title">
+            <p><strong>Filtros</strong></p>
+        </div>
+
+        <div class="p-1 filter-opt-container">
+            <form  >
+                <div class="filter-opt">
+                    <p>Filtrar mensajes por:</p>
+                    <select formControlName="estado" class="w-100">
+                        <option value="" selected>Ninguno</option>
+                        <option value="noLeido">No leido</option>
+                        <option value="leido">Leido</option>
+                        <option value="esperanoRespuesta">Esperando respuesta</option>
+                        <option value="urgente">Urgente</option>
+                    </select>
+                </div>
+    
+                <div class="filter-opt">
+                    <p>Ordenar por fecha:</p>
+                    <select formControlName="orden" class="w-100">
+                        <option value="" selected>Ninguno</option>
+                        <option value="desc">Mensajes mas nuevos</option>
+                        <option value="asc">Mensajes mas antiguos</option>
+                    </select>
+                </div>
+    
+                <div class="filter-opt">
+                    <p>Buscar por numero</p>
+                    <input formControlName="telefono" type="text" class="w-100">
+                </div>
+    
+                <button class="btn mt-1" type="submit">
+                    Aplicar
+                </button>
+            </form>
+           
+           
+         
+            
+        
+        </div>
+        
+    </div>
+   
+</div>
