@@ -20,7 +20,10 @@
     <div class="navbar-right">
       <div class="navbar-right-container navbar-pc">
         <div >
-          <label class="txt-option">Login </label>
+          <label class="txt-option" (click)="navigate('/login')">Login </label>
+        </div>
+        <div >
+          <label class="txt-option" (click)="navigate('/registro')">Register </label>
         </div>
         <div >
           <label class="txt-option" (click)="navigate('/debug')">Debug </label>
