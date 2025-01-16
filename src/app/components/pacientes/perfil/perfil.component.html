@@ -1,9 +1,6 @@
-
 <div>
   <div class="p-1 flex">
-   
     <div>
-
       <div class="profile-side">
         <div class="profile-side-pic">
           <img class="profile-img">
@@ -11,7 +8,7 @@
             <div class="flex-col">
               <label><strong>{{paciente.nombre}} {{paciente.apeP}} {{paciente.apeM}}</strong></label>
             </div>
-            
+
             <div class="flex-sb ">
               <label><strong>Telefono:</strong> {{paciente.telefonoWhatsapp}}</label>
             </div>
@@ -21,150 +18,128 @@
 
             <div class="flex-sb mt-1 ">
               <label>Altura: {{paciente.altura}}</label>
-      
+
             </div>
             <div>
               <label>Peso: {{paciente.peso}}</label>
             </div>
             <div class="flex-sb ">
-              <label>Edad: {{paciente.edad}}</label>
-              <label>Genero : {{paciente.medicamentos}}</label>
+              <label>Edad: {{paciente.fechaNac}}</label>
+              <label>Genero : {{paciente.genero}}</label>
             </div>
 
             <div class="flex-sb mt-1 ">
               <label><strong>Dirección:</strong><br>
-                 {{paciente.direccion}}
-                </label>
+                {{paciente.direccion}}
+              </label>
             </div>
-         
           </div>
         </div>
-       
-    </div>
-  
-  
-    <div class="profile-side mt-1">
-      <div class="list-title flex-sb">
-        <div> Alergias</div>
+      </div>
+
+      <div class="profile-side mt-1">
+        <div class="list-title flex-sb">
+          <div> Alergias</div>
+          <div>
+            <i class="fa-solid fa-square-plus"></i>
+          </div>
+        </div>
         <div>
-          <i class="fa-solid fa-square-plus"></i>
+          <textarea class="w-100 bs-bb" rows="5"></textarea>
+        </div>
+
+        <div class="list-title flex-sb mt-2">
+          <div> Medicamentos</div>
+          <div>
+            <i class="fa-solid fa-square-plus"></i>
+          </div>
+        </div>
+        <div>
+          <textarea class="w-100 bs-bb" rows="5"></textarea>
         </div>
       </div>
-      <div>
-        <textarea class="w-100 bs-bb" rows="5"></textarea>
-      </div>
-  
-    
-  
-      <div class="list-title flex-sb mt-2">
-        <div> Medicamentos</div>
+    </div>
+
+    <div class="appointment-side ml-1">
+      <div class="p-2 flex-sb">
         <div>
-          <i class="fa-solid fa-square-plus"></i>
+          <h3>Citas y trabajos realizados</h3>
+        </div>
+        <div>
+          <p (click)="register()">Registrar cita</p>
         </div>
       </div>
-      <div>
-        <textarea class="w-100 bs-bb" rows="5"></textarea>
-      </div>
-    </div>
 
 
-
-   
-  
-
-
-  </div>
-
-  <div class="appointment-side ml-1">
-    <div class="p-2 flex-sb">
-      <div>
-        <h3>Citas y trabajos realizados</h3>
-      </div>
-      <div>
-        <p (click)="register()">Registrar cita</p>
-      </div>
-  
-      
-    </div>
-    <div class="mlr-2">
-      <div class="list-citas mb-2">
-
-        <div class="list-element p-2">
-            <div class="w-100 flex-sb ">
-                <p>Aqui va el motivo de la cita</p>
-                <p>Fecha</p>
+      <div class="mlr-2">
+        <div class="list-citas mb-2" *ngFor="let cita of citas">
+          <div class="list-element p-2">
+            <div class="w-100 flex-sb">
+              <p>{{ cita.tratamiento }}</p> <!-- Mostrar el tratamiento -->
+              <p>{{ cita.fecha | date: 'shortDate' }}</p> <!-- Mostrar la fecha formateada -->
             </div>
             <div class="comment w-100 flex-sb txt-j">
-              <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat unde veritatis repellendus labore? Nisi enim veniam beatae qui tenetur accusantium magnam ducimus deserunt necessitatibus maiores atque dolore sit laborum fugiat a harum, id voluptatem nam suscipit nesciunt ad voluptatibus rerum quasi minus. Id quis molestiae veniam delectus magni placeat cum explicabo, illo repellendus incidunt libero animi dignissimos numquam quam quidem beatae fugiat, corrupti dolorem maiores dolores aliquid eligendi. Exercitationem, numquam. Adipisci soluta, sint earum sequi id pariatur laudantium tempore deserunt minus dicta perferendis cupiditate accusantium molestias quos maxime error atque mollitia, corrupti, nulla nisi veritatis quasi velit deleniti. Corrupti, vel.</p>
+              <p>{{ cita.observaciones || 'Sin observaciones' }}</p>
+              <!-- Mostrar observaciones o un texto por defecto -->
+            </div>
+            <div class="w-100">
+              <p>Hora Inicio: {{ cita.horaInicio || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
+            </div>
+            <div class="w-100">
+              <p>Hora Fin: {{ cita.horaFin || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
+            </div>
+            <div class="w-100">
+              <p>Realizó: {{ cita.realizo || 'Desconocido' }}</p> <!-- Mostrar quién realizó el tratamiento -->
+            </div>
+            <div class="w-100">
+              <p>Coste: ${{ cita.pago }}</p> <!-- Mostrar el pago -->
+            </div>
           </div>
-          <div class="w-100 ">
-            <p>Realizo: Dr Calamardo gagaga</p>
-         </div>
-          <div class="w-100 ">
-            <p>Coste: $500.00</p>
-         </div>
-        
         </div>
-
-
-
-        
       </div>
+
+
+
     </div>
-    
-  
+
+    <app-modal [title]="'Registrar cita'" [isVisible]="showModal" (close)="onCloseModal()">
+      <form (ngSubmit)="nuevaCita()">
+        <div class="bar"></div>
+        <div>
+          <label for="tratamiento">Tratamiento</label><br>
+          <input id="tratamiento" type="text" class="input-modal w-50" [(ngModel)]="tratamiento" name="tratamiento">
+        </div>
+        <br>
+        <div>
+          <label for="observaciones">Comentarios</label><br>
+          <textarea id="observaciones" rows="4" cols="50" class="w-75" [(ngModel)]="observaciones"
+            name="observaciones"></textarea>
+        </div>
+        <div class="mt-1">
+          <label for="realizo">Tratamiento realizado por</label>
+          <input id="realizo" type="text" class="input-modal" [(ngModel)]="realizo" name="realizo">
+        </div><br>
+        <div>
+          <label for="horaInicio">Hora Inicio:</label>
+           <input id="horaInicio" type="text" class="input-modal" [(ngModel)]="horaInicio" name="horaInicio">
+        </div>
+        <br>
+        <div>
+          <label for="horaFin">Hora Fin:</label>
+           <input id="horaFin" type="text" class="input-modal" [(ngModel)]="horaFin" name="horaFin">
+        </div>
+        <br>
+        <div>
+          <label for="pago">Pago:</label>
+          $ <input id="pago" type="number" class="input-modal" [(ngModel)]="pago" name="pago">
+        </div>
+        <br>
+        <div class="bar"></div>
+        <button class="btn-aceptar" type="submit">
+          Aceptar
+        </button>
+      </form>
+
+    </app-modal>
   </div>
-
-
-  
-<app-modal 
-[title]="'Registrar cita'"
-[isVisible]="showModal"
-(close)="onCloseModal()">
-  <form>
-    <div class="bar"></div>
-    <div>
-      <label for="Motivo">Tratamiento</label><br>
-      <input id="Motivo" type="text" class="input-modal w-50">
-    </div>
-    <br>
-    <div>
-      <label for="Comentarios">Comentarios</label><br>
-      <textarea id="Comentarios"   rows="4" cols="50" class="w-75"></textarea>
-    </div>
-    <div class="mt-1">
-      <label for="Dr">Tratamiento realizado por </label>
-      <input id="Dr" type="text" class="input-modal">
-    </div><br>
-    <div>
-      <label for="Pago">Pago: </label>
-      $ <input id="Pagp" type="number" class="input-modal ">
-    </div>
-    <br>
-    <div class="bar"></div>
-    <button class="btn-aceptar">
-      Aceptar
-    </button>
-
-  </form>
-
-
-
-
-</app-modal>
-
-  
-
-
-
-
-  
-
-
-  </div>
-  
-
 </div>
-
-
-

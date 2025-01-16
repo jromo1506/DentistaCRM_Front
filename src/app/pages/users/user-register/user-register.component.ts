@@ -22,10 +22,16 @@ export class UserRegisterComponent implements OnInit {
     private router: Router,
     private swalService: SwalService // Inyecta SwalService
   ) {
+    // Actualiza el FormGroup para incluir los nuevos campos
     this.registerForm = this.fb.group({
+      nombre: ['', [Validators.required]],
+      apeM: ['', [Validators.required]],
+      apeP: ['', [Validators.required]],
+      correo: ['', [Validators.required]],
       usuario: ['', [Validators.required]],
       password: ['', [Validators.required]],
-      tipoUsuario: ['', [Validators.required]],
+      tipo: ['', [Validators.required]],
+      especialidad: ['', [Validators.required]],
       telefono: ['', [Validators.required, Validators.pattern('[0-9]{10}')]],
     });
   }
@@ -42,20 +48,22 @@ export class UserRegisterComponent implements OnInit {
 
   nuevoUsuario(): void {
     const userData = this.registerForm.value;
+    console.log('Datos enviados:', userData); // Agrega este console.log
     this.userService.addUser(userData).subscribe({
       next: (response) => {
         this.swalService.success('Usuario registrado con éxito');
         this.registerForm.reset();
-        this.router.navigate(['/login']); 
+        this.router.navigate(['/login']);
       },
       error: (error) => {
+        console.error('Error:', error); // Muestra el error detallado
         if (error.status === 400) {
-          // Usuario ya existe
           this.swalService.error('El usuario ya existe', 'Registro fallido');
         } else {
           this.swalService.error('Error al registrar el usuario', 'Registro fallido');
         }
       },
     });
-  }
+}
+
 }
