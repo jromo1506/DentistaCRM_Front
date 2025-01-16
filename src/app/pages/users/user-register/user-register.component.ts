@@ -20,9 +20,9 @@ export class UserRegisterComponent implements OnInit {
     private fb: FormBuilder,
     private userService: UserService,
     private router: Router,
-    private swalService: SwalService // Inyecta SwalService
+    private swalService: SwalService
   ) {
-    // Actualiza el FormGroup para incluir los nuevos campos
+
     this.registerForm = this.fb.group({
       nombre: ['', [Validators.required]],
       apeM: ['', [Validators.required]],
@@ -36,7 +36,7 @@ export class UserRegisterComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   onSubmit(): void {
     if (this.registerForm.invalid) {
@@ -47,8 +47,16 @@ export class UserRegisterComponent implements OnInit {
   }
 
   nuevoUsuario(): void {
-    const userData = this.registerForm.value;
-    console.log('Datos enviados:', userData); // Agrega este console.log
+    const userData = this.registerForm.value; // Captura los datos del formulario
+    console.log('Datos enviados:', userData);
+
+    // Guarda los datos en localStorage
+    const usuariosGuardados = localStorage.getItem('usuarios'); // Verifica si ya hay usuarios guardados
+    const usuarios = usuariosGuardados ? JSON.parse(usuariosGuardados) : [];
+    usuarios.push(userData); // Agrega el nuevo usuario a la lista
+    localStorage.setItem('usuarios', JSON.stringify(usuarios)); // Actualiza el localStorage
+
+    // Enviar al servidor
     this.userService.addUser(userData).subscribe({
       next: (response) => {
         this.swalService.success('Usuario registrado con éxito');
@@ -56,7 +64,7 @@ export class UserRegisterComponent implements OnInit {
         this.router.navigate(['/login']);
       },
       error: (error) => {
-        console.error('Error:', error); // Muestra el error detallado
+        console.error('Error:', error);
         if (error.status === 400) {
           this.swalService.error('El usuario ya existe', 'Registro fallido');
         } else {
@@ -64,6 +72,7 @@ export class UserRegisterComponent implements OnInit {
         }
       },
     });
-}
+  }
+
 
 }

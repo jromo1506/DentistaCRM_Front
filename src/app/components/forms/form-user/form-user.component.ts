@@ -57,7 +57,7 @@ export class FormUserComponent {
         console.log("Objeto guardado en jason: ", usuario)
         this.swalService.success('Usuario registrado correctamente');
       }
-      
+      console.log("Datos a guardar en localStorage:", this.usuarios);
       localStorage.setItem('usuario', JSON.stringify(this.usuarios));
 
       this.cerrarModal(); // Cierra el modal después de registrar

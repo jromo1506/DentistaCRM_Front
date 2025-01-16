@@ -33,10 +33,15 @@ export class UserLoginComponent {
 
   private autenticar(): void {
     const loginData = { usuario: this.usuario, password: this.password };
-
+  
     this.loginService.autenticarUsuario(loginData).subscribe({
       next: (response) => {
         console.log('Autenticación exitosa', response);
+  
+        // Guardar el response en el localStorage
+        localStorage.setItem('usuarioAutenticado', JSON.stringify(response));
+  
+        // Redirigir al usuario
         this.router.navigate(['/lista-citas']);
       },
       error: (error) => {
@@ -48,4 +53,5 @@ export class UserLoginComponent {
       },
     });
   }
+  
 }
