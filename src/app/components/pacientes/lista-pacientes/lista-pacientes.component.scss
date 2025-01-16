@@ -1,6 +1,6 @@
 .lista-container {
   width: 100%;
-  background-color: #f4f4f4;
+  background-color: rgb(233, 233, 233);
   border-radius: 8px;
   margin: 0 auto;
 }
@@ -11,8 +11,11 @@
   color: #333;
 }
 
+
 .paciente-header {
   display: flex;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .paciente-cell {

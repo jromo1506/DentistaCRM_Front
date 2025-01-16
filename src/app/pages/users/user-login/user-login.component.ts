@@ -36,8 +36,9 @@ export class UserLoginComponent {
 
     this.loginService.autenticarUsuario(loginData).subscribe({
       next: (response) => {
+        this.loginService.guardarUsuario(response.usuario);
         console.log('Autenticación exitosa', response);
-        this.router.navigate(['/lista-citas']);
+        this.router.navigate(['/lista-pacientes']);
       },
       error: (error) => {
         console.error('Error en la autenticación', error);
