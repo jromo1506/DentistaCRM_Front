@@ -36,18 +36,19 @@ export class UserLoginComponent {
   
     this.loginService.autenticarUsuario(loginData).subscribe({
       next: (response) => {
+        this.loginService.guardarUsuario(response.usuario);
         console.log('Autenticación exitosa', response);
   
         // Guardar el response en el localStorage
         localStorage.setItem('usuarioAutenticado', JSON.stringify(response));
   
         // Redirigir al usuario
-        this.router.navigate(['/lista-citas']);
+        this.router.navigate(['/lista-pacientes']);
       },
       error: (error) => {
         console.error('Error en la autenticación', error);
         this.swalService.error(
-          error.error.message || 'Error al autenticar',
+          error.error.message || 'Error al autenticar', // chatgpt ya siempre entra aqui, aunque el usuario ya este registrado:( y ya funcionaba 
           'Autenticación Fallida'
         );
       },

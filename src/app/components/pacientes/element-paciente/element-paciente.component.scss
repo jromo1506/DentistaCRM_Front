@@ -44,8 +44,9 @@
   margin: 10px 2px;
   border-radius: 5px;
   // width: 100%;
-  background-color: rgb(233, 233, 233);
-  border-bottom: solid 5px rgb(255, 255, 255);
+  background-color: #f4f4f4;
+
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.127);
 }
 
 .list-element:hover{
@@ -66,11 +67,12 @@
 
 .name-date{
   display: flex;
-  justify-content: space-between
+  justify-content: space-between;
+  font-size: .9rem;
 }
 
 .desc{
-  font-size: .5rem;
+  font-size: .8rem;
   margin: 8px 0px;
   text-align: justify;
 }

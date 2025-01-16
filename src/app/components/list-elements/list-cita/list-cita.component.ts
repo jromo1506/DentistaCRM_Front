@@ -4,6 +4,7 @@ import { ListElementCitaComponent } from '../list-element-cita/list-element-cita
 import { SemaforoComponent } from "../../mensajes/semaforo/semaforo.component";
 import { RouterModule } from '@angular/router';
 import { CitaService } from 'src/app/services/cita.service';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-list-cita',
