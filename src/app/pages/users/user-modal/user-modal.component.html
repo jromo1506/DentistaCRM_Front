@@ -1,0 +1,31 @@
+<div class="modal-overlay" *ngIf="showModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Detalles del Usuario</h2>
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-row">
+          <span class="label">Usuario:</span>
+          <span class="value">{{ usuario.usuario }}</span>
+          <span class="label">Tipo:</span>
+          <span class="value">{{ usuario.tipo }}</span>
+        </div>
+        <div class="modal-row">
+          <span class="label">Nombre Completo:</span>
+          <span class="value">{{ usuario.nombre }} {{ usuario.apeP }} {{ usuario.apeM }}</span>
+        </div>
+        <div class="modal-row">
+          <span class="label">Teléfono:</span>
+          <span class="value">{{ usuario.telefono }}</span>
+          <span class="label">Correo:</span>
+          <span class="value">{{ usuario.correo }}</span>
+        </div>
+        <div class="modal-row" *ngIf="usuario.tipo === 'Doctor'">
+          <span class="label">Especialidad:</span>
+          <span class="value">{{ usuario.especialidad }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

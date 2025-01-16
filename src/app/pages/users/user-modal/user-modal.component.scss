@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Gruppo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Gruppo&display=swap');
+@import '../../../../colors.scss';
+
+// Aplicar la tipografía global
+* {
+    font-family: "Gruppo", sans-serif;
+}
+
+// Overlay (capa oscura que cubre la pantalla)
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+// Modal Container
+.modal-content {
+    background: rgba(255, 255, 255, 0.9);  // Fondo blanco con opacidad
+    padding: 2rem;
+    border-radius: 16px;
+    width: 600px;
+    max-width: 90%;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border: 1px solid #d8d8d8;
+    font-family: 'Gruppo', sans-serif;  // Usamos la tipografía Gruppo
+
+    // Encabezado del modal
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        border-bottom: 1px solid #e0e0e0;
+        padding-bottom: 10px;
+
+        h2 {
+            margin: 0;
+            font-size: 1.8rem;
+            color: $txt-med-2; // Usando color de tu paleta de colores
+            font-weight: bold;
+        }
+
+        .close-btn {
+            background: transparent;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #888;
+
+            &:hover {
+                color: #4a90e2;
+            }
+        }
+    }
+
+    // Cuerpo del modal (contenido)
+    .modal-body {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* Reducimos un poco el gap entre las filas para evitar demasiado espacio */
+    
+        .modal-row {
+            display: flex;
+            justify-content: space-between; /* Separa las etiquetas y valores de manera equitativa */
+            align-items: center;
+            padding: 8px 0; /* Ajustamos el padding para un espaciado más cómodo */
+            border-bottom: 1px solid #e0e0e0;
+    
+            &:last-child {
+                border-bottom: none;
+            }
+    
+            .label {
+                font-weight: bold;
+                font-size: 1rem;
+                color: $txt-dark-3; /* Usamos color de tu paleta */
+            }
+    
+            .value {
+                font-size: 1rem;
+                color: $txt-med-2; /* Usamos color de tu paleta */
+            }
+        }
+    }
+    
+    
+}
+
+// Media Queries
+@media (max-width: 768px) {
+    .modal-content {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .modal-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .modal-body {
+        gap: 15px;
+    }
+}
