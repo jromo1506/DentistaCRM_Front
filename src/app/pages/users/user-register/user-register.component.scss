@@ -12,10 +12,13 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh; /* Ajusta la altura al 100% de la pantalla */
-    width: 100%; /* Asegura que ocupe todo el ancho */
+    min-height: 100vh;
+    /* Ajusta la altura al 100% de la pantalla */
+    width: 100%;
+    /* Asegura que ocupe todo el ancho */
     position: relative;
-    overflow: hidden; /* Elimina las barras de desplazamiento extra */
+    overflow: hidden;
+    /* Elimina las barras de desplazamiento extra */
     background: url('../../../../assets/ImgsLogin/fondo-login-responsive.jpg') no-repeat center center;
     background-size: cover;
 
@@ -46,6 +49,7 @@
                 display: flex;
                 flex-direction: column;
                 gap: 0.5rem;
+
                 label {
                     font-size: 1rem;
                     color: $txt-dark-3;
@@ -60,11 +64,25 @@
                     border-radius: 5px;
                     outline: none;
                     transition: border 0.3s ease;
+
                     &:focus {
                         border-color: #0077b6;
                         box-shadow: 0 0 5px rgba(0, 119, 182, 0.2);
                     }
                 }
+            }
+
+
+            .form-row {
+                display: flex;
+                gap: 1rem;
+                justify-content: space-between;
+      
+            }
+
+            .form-row .form-group {
+                flex: 1;
+                min-width: 0;
             }
 
             .btn-register {
@@ -76,6 +94,7 @@
                 font-size: 1rem;
                 font-weight: bold;
                 cursor: pointer;
+
                 &:hover {
                     background: #00509e;
                 }
@@ -86,14 +105,17 @@
     @media (max-width: 768px) {
         .register-form-container {
             width: 90%;
-            padding: 1rem; /* Reduce el padding en pantallas pequeñas */
+            padding: 1rem;
+        }
+        .form-row {
+            flex-direction: column;
         }
     }
 
     @media (min-width: 1000px) {
         .register-form-container {
             max-width: none;
-            width: 50vw; /* Aumenta el tamaño en pantallas más grandes */
+            width: 50vw;
         }
 
         .register-page {
