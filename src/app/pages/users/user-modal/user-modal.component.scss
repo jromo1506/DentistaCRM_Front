@@ -2,12 +2,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Alex+Brush&family=Gruppo&display=swap');
 @import '../../../../colors.scss';
 
-// Aplicar la tipografía global
+/* Aplicar la tipografía global */
 * {
     font-family: "Gruppo", sans-serif;
 }
 
-// Overlay (capa oscura que cubre la pantalla)
+/* Overlay (capa oscura que cubre la pantalla) */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -21,18 +21,18 @@
     z-index: 1000;
 }
 
-// Modal Container
+/* Modal Container */
 .modal-content {
-    background: rgba(255, 255, 255, 0.9);  // Fondo blanco con opacidad
+    background: rgba(255, 255, 255, 0.9); /* Fondo blanco con opacidad */
     padding: 2rem;
     border-radius: 16px;
     width: 600px;
     max-width: 90%;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     border: 1px solid #d8d8d8;
-    font-family: 'Gruppo', sans-serif;  // Usamos la tipografía Gruppo
+    font-family: 'Gruppo', sans-serif; /* Usamos la tipografía Gruppo */
 
-    // Encabezado del modal
+    /* Encabezado del modal */
     .modal-header {
         display: flex;
         justify-content: space-between;
@@ -44,7 +44,7 @@
         h2 {
             margin: 0;
             font-size: 1.8rem;
-            color: $txt-med-2; // Usando color de tu paleta de colores
+            color: $txt-med-2; /* Usando color de tu paleta de colores */
             font-weight: bold;
         }
 
@@ -61,40 +61,67 @@
         }
     }
 
-    // Cuerpo del modal (contenido)
+    /* Cuerpo del modal (contenido) */
     .modal-body {
         display: flex;
         flex-direction: column;
-        gap: 10px; /* Reducimos un poco el gap entre las filas para evitar demasiado espacio */
+        gap: 10px; /* Espaciado entre las filas */
     
         .modal-row {
             display: flex;
-            justify-content: space-between; /* Separa las etiquetas y valores de manera equitativa */
+            justify-content: flex-start; /* Alineación hacia el inicio */
             align-items: center;
-            padding: 8px 0; /* Ajustamos el padding para un espaciado más cómodo */
+            padding: 8px 0; /* Espaciado vertical */
             border-bottom: 1px solid #e0e0e0;
-    
+
             &:last-child {
                 border-bottom: none;
             }
-    
+
             .label {
                 font-weight: bold;
                 font-size: 1rem;
                 color: $txt-dark-3; /* Usamos color de tu paleta */
+                margin-right: 10px; /* Espaciado entre la etiqueta y el valor */
             }
-    
+
             .value {
                 font-size: 1rem;
                 color: $txt-med-2; /* Usamos color de tu paleta */
+                flex: 1;
+            }
+
+            /* Estilo del select */
+            .status-select {
+                flex: 0 1 150px; /* Tamaño mínimo del select */
+                max-width: 200px; /* Tamaño máximo del select */
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+                margin-left: 10px; /* Espaciado con respecto a la etiqueta */
+                margin-right: 120px; /* Espaciado adicional entre el select y el botón */
+            }
+
+            /* Estilo del botón */
+            .action-btn {
+                padding: 0.5rem 1rem;
+                font-size: 1rem;
+                color: #fff;
+                background-color: #007bff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #0056b3;
+                }
             }
         }
     }
-    
-    
 }
 
-// Media Queries
+/* Media Queries */
 @media (max-width: 768px) {
     .modal-content {
         width: 90%;
@@ -107,5 +134,11 @@
 
     .modal-body {
         gap: 15px;
+    }
+
+    .modal-body .modal-row .status-select {
+        flex: 1; /* El select ocupará más espacio en pantallas pequeñas */
+        max-width: none;
+        margin-right: 10px; /* Ajustar espaciado en pantallas pequeñas */
     }
 }
