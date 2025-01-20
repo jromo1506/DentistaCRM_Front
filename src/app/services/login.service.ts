@@ -15,7 +15,7 @@ export class LoginService {
 
   // Método para autenticar al usuario
   autenticarUsuario(datos: { usuario: string; password: string }): Observable<any> {
-    return this.http.post<any>(`${this.api.getApiUrl()}/usuarios/auth`, datos);
+    return this.http.post<any>(`${this.api.getApiUrl()}/userAuth`, datos);
   }
 
   // Guardar usuario en localStorage

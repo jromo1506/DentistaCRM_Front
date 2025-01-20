@@ -48,7 +48,7 @@ export class UserLoginComponent {
       error: (error) => {
         console.error('Error en la autenticación', error);
         this.swalService.error(
-          error.error.message || 'Error al autenticar', // chatgpt ya siempre entra aqui, aunque el usuario ya este registrado:( y ya funcionaba 
+          error.error.message || 'Error al autenticar', 
           'Autenticación Fallida'
         );
       },
