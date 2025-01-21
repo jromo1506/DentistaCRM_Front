@@ -6,11 +6,12 @@ import { UserViewComponent } from '../user-view/user-view.component';
 import { FormUserComponent } from "../../../components/forms/form-user/form-user.component";
 import { SwalService } from 'src/app/services/swal.service';
 import { UserListElementComponent } from '../user-list-element/user-list-element.component';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, UserViewComponent, FormUserComponent,UserListComponent,UserListElementComponent],
+  imports: [CommonModule, FormsModule, FormUserComponent,UserListElementComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })
@@ -18,7 +19,14 @@ export class UserListComponent {
   usuarios: Array<any> = [];
   @ViewChild(FormUserComponent) formUserComponent!: FormUserComponent;
 
-  constructor(private router: Router, private swalService: SwalService) {}
+
+
+     constructor(private swalService: SwalService, private loginService: LoginService, private router: Router) {
+        if (!this.loginService.existeUsuario()) {
+          // Si no está autenticado, redirigir al login
+          this.router.navigate(['/login']);
+        }
+      }
 
   cargarusuarios() {
     const usuariosGuardados = localStorage.getItem('usuario');

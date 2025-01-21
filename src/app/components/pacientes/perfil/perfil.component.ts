@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../../modal/modal.component';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { CitaService } from 'src/app/services/cita.service';
 import { FormsModule } from '@angular/forms';
 import { Cita } from 'src/app/models/worker-record.model';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-perfil',
@@ -30,11 +31,15 @@ export class PerfilComponent {
     this.showModal = false;
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private pacienteService: PacientesService,
-    private citaService: CitaService
-  ) {}
+    constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private pacienteService: PacientesService,
+      private citaService: CitaService) {
+      if (!this.loginService.existeUsuario()) {
+        // Si no está autenticado, redirigir al login
+        this.router.navigate(['/login']);
+      }
+    }
+
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
@@ -64,12 +69,12 @@ export class PerfilComponent {
     const nuevaCita = {
       pacienteId: this.paciente._id,  // Se añade el pacienteId desde el objeto paciente cargado
       tratamiento: this.tratamiento,
-      observaciones: this.observaciones || '', 
-      realizo: this.realizo || '', 
-      pago: this.pago || 0, 
+      observaciones: this.observaciones || '',
+      realizo: this.realizo || '',
+      pago: this.pago || 0,
       horaInicio: this.horaInicio || '',
-      horaFin: this.horaFin || '' ,
-      fecha: new Date() 
+      horaFin: this.horaFin || '',
+      fecha: new Date()
 
     };
 
@@ -84,7 +89,7 @@ export class PerfilComponent {
         alert('No se pudo crear la cita. Por favor, inténtalo de nuevo.');
       }
     );
-}
+  }
 
 
   obtenerCitas() {

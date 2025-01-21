@@ -17,24 +17,25 @@ import { ListMensajeComponent } from './components/mensajes/list-mensaje/list-me
 import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
     { path: "login", component: UserLoginComponent },
     { path: "registro", component: UserRegisterComponent },
-    { path: "list", component: ListComponent },
-    { path: "dropdown", component: DropdownComponent },
-    { path: "table", component: TableComponent },
-    { path: "semaforo", component: SemaforoComponent },
-    { path: "cita", component: ListElementCitaComponent },
-    { path: "lista-citas", component: ListCitaComponent },
-    { path: "lista-usuarios", component:UserListComponent},
-    { path: "lista-mensajes", component: MensajesComponent },
-    { path: "detallespaciente/:id", component: PacienteDetalleComponent },
-    { path: "perfil/:name/:id", component: PerfilComponent },
-    { path: "lista-pacientes", component:PacientesComponent},
-    { path: "configuracion", component:ConfiguracionComponent},
-    { path: "calendario", component: CalendarioComponent},
+    { path: "list", component: ListComponent, canActivate: [authGuard] },
+    { path: "dropdown", component: DropdownComponent, canActivate: [authGuard] },
+    { path: "table", component: TableComponent, canActivate: [authGuard] },
+    { path: "semaforo", component: SemaforoComponent, canActivate: [authGuard]  },
+    { path: "cita", component: ListElementCitaComponent, canActivate: [authGuard] },
+    { path: "lista-citas", component: ListCitaComponent, canActivate: [authGuard] },
+    { path: "lista-usuarios", component:UserListComponent, canActivate: [authGuard] },
+    { path: "lista-mensajes", component: MensajesComponent, canActivate: [authGuard] },
+    { path: "detallespaciente/:id", component: PacienteDetalleComponent, canActivate: [authGuard] },
+    { path: "perfil/:name/:id", component: PerfilComponent, canActivate: [authGuard] },
+    { path: "lista-pacientes", component:PacientesComponent, canActivate: [authGuard]},
+    { path: "configuracion", component:ConfiguracionComponent, canActivate: [authGuard]},
+    { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
 
     
 ];

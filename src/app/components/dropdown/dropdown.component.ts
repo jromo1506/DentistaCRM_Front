@@ -1,6 +1,8 @@
 // dropdown.component.ts
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { LoginService } from 'src/app/services/login.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,6 +18,15 @@ export class DropdownComponent {
   isOpen = false;
 
   selectedOption: string | null = null;
+
+
+
+  constructor(private loginService: LoginService, private router: Router) {
+    if (!this.loginService.existeUsuario()) {
+      // Si no está autenticado, redirigir al login
+      this.router.navigate(['/login']);
+    }
+  }
 
 
   toggleDropdown() {

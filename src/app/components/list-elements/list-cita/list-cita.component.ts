@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ListElementCitaComponent } from '../list-element-cita/list-element-cita.component';
 import { SemaforoComponent } from "../../mensajes/semaforo/semaforo.component";
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CitaService } from 'src/app/services/cita.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-list-cita',
@@ -16,7 +17,15 @@ import { NgxPaginationModule } from 'ngx-pagination';
 export class ListCitaComponent implements OnInit {
   citas: any[] = []; // Aquí se almacenarán las citas obtenidas
 
-  constructor(private citaService: CitaService) {}
+
+
+  
+       constructor(private citaService: CitaService, private loginService: LoginService, private router: Router) {
+          if (!this.loginService.existeUsuario()) {
+            // Si no está autenticado, redirigir al login
+            this.router.navigate(['/login']);
+          }
+        }
 
   ngOnInit(): void {
     // this.obtenerCitas();

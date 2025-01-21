@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-configuracion',
@@ -11,4 +12,10 @@ import { RouterModule } from '@angular/router';
 })
 export class ConfiguracionComponent {
 
+    constructor(private loginService: LoginService, private router: Router) {
+      if (!this.loginService.existeUsuario()) {
+        // Si no está autenticado, redirigir al login
+        this.router.navigate(['/login']);
+      }
+    }
 }

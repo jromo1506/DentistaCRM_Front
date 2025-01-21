@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-paciente-detalle',
@@ -13,7 +14,14 @@ export class PacienteDetalleComponent {
   paciente: any; // El paciente seleccionado
   pacientes: Array<any> = []; // Lista de pacientes, que debe estar disponible de alguna manera
 
-  constructor(private route: ActivatedRoute) {}
+
+
+  constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute) {
+    if (!this.loginService.existeUsuario()) {
+      // Si no está autenticado, redirigir al login
+      this.router.navigate(['/login']);
+    }
+  }
 
   ngOnInit(): void {
     // Primero, obtenemos el nombre del paciente de la URL
