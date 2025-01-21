@@ -1,7 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { LoginService } from 'src/app/services/login.service';
 import * as $ from 'jquery';
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -9,33 +12,42 @@ import * as $ from 'jquery';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.scss'],
 })
-export class NavbarComponent {
-  menuActive: boolean = false;
+export class NavbarComponent implements OnInit, OnDestroy {
+  menuActive: boolean = false; // Control del menú en mobile
+  isLoggedIn: boolean = false; // Estado de autenticación
+  private authSubscription!: Subscription; // Subscripción para manejar el observable
 
-  constructor(private router:Router) {
-    
+  constructor(private router: Router, private loginService: LoginService) {}
+
+  ngOnInit(): void {
+    // Suscribirse al estado de autenticación
+    this.authSubscription = this.loginService.isLoggedIn$.subscribe(
+      (loggedIn) => {
+        this.isLoggedIn = loggedIn;
+      }
+    );
   }
 
-  toggleMenu(): void {
-    this.menuActive = !this.menuActive;
+  // Método para cerrar sesión
+  logout(): void {
+    this.loginService.eliminarUsuario(); // Elimina al usuario del localStorage
+    this.router.navigate(['/login']); // Redirige al login
   }
 
-  ngOnInit() {
-    $(document).ready(() => {
-      console.log("jQuery is working!");
-    });
+  // Método para abrir el menú en mobile
+  openMobile(): void {
+    $('#navbar-mobile').slideToggle(1000); // Usando jQuery para mostrar/ocultar el menú
   }
 
-
-  openMobile(){
-
-    $('#navbar-mobile').slideToggle(1000);
+  // Método para navegar a una ruta específica
+  navigate(ruta: string): void {
+    this.router.navigate([ruta]); // Navegar a la ruta pasada como argumento
   }
 
-
-  navigate(ruta:string){
-    this.router.navigate([ruta]);
+  // Limpiar subscripción al destruir el componente
+  ngOnDestroy(): void {
+    if (this.authSubscription) {
+      this.authSubscription.unsubscribe();
+    }
   }
-
-
 }
