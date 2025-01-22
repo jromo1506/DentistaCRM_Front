@@ -30,7 +30,7 @@ export const routes: Routes = [
     { path: "cita", component: ListElementCitaComponent, canActivate: [authGuard] },
     { path: "lista-citas", component: ListCitaComponent, canActivate: [authGuard] },
     { path: "lista-usuarios", component:UserListComponent, canActivate: [authGuard] },
-    { path: "lista-mensajes", component: MensajesComponent, canActivate: [authGuard] },
+    { path: 'lista-mensajes/:id', component: MensajesComponent, canActivate: [authGuard] },
     { path: "detallespaciente/:id", component: PacienteDetalleComponent, canActivate: [authGuard] },
     { path: "perfil/:name/:id", component: PerfilComponent, canActivate: [authGuard] },
     { path: "lista-pacientes", component:PacientesComponent, canActivate: [authGuard]},

@@ -39,11 +39,27 @@ export class NavbarComponent implements OnInit, OnDestroy {
     $('#navbar-mobile').slideToggle(1000); // Usando jQuery para mostrar/ocultar el menú
   }
 
-  // Método para navegar a una ruta específica
   navigate(ruta: string): void {
-    this.router.navigate([ruta]); // Navegar a la ruta pasada como argumento
+    const usuarioId = this.getUsuarioId(); // Obtener el id del usuario desde localStorage
+    if (ruta === '/lista-mensajes' && usuarioId) {
+      // Si la ruta es lista-mensajes, pasar el id del usuario en la URL
+      this.router.navigate([ruta, usuarioId]);
+    } else {
+      // En otros casos, simplemente navegar a la ruta
+      this.router.navigate([ruta]);
+    }
   }
 
+  getUsuarioId(): string | null {
+    const usuarioAutenticado = localStorage.getItem('usuarioAutenticado');
+    if (usuarioAutenticado) {
+      const usuario = JSON.parse(usuarioAutenticado);
+      return usuario.usuario.id; // Asegúrate de que este campo coincida con la estructura del objeto almacenado
+    }
+    return null;
+  }
+  
+  
   // Limpiar subscripción al destruir el componente
   ngOnDestroy(): void {
     if (this.authSubscription) {

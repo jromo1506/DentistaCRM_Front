@@ -8,32 +8,24 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class MensajesService {
   private mensajesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
-  mensaje$:Observable<any[]>= this.mensajesSubject.asObservable();
+  mensaje$: Observable<any[]> = this.mensajesSubject.asObservable();
 
-  constructor(private api:GlobalApiService,private http:HttpClient) { }
+  constructor(private api: GlobalApiService, private http: HttpClient) { }
 
-
-  getMensajes():Observable<any>{
-    return this.http.get(this.api.getApiUrl() + "/getMensajes");
+  // Modificar la función para recibir el usuarioId
+  getMensajes(usuarioId: string): Observable<any> {
+    return this.http.get(this.api.getApiUrl() + "/getMensajes?usuarioId=" + usuarioId);
   }
 
-
-  obtenerMensjaes(){
-    this.http.get(this.api.getApiUrl() + "/getMensajes").subscribe((res:any)=>{
+  obtenerMensjaes() {
+    this.http.get(this.api.getApiUrl() + "/getMensajes").subscribe((res: any) => {
       this.mensajesSubject.next(res);
     });
   }
 
-  obtenerMensajesFiltrados(URLFiltros:String){
-    this.http.get(this.api.getApiUrl() + "/getMensajes"+URLFiltros).subscribe((res:any)=>{
+  obtenerMensajesFiltrados(URLFiltros: String) {
+    this.http.get(this.api.getApiUrl() + "/getMensajes" + URLFiltros).subscribe((res: any) => {
       this.mensajesSubject.next(res);
     });
   }
-
-
-  
-
-
-
-
 }
