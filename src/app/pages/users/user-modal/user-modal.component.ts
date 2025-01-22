@@ -31,20 +31,31 @@ export class UserModalComponent implements OnInit {
   }
 
   asignarPaciente(pacienteId: string) {
-    if (pacienteId) {
-      this.userService.asignarPacientes(this.usuario._id, [pacienteId]).subscribe({
-        next: (response) => {
-          console.log('Paciente asignado exitosamente:', response);
-          alert('Paciente asignado exitosamente');
-        },
-        error: (error) => {
-          console.error('Error al asignar paciente:', error);
-          alert('Error al asignar paciente');
-        },
-      });
-    } else {
+    if (!pacienteId) {
       alert('Por favor, selecciona un paciente');
+      return;
     }
+  
+    // Verificar si el paciente ya está asignado
+    if (this.usuario.idPacientes.includes(pacienteId)) {
+      alert('Este paciente ya está asignado a este doctor.');
+      return;
+    }
+  
+    // Si no está asignado, procede con la asignación
+    this.userService.asignarPacientes(this.usuario._id, [pacienteId]).subscribe({
+      next: (response) => {
+        console.log('Paciente asignado exitosamente:', response);
+        alert('Paciente asignado exitosamente');
+        // Actualizar la lista de pacientes del doctor
+        this.usuario.idPacientes.push(pacienteId);
+      },
+      error: (error) => {
+        console.error('Error al asignar paciente:', error);
+        alert('Error al asignar paciente');
+      },
+    });
   }
+  
   
 }
