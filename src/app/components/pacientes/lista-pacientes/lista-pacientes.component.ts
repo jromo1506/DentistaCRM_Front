@@ -10,7 +10,7 @@ import { PacientesService } from 'src/app/services/pacientes.service';
 @Component({
   selector: 'app-lista-pacientes',
   standalone: true,
-  imports: [CommonModule, FormsModule, ElementPacienteComponent, FormComponent],
+  imports: [CommonModule, FormsModule, ElementPacienteComponent],
   templateUrl: './lista-pacientes.component.html',
   styleUrls: ['./lista-pacientes.component.scss']
 })
