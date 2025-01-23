@@ -67,7 +67,7 @@
     border-radius: 4px;
     font-size: 0.85rem;
     color: #fff;
-    background-color: #007bff;
+    background-color: #e72012;
     cursor: pointer;
     transition: background-color 0.3s ease;
     box-sizing: border-box; /* Asegura que padding y border no afecten el tamaño total */
@@ -78,19 +78,13 @@
   }
   
   
+
+  
   button:nth-child(2) {
-    background-color: #ffc107;
-  }
-  
-  button:nth-child(2):hover {
-    background-color: #e0a800;
-  }
-  
-  button:nth-child(3) {
     background-color: #dc3545;
   }
   
-  button:nth-child(3):hover {
+  button:nth-child(2):hover {
     background-color: #c82333;
   }
   
