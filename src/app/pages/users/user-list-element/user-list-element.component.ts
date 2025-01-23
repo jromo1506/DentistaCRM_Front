@@ -34,6 +34,22 @@ export class UserListElementComponent implements OnInit {
     );
   }
 
+  eliminarUsuario(usuario: any) {
+    if (confirm(`¿Estás seguro de que deseas eliminar a ${usuario.nombre}?`)) {
+      this.userService.eliminarUsuario(usuario._id).subscribe(
+        () => {
+          this.usuarios = this.usuarios.filter(u => u._id !== usuario._id);
+          alert(`Usuario ${usuario.nombre} eliminado correctamente.`);
+        },
+        (error) => {
+          console.error('Error al eliminar el usuario', error);
+          alert('Error al eliminar el usuario. Inténtalo nuevamente.');
+        }
+      );
+    }
+  }
+  
+
   verDetalles(usuario: any) {
     this.selectedUser = usuario;
     this.userModal.showModal = true;

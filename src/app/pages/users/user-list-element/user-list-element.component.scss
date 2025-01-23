@@ -108,3 +108,16 @@ i{
 }
 
 
+.btn-danger {
+  color: #fff;
+  background-color: #dc3545;
+  border: none;
+  padding: 3px 10px; /* Ajusta el relleno horizontal para hacer el botón más pequeño */
+  cursor: pointer;
+  border-radius: 3px;
+  width: auto; /* Permite que el tamaño del botón se ajuste al contenido */
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}

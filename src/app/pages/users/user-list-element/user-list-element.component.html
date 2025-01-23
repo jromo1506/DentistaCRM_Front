@@ -1,15 +1,17 @@
 <div class="m-2">
-    <div class="lista-container">
-      <div class="tabla-responsive">
-        <div *ngFor="let usuario of usuarios" class="list-element" (click)="verDetalles(usuario)">
-          <div class="list-info flex-sb">
-            <div class="name-date">
-              <div>{{ usuario.nombre }} {{ usuario.apeP }} {{ usuario.apeM }}</div>
-            </div>
+  <div class="lista-container">
+    <div class="tabla-responsive">
+      <div *ngFor="let usuario of usuarios" class="list-element">
+        <div class="list-info flex-sb" (click)="verDetalles(usuario)">
+          <div class="name-date">
+            <div>{{ usuario.nombre }} {{ usuario.apeP }} {{ usuario.apeM }}</div>
           </div>
+          
         </div>
+        <button class="btn btn-danger" (click)="eliminarUsuario(usuario)">Eliminar</button>
       </div>
+      
     </div>
-    <app-user-modal [usuario]="selectedUser"></app-user-modal>
   </div>
-  
+  <app-user-modal [usuario]="selectedUser"></app-user-modal>
+</div>

@@ -28,4 +28,9 @@ export class MensajesService {
       this.mensajesSubject.next(res);
     });
   }
+
+  deleteMensaje(id: string): Observable<any> {
+    return this.http.delete(this.api.getApiUrl() + "/deleteMensaje/" + id);
+  }
+  
 }
