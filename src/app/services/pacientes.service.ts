@@ -26,4 +26,10 @@ export class PacientesService {
     return this.http.get(this.api.getApiUrl()+"/paciente/"+id);
   }
 
+
+  eliminarPaciente(id: string): Observable<any> {
+    return this.http.delete(this.api.getApiUrl() + "/paciente/" + id);
+  }
+  
+
 }
