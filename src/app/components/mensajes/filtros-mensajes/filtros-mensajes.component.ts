@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder,FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EventEmitter } from '@angular/core';
 import { MensajesService } from 'src/app/services/mensajes.service';
+import { LoginService } from 'src/app/services/login.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-filtros-mensajes',
@@ -14,12 +16,20 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 export class FiltrosMensajesComponent {
   filterForm:FormGroup;
   @Output() urlFiltros: EventEmitter<string> = new EventEmitter<string>();
-
-  constructor(private fb:FormBuilder,private mensajeService:MensajesService) {
+  credentials:any;
+  idsPacientes:any;
+  constructor(private loginService:LoginService,private userService:UserService,private fb:FormBuilder,private mensajeService:MensajesService) {
     this.filterForm = this.fb.group({
       estado: [''], // Default value
       orden: [''], // Default value
       telefono: ['']
+    });
+
+    var user= this.loginService.obtenerUsuario();
+    this.credentials = user?.usuario;
+
+    this.userService.getIdsPacientes(this.credentials.id).subscribe((pacientes:any)=>{
+      this.idsPacientes=pacientes;
     });
 
     
@@ -36,7 +46,7 @@ export class FiltrosMensajesComponent {
         queryParams += queryParams ? `&${key}=${value}` : `?${key}=${value}`;
       }
     });
-    this.mensajeService.obtenerMensajesFiltrados(queryParams);
+    this.mensajeService.obtenerMensajesFiltrados(queryParams,this.idsPacientes);
   }
 
 

@@ -17,13 +17,20 @@ export class NavbarComponent implements OnInit, OnDestroy {
   isLoggedIn: boolean = false; // Estado de autenticación
   private authSubscription!: Subscription; // Subscripción para manejar el observable
 
+  credentials:any;
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
+   
     // Suscribirse al estado de autenticación
     this.authSubscription = this.loginService.isLoggedIn$.subscribe(
       (loggedIn) => {
         this.isLoggedIn = loggedIn;
+        var user= this.loginService.obtenerUsuario();
+        console.log(user,"User96577");
+        
+        this.credentials = user?.usuario;
+        console.log(this.credentials,"CREDENTIALS");
       }
     );
   }
@@ -34,17 +41,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
     this.router.navigate(['/login']); // Redirige al login
   }
 
-  // Método para abrir el menú en mobile
+  // Método para abrir el menú en mobiles
   openMobile(): void {
     $('#navbar-mobile').slideToggle(1000); // Usando jQuery para mostrar/ocultar el menú
   }
 
   navigate(ruta: string): void {
-    const usuarioId = this.getUsuarioId(); // Obtener el id del usuario desde localStorage
-    if (ruta === '/lista-mensajes' && usuarioId) {
+
+    if (ruta === '/lista-mensajes' && this.credentials) {
+      console.log(this.credentials,"CREDENTIALS");
       // Si la ruta es lista-mensajes, pasar el id del usuario en la URL
-      this.router.navigate([ruta, usuarioId]);
+      this.router.navigate([ruta],{ queryParams: this.credentials });
     } else {
+      console.log(this.credentials.id,"ID");
       // En otros casos, simplemente navegar a la ruta
       this.router.navigate([ruta]);
     }

@@ -7,11 +7,11 @@ import { GlobalApiService } from './global-api.service';
   providedIn: 'root',
 })
 export class LoginService {
-  private usuarioKey = 'usuario'; // Clave que usarás en el localStorage
+  private usuarioKey = 'usuarioAutenticado'; // Clave que usarás en el localStorage
   private isLoggedInSubject = new BehaviorSubject<boolean>(this.existeUsuario()); // Estado inicial basado en el localStorage
 
   isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable(); // Observable para exponer el estado
-
+  
   constructor(private http: HttpClient, private api: GlobalApiService) {}
 
   // Método para autenticar al usuario

@@ -22,6 +22,10 @@ export class UserService {
   asignarPacientes(doctorId: string, pacienteIds: string[]): Observable<any> {
     return this.http.post<any>(`${this.api.getApiUrl()}/user/asignarPacientes`, { doctorId, pacienteIds });
   }
+
+  getIdsPacientes(idUsuario:string):Observable<any>{
+    return this.http.get(this.api.getApiUrl() +"/getIdsPacientes/"+idUsuario);
+  }
   
   
  

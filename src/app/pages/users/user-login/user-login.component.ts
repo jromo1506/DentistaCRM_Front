@@ -37,7 +37,7 @@ export class UserLoginComponent {
     this.loginService.autenticarUsuario(loginData).subscribe({
       next: (response) => {
         this.loginService.guardarUsuario(response.usuario);
-        console.log('Autenticación exitosa', response);
+       
   
         // Guardar el response en el localStorage
         localStorage.setItem('usuarioAutenticado', JSON.stringify(response));

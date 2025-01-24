@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { GlobalApiService } from './global-api.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { UserService } from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,13 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class MensajesService {
   private mensajesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   mensaje$: Observable<any[]> = this.mensajesSubject.asObservable();
+  
+  idDoctor = "";
 
   constructor(private api: GlobalApiService, private http: HttpClient) { }
+
+  ngOnInit(){
+  }
 
   // Modificar la función para recibir el usuarioId
   getMensajes(usuarioId: string): Observable<any> {
@@ -23,9 +29,21 @@ export class MensajesService {
     });
   }
 
-  obtenerMensajesFiltrados(URLFiltros: String) {
-    this.http.get(this.api.getApiUrl() + "/getMensajes" + URLFiltros).subscribe((res: any) => {
-      this.mensajesSubject.next(res);
-    });
+
+
+
+  setIdDoctor(idDoc:string){
+    this.idDoctor=idDoc;
   }
-}
+
+  obtenerMensajesFiltrados(URLFiltros: String,IdsPacientes:any[]=[]) {
+    console.log(IdsPacientes,"Ids pacientes");
+        this.http.post<any[]>(this.api.getApiUrl() + "/getMensajesFiltrados" + URLFiltros,IdsPacientes).subscribe(
+          (res) => {this.mensajesSubject.next(res);
+            console.log(res,"El resss");
+          },
+          (err) => console.error("Error obteniendo mensajes filtrados:", err)
+        );
+    }
+  }
+

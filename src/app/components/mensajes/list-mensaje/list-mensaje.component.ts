@@ -5,6 +5,8 @@ import { SemaforoComponent } from '../../mensajes/semaforo/semaforo.component';
 import { RouterModule, ActivatedRoute } from '@angular/router';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { UserService } from 'src/app/services/user.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-list-mensaje',
@@ -17,29 +19,52 @@ export class ListMensajeComponent implements OnInit {
   p: number = 1;
   mensajes: any[] = [];
   usuarioId: string | null = null;
+  credentials:any;
 
   constructor(
     private mensajeService: MensajesService,
-    private route: ActivatedRoute // Inyectamos ActivatedRoute
+    private route: ActivatedRoute,// Inyectamos ActivatedRoute
+    private userService:UserService,
+    private loginService:LoginService
   ) {}
 
   ngOnInit(): void {
-    // Obtener el usuarioId de la URL
-    this.route.paramMap.subscribe(params => {
-      this.usuarioId = params.get('id'); // Obtener el id del usuario
-      console.log('ID del usuario desde la URL:', this.usuarioId);
 
-      if (this.usuarioId) {
-        // Pasar el usuarioId al servicio para obtener los mensajes
-        this.mensajeService.getMensajes(this.usuarioId).subscribe((mensajes: any[]) => {
-          this.mensajes = mensajes;
-          console.log('Mensajes cargados:', mensajes);
-        });
-      }
+
+    this.mensajeService.mensaje$.subscribe((data) => {
+      this.mensajes = data;
+      console.log('Mensajes recibidos:', data);
     });
+
+    var user= this.loginService.obtenerUsuario();
+    console.log(user,"Credenciales del usuario ");
+    
+    this.credentials = user?.usuario;
+    console.log(this.credentials,"LAS CREDENTIALS");
+    this.obtenerMensajes();
+    // Obtener el usuarioId de la URL
+   
   }
 
   obtenerMensajes(): void {
-    console.log('Mensajes obtenidos:', this.mensajes);
+    if(this.credentials.tipo="Doctor"){
+      this.userService.getIdsPacientes(this.credentials.id).subscribe(pacientes=>{
+        console.log(pacientes.idPacientes,"Pacientes");
+        this.mensajeService.obtenerMensajesFiltrados("",pacientes)}); 
+        
+    }
+    
+    else{
+      this.mensajeService.obtenerMensajesFiltrados("",[])
+    } 
+        
+ 
+    
+  
   }
 }
+
+
+
+
+

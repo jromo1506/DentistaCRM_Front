@@ -15,17 +15,27 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class MensajesComponent {
   mensaje: any[] = [];
+  credentials:any;
 
   constructor(
     private mensajes: MensajesService,
     private loginService: LoginService,
     private router: Router,
-    private route: ActivatedRoute // Inyectamos ActivatedRoute
+    private route: ActivatedRoute, // Inyectamos ActivatedRoute
   ) {
     if (!this.loginService.existeUsuario()) {
       // Si no está autenticado, redirigir al login
       this.router.navigate(['/login']);
     }
+
+
+    this.route.queryParams.subscribe((params) => {
+      this.credentials = params;
+      console.log(this.credentials,"Creenciales en mensajes");
+      this.mensajes.setIdDoctor(this.credentials.id);
+    });
+
+
   
     // Obtener el id del usuario desde la URL
     this.route.paramMap.subscribe(params => {
