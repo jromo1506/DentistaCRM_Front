@@ -36,6 +36,12 @@ export class MensajesService {
     this.idDoctor=idDoc;
   }
 
+  deleteMensaje(id: string): Observable<any> {
+    return this.http.delete(this.api.getApiUrl() + "/deleteMensaje/" + id);
+  }
+  
+
+
   obtenerMensajesFiltrados(URLFiltros: String,IdsPacientes:any[]=[]) {
     console.log(IdsPacientes,"Ids pacientes");
         this.http.post<any[]>(this.api.getApiUrl() + "/getMensajesFiltrados" + URLFiltros,IdsPacientes).subscribe(

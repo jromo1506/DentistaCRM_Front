@@ -26,6 +26,10 @@ export class UserService {
   getIdsPacientes(idUsuario:string):Observable<any>{
     return this.http.get(this.api.getApiUrl() +"/getIdsPacientes/"+idUsuario);
   }
+
+  eliminarUsuario(id: string): Observable<any> {
+    return this.http.delete<any>(`${this.api.getApiUrl()}/user/${id}`);
+  }
   
   
  
