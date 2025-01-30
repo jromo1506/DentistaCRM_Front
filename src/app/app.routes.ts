@@ -18,10 +18,12 @@ import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { authGuard } from './guards/auth.guard';
+import { FinderComponent } from './components/finder/finder.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
     { path: "login", component: UserLoginComponent },
+    { path: "finder", component: FinderComponent },
     { path: "registro", component: UserRegisterComponent },
     { path: "list", component: ListComponent, canActivate: [authGuard] },
     { path: "dropdown", component: DropdownComponent, canActivate: [authGuard] },

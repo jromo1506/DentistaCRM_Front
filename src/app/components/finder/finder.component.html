@@ -1,3 +1,25 @@
-<div class="flex">
-    <div></div>
-</div>
+<!-- Modal de búsqueda -->
+<app-modal [title]="'Buscar Paciente'" [isVisible]="showModal" (close)="toggleModal()">
+    <div class="p-1">
+      <label for="search">Buscar paciente:</label>
+      <input id="search" type="text" [(ngModel)]="searchQuery" class="input-modal w-75" placeholder="Nombre o ID">
+      <div class="bar"></div>
+      <button class="btn-aceptar" (click)="searchPatients()">Buscar</button>
+    </div>
+  </app-modal>
+    
+  <!-- Modal de resultados -->
+  <app-modal [title]="'Resultados de la búsqueda'" [isVisible]="showResultsModal" (close)="closeResultsModal()">
+    <div class="p-1">
+      <ul *ngIf="results.length > 0">
+        <li *ngFor="let patient of results">{{ patient }}</li>
+      </ul>
+      <p *ngIf="results.length === 0">No se encontraron pacientes.</p>
+      <div class="bar"></div>
+      <button class="btn-aceptar" (click)="closeResultsModal()">Cerrar</button>
+    </div>
+  </app-modal>
+  
+  <!-- Botón para abrir el buscador -->
+  <button class="btn-abrir" (click)="toggleModal()">Buscar Paciente</button>
+  
