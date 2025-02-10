@@ -20,6 +20,9 @@
   <div class="navbar-right">
     <div class="navbar-right-container navbar-pc">
       <!-- Opciones visibles solo cuando NO estás autenticado -->
+      <div >
+        <label class="txt-option" (click)="navigate('/debug')">Debug</label>
+      </div>
       <div *ngIf="!isLoggedIn">
         <label class="txt-option" (click)="navigate('/login')">Login</label>
       </div>
@@ -63,6 +66,10 @@
 
 
   <div id="navbar-mobile" class=" navbar-mobile">
+    <div class="flex-ai">
+      <i class="fa-solid fa-user-doctor"></i>
+      <label class="txt-option ml-1" (click)="navigate('/debug')">Debug</label>
+    </div>
     <div class="flex-ai">
       <i class="fa-solid fa-user-doctor"></i>
       <label class="txt-option ml-1" (click)="navigate('/login')">Login</label>

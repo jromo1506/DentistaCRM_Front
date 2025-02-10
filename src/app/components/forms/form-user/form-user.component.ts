@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from '../../modal/modal.component';
 import { SwalService } from 'src/app/services/swal.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-form-user',
@@ -20,18 +21,18 @@ export class FormUserComponent {
 
   // Modelo para un nuevo usuario
   nuevoUsuario = {
-    user: '',
+    usuario: '',
     password: '',
     nombre: '',
-    paterno: '',
-    materno: '',
+    apeP: '',
+    apeM: '',
     telefono: '',
     correo: '',
     tipo: '',
     especialidad: ''
   };
 
-  constructor(private swalService: SwalService) {} // Inyecta el servicio
+  constructor(private swalService: SwalService, private userService:UserService) {} // Inyecta el servicio
 
   abrirModal() {
     this.isModalVisible = true; // Muestra el modal
@@ -43,7 +44,7 @@ export class FormUserComponent {
   }
 
   agregarUsuario() {
-    if (this.nuevoUsuario.user && this.nuevoUsuario.nombre && this.nuevoUsuario.password && this.nuevoUsuario.paterno) {
+    if (this.nuevoUsuario.usuario && this.nuevoUsuario.nombre && this.nuevoUsuario.password && this.nuevoUsuario.apeP) {
       if(this.esEdicion && this.usuarioEdicion !== null) {
         console.log("Entro en EDICION")
         this.usuarios[this.usuarioEdicion] = {
@@ -53,13 +54,17 @@ export class FormUserComponent {
         this.swalService.success('Usuario actualizado correctamente');
       } else {
         const usuario = { ...this.nuevoUsuario };
+
+      
         this.usuarios.push(usuario);
         console.log("Objeto guardado en jason: ", usuario)
         this.swalService.success('Usuario registrado correctamente');
       }
       console.log("Datos a guardar en localStorage:", this.usuarios);
       localStorage.setItem('usuario', JSON.stringify(this.usuarios));
-
+      this.userService.addUser(this.nuevoUsuario).subscribe(res=>{
+        alert("Usuario registradi");
+      });  
       this.cerrarModal(); // Cierra el modal después de registrar
     } else {
       this.swalService.errorCampos('Debes completar todos los campos.');
@@ -81,11 +86,11 @@ export class FormUserComponent {
 
   limpiarFormulario() {
     this.nuevoUsuario = {
-      user: '',
+      usuario: '',
       password: '',
       nombre: '',
-      paterno: '',
-      materno: '',
+      apeP: '',
+      apeM: '',
       telefono: '',
       correo: '',
       tipo: '',

@@ -7,7 +7,7 @@
     <form (submit)="agregarUsuario(); $event.preventDefault()" class="form-container">
       <label>
         Usuario :
-        <input type="text" [(ngModel)]="nuevoUsuario.user" name="user" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.usuario" name="user" required />
       </label>
       <label>
         Contraseña :
@@ -19,11 +19,11 @@
       </label>
       <label>
         Apellido Paterno :
-        <input type="text" [(ngModel)]="nuevoUsuario.paterno" name="paterno" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.apeP" name="paterno" required />
       </label>
       <label>
         Apellido Materno :
-        <input type="text" [(ngModel)]="nuevoUsuario.materno" name="materno" required />
+        <input type="text" [(ngModel)]="nuevoUsuario.apeM" name="materno" required />
       </label>
       <label>
         Teléfono:
