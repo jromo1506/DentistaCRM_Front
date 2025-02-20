@@ -23,9 +23,13 @@
       <div >
         <label class="txt-option" (click)="navigate('/debug')">Debug</label>
       </div>
+      <div >
+        <label class="txt-option" (click)="navigate('/chats')">Chats</label>
+      </div>
       <div *ngIf="!isLoggedIn">
         <label class="txt-option" (click)="navigate('/login')">Login</label>
       </div>
+      
       <div *ngIf="!isLoggedIn">
         <label class="txt-option" (click)="navigate('/registro')">Register</label>
       </div>
@@ -43,6 +47,7 @@
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="navigate('/calendario')">Calendar</label>
       </div>
+    
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="logout()">Logout</label>
       </div>

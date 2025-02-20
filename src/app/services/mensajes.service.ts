@@ -29,6 +29,12 @@ export class MensajesService {
     });
   }
 
+  obtenerMensajesPorPaciente(idUsuario:String){
+    this.http.get(this.api.getApiUrl() + "/getMensajesByIdPaciente/"+idUsuario).subscribe((res:any)=>{
+      this.mensajesSubject.next(res);
+    });
+  }
+
 
 
 

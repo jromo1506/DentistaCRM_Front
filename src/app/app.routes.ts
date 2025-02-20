@@ -18,6 +18,7 @@ import { UserListComponent } from './pages/users/user-list/user-list.component';
 import { PacientesComponent } from './pages/pacientes/pacientes.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { authGuard } from './guards/auth.guard';
+import { ChatsComponent } from './pages/chats/chats.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -37,6 +38,7 @@ export const routes: Routes = [
     { path: "lista-pacientes", component:PacientesComponent, canActivate: [authGuard]},
     { path: "configuracion", component:ConfiguracionComponent, canActivate: [authGuard]},
     { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
+    { path: "chats",component:ChatsComponent,canActivate:[authGuard]}
 
     
 ];
