@@ -14,9 +14,11 @@
 </app-product-card>
  -->
 
- <div *ngFor="let day of horarios | keyvalue" (click)="apartar(day)">
+ <!-- <div *ngFor="let day of horarios | keyvalue" (click)="apartar(day)">
     <h3>{{ day.key }}</h3>
     <p>Fecha: {{ day.value.date }}</p>
     <p>Inicio: {{ day.value.start }}</p>
     <p>Fin: {{ day.value.end }}</p>
- </div>
+ </div> -->
+
+ <app-chat-container></app-chat-container>

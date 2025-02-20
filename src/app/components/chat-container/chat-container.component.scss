@@ -1,0 +1,48 @@
+.chat-container {
+  display: flex;
+}
+
+.contact-list {
+  border-right: 1px solid #ccc;
+  padding: 10px;
+  background-color: #f0f0f0;
+  width: 200px; 
+  height: 100%;
+}
+
+.contact-list div {
+  padding: 10px;
+  cursor: pointer;
+  border-bottom: .5px solid #000; 
+  border-top: .5px solid #000;;
+}
+
+.contact-list div.selected {
+  background-color: #7977778f;
+}
+
+.message-view {
+  flex-grow: 1;
+  padding: 10px;
+  background-color: #f0f0f0;
+}
+
+.messages {
+  display: flex;
+  justify-content: flex-end; 
+  margin: 5px 0;
+}
+
+.message-content {
+  text-align: right;
+  padding: 10px;
+  border: 2px solid green; 
+  border-radius: 10px; 
+  background-color: #e0ffe0; 
+  max-width: 70%;
+  word-wrap: break-word; 
+}
+
+.title {
+  text-align: center;
+}

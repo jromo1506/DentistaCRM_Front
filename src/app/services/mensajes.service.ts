@@ -39,7 +39,9 @@ export class MensajesService {
   deleteMensaje(id: string): Observable<any> {
     return this.http.delete(this.api.getApiUrl() + "/deleteMensaje/" + id);
   }
-  
+  obtenerMensajesFiltrado(URLFiltros: String, IdsPacientes: any[] = []): Observable<any[]> {
+    return this.http.post<any[]>(this.api.getApiUrl() + "/getMensajesFiltrados" + URLFiltros, IdsPacientes);
+  }
 
 
   obtenerMensajesFiltrados(URLFiltros: String,IdsPacientes:any[]=[]) {

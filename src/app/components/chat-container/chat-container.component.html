@@ -1,0 +1,19 @@
+<div class="chat-container">
+  <div class="contact-list">
+    <!-- Lista de contactos (pacientes) -->
+    <div *ngFor="let contact of contacts" 
+         (click)="selectContact(contact)" 
+         [class.selected]="contact === selectedContact">
+      {{ contact.name }} ({{ contact.phone }})
+    </div>
+  </div>
+  <div class="message-view">
+    <!-- Mensajes del contacto seleccionado -->
+    <div *ngIf="selectedContact">
+      <h3 class="title">{{ selectedContact.name }}</h3>
+      <div class="messages" *ngFor="let message of selectedContact.messages">
+        <div class="message-content">{{ message }}</div>
+      </div>
+    </div>
+  </div>
+</div>

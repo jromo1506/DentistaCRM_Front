@@ -8,6 +8,7 @@ import { FormComponent } from 'src/app/components/forms/form/form.component';
 import { MessageBoxComponent } from 'src/app/components/message-box/message-box.component';
 import { ListaPacientesComponent } from 'src/app/components/pacientes/lista-pacientes/lista-pacientes.component';
 import { DebugService } from 'src/app/services/debug.service';
+import { ChatContainerComponent } from 'src/app/components/chat-container/chat-container.component';
 
 @Component({
   selector: 'app-debug',
@@ -20,7 +21,8 @@ import { DebugService } from 'src/app/services/debug.service';
     ListComponent,
     FormComponent,
     MessageBoxComponent,
-    ListaPacientesComponent
+    ListaPacientesComponent,
+    ChatContainerComponent
   ],
   templateUrl: './debug.component.html',
   styleUrls: ['./debug.component.scss']
