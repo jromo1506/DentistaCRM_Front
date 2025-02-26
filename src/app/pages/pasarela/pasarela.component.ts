@@ -1,15 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import Swal from 'sweetalert2';
 import '@stripe/stripe-js';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CheckoutService } from 'src/app/services/checkout.service';
+import { CheckoutComponent } from './checkout/checkout.component';
 
 @Component({
   selector: 'app-pasarela',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, CheckoutComponent],
   templateUrl: './pasarela.component.html',
   styleUrls: ['./pasarela.component.scss']
 })
@@ -24,7 +25,7 @@ export class PasarelaComponent implements OnInit{
   id: string | null = null;
   tipo: string | null = null;
 
-  constructor(private route: ActivatedRoute, private fb: FormBuilder, private _checkoutSvc: CheckoutService) {
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private _checkoutSvc: CheckoutService, private router:Router) {
     this.pagoForm = this.fb.group({
       nombreServicio: ['', Validators.required],
       precioCobrar: ['', [Validators.required, Validators.min(1)]]
@@ -116,7 +117,7 @@ export class PasarelaComponent implements OnInit{
       this._checkoutSvc.crearSesionPago(this.datosPago).subscribe ({
         next: (response) => {
           this.clientSecret = response.clientSecret; // Guarda el clientSecret
-          console.log("Sesión de pago creada:", response);
+          this.router.navigate(['/checkout', this.clientSecret]);
         },
         error: (error) => {
           console.error("Error al crear la sesión de pago:", error);
@@ -131,6 +132,8 @@ export class PasarelaComponent implements OnInit{
 
       console.log(this.mostrarVista)
       console.log("Datos del servicio: ", this.datosPago);
+
+
     } else {
       Swal.fire({
         icon: 'error',

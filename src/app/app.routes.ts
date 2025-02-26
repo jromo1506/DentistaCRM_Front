@@ -21,6 +21,7 @@ import { authGuard } from './guards/auth.guard';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { PasarelaComponent } from './pages/pasarela/pasarela.component';
 import { ReturnComponent } from './pages/pasarela/return/return.component';
+import { CheckoutComponent } from './pages/pasarela/checkout/checkout.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -43,6 +44,6 @@ export const routes: Routes = [
     { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
     { path: "chats",component:ChatsComponent,canActivate:[authGuard]},
     { path: "return", component: ReturnComponent },
-
+    { path: "checkout/:id", component: CheckoutComponent},
     
 ];
