@@ -20,6 +20,7 @@ import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { authGuard } from './guards/auth.guard';
 import { ChatsComponent } from './pages/chats/chats.component';
 import { PasarelaComponent } from './pages/pasarela/pasarela.component';
+import { ReturnComponent } from './pages/pasarela/return/return.component';
 
 export const routes: Routes = [
     { path: "debug", component: DebugComponent },
@@ -40,7 +41,8 @@ export const routes: Routes = [
     { path: "lista-pacientes", component:PacientesComponent, canActivate: [authGuard]},
     { path: "configuracion", component:ConfiguracionComponent, canActivate: [authGuard]},
     { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
-    { path: "chats",component:ChatsComponent,canActivate:[authGuard]}
+    { path: "chats",component:ChatsComponent,canActivate:[authGuard]},
+    { path: "return", component: ReturnComponent },
 
     
 ];

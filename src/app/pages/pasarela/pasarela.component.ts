@@ -1,21 +1,35 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2';
+import '@stripe/stripe-js';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CheckoutService } from 'src/app/services/checkout.service';
 
 @Component({
   selector: 'app-pasarela',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './pasarela.component.html',
   styleUrls: ['./pasarela.component.scss']
 })
 export class PasarelaComponent implements OnInit{
+  pagoForm: FormGroup;
+  mostrarVista: boolean = false;
+  formulario: boolean = true;
+  datosPago: any;
+  clientSecret: string | null = null;
+
   fecha: string | null = null;
   id: string | null = null;
   tipo: string | null = null;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private fb: FormBuilder, private _checkoutSvc: CheckoutService) {
+    this.pagoForm = this.fb.group({
+      nombreServicio: ['', Validators.required],
+      precioCobrar: ['', [Validators.required, Validators.min(1)]]
+    });
+  }
 
 
   /*Formato de fecha
@@ -90,6 +104,41 @@ export class PasarelaComponent implements OnInit{
   
     console.log(inputDate);
     return inputDate < today; // Si la fecha es menor a hoy, está vencida
+  }
+
+ pagar() : void {
+    if(this.pagoForm.valid) {
+      this.datosPago = this.pagoForm.value;
+      this.formulario = false;
+      this.mostrarVista = true;
+
+      //llama al servicio de checkout para crear la sesion de pago
+      this._checkoutSvc.crearSesionPago(this.datosPago).subscribe ({
+        next: (response) => {
+          this.clientSecret = response.clientSecret; // Guarda el clientSecret
+          console.log("Sesión de pago creada:", response);
+        },
+        error: (error) => {
+          console.error("Error al crear la sesión de pago:", error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: 'Hubo un error al procesar el pago. Inténtalo de nuevo.',
+            confirmButtonText: 'Entendido'
+          });
+        }
+      });
+
+      console.log(this.mostrarVista)
+      console.log("Datos del servicio: ", this.datosPago);
+    } else {
+      Swal.fire({
+        icon: 'error',
+        title: 'Llenar los campos',
+        text: `Por favor llenar todos los datos requeridos`,
+        confirmButtonText: 'Entendido'
+      });
+    }
   }
   
 }
