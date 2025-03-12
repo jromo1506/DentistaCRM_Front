@@ -11,8 +11,12 @@
     <!-- Mensajes del contacto seleccionado -->
     <div *ngIf="selectedContact" class="message-container">
       <h3 class="title">{{ selectedContact.name }}</h3>
-      <div class="messages" *ngFor="let message of selectedContact.messages">
-        <div class="message-content">{{ message }}</div>
+      <div class="messages">
+        <div *ngFor="let message of selectedContact.messages" 
+             [class.doctor-message]="message.sender === 'doctor'" 
+             [class.patient-message]="message.sender !== 'doctor'">
+          <div class="message-content">{{ message.text }}</div>
+        </div>
       </div>
     </div>
     <form class="message-form" (ngSubmit)="sendMessage()" *ngIf="selectedContact">

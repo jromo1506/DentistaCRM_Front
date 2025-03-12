@@ -59,5 +59,14 @@ export class MensajesService {
           (err) => console.error("Error obteniendo mensajes filtrados:", err)
         );
     }
+
+
+    enviarMensajeDoctor(mensaje: any): Observable<any> {
+      return this.http.post(this.api.getApiUrl() + '/addMensajeDoctor', mensaje);
+    }
+
+    obtenerMensajesDoctor(idDoctor: string, idPaciente: string): Observable<any> {
+      return this.http.get(this.api.getApiUrl() + `/getMensajesDoctor?idDoctor=${idDoctor}&idPaciente=${idPaciente}`);
+    }
   }
 
