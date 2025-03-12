@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-chat-container',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './chat-container.component.html',
   styleUrls: ['./chat-container.component.scss']
 })
@@ -15,6 +16,7 @@ export class ChatContainerComponent implements OnInit {
   contacts: any[] = []; // Lista de pacientes asociados al doctor
   selectedContact: any = null; // Paciente seleccionado
   credentials: any; // Credenciales del usuario autenticado
+  messageText: string ='';
 
   constructor(
     private mensajesService: MensajesService,
@@ -72,5 +74,28 @@ export class ChatContainerComponent implements OnInit {
   // Función para seleccionar un contacto (paciente)
   selectContact(contact: any): void {
     this.selectedContact = contact;
+  }
+
+  sendMessage(): void {
+    if (this.selectedContact && this.messageText.trim()) {
+      // Agregar el nuevo mensaje al contacto seleccionado
+      //this.selectedContact.messages.push(this.messageText);
+      
+      const newMessage = {
+        text: this.messageText,
+        phone: this.selectedContact.phone,
+        timestamp: new Date().toISOString()
+      };
+
+      console.log('Enviando mensaje:', {
+        contenido: this.messageText,
+        telefonoDestino: this.selectedContact.phone,
+        idPaciente: this.selectedContact.id,
+        idDoctor: this.credentials.id
+      });
+      
+      // Limpiar el campo de texto
+      this.messageText = '';
+    }
   }
 }

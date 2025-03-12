@@ -9,11 +9,23 @@
   </div>
   <div class="message-view">
     <!-- Mensajes del contacto seleccionado -->
-    <div *ngIf="selectedContact">
+    <div *ngIf="selectedContact" class="message-container">
       <h3 class="title">{{ selectedContact.name }}</h3>
       <div class="messages" *ngFor="let message of selectedContact.messages">
         <div class="message-content">{{ message }}</div>
       </div>
     </div>
+    <form class="message-form" (ngSubmit)="sendMessage()" *ngIf="selectedContact">
+      <input type="text" 
+             [(ngModel)]="messageText" 
+             placeholder="Escribe un mensaje..."
+             name="messageInput"
+             class="message-input">
+      <button type="submit" 
+              [disabled]="!messageText"
+              class="send-button">
+        Enviar
+      </button>
+    </form>
   </div>
 </div>
