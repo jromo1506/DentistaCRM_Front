@@ -78,18 +78,37 @@ export class ChatContainerComponent implements OnInit {
 
   // Función para seleccionar un contacto (paciente)
   selectContact(contact: any): void {
-    this.selectedContact = contact;
-
-    // Cargar mensajes del doctor
-    this.mensajesService.obtenerMensajesDoctor(this.credentials.id, contact.id).subscribe((mensajesDoctor: any) => {
-      mensajesDoctor.forEach((msg: any) => {
+    // Reiniciar los mensajes del contacto seleccionado
+    contact.messages = [];
+  
+    // Cargar mensajes del paciente
+    this.mensajesService.obtenerMensajesPorPacient(contact.id).subscribe((mensajesPaciente: any) => {
+      mensajesPaciente.forEach((msg: any) => {
         contact.messages.push({
           text: msg.mensaje,
-          sender: 'doctor', // Mensajes del doctor
+          sender: 'patient', // Mensajes del paciente
+          fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
         });
       });
+  
+      // Cargar mensajes del doctor
+      this.mensajesService.obtenerMensajesDoctor(this.credentials.id, contact.id).subscribe((mensajesDoctor: any) => {
+        mensajesDoctor.forEach((msg: any) => {
+          contact.messages.push({
+            text: msg.mensaje,
+            sender: 'doctor', // Mensajes del doctor
+            fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
+          });
+        });
+  
+        // Ordenar los mensajes por fecha
+        contact.messages.sort((a: any, b: any) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+      });
     });
-
+  
+    // Asignar el contacto seleccionado
+    this.selectedContact = contact;
+  
     // Mostrar la información del paciente en la consola
     console.log('Nombre del paciente:', contact.name);
     console.log('Id del paciente:', contact.id);

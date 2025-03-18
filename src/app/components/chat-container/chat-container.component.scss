@@ -49,8 +49,10 @@
   display: flex;
 }
 
+/* Mensajes del doctor (derecha) */
 .doctor-message {
-  justify-content: flex-start; /* Alinear a la izquierda */
+  justify-content: flex-end !important; /* Alinear a la derecha */
+  display: flex;
 }
 
 .doctor-message .message-content {
@@ -58,12 +60,13 @@
   color: white;
   border-radius: 10px;
   padding: 10px;
-  max-width: 70%;
+  max-width: 10%;
   word-wrap: break-word;
 }
 
+/* Mensajes del paciente (izquierda) */
 .patient-message {
-  justify-content: flex-end; /* Alinear a la derecha */
+  justify-content: flex-start; /* Alinear a la izquierda */
 }
 
 .patient-message .message-content {
@@ -71,7 +74,7 @@
   color: white;
   border-radius: 10px;
   padding: 10px;
-  max-width: 70%;
+  max-width: 10%;
   word-wrap: break-word;
 }
 

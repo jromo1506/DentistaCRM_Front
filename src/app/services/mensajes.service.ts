@@ -65,8 +65,14 @@ export class MensajesService {
       return this.http.post(this.api.getApiUrl() + '/addMensajeDoctor', mensaje);
     }
 
+    obtenerMensajesPorPacient(idPaciente: string): Observable<any> {
+      return this.http.get(this.api.getApiUrl() + `/getMensajesByIdPaciente/${idPaciente}`);
+    }
+
     obtenerMensajesDoctor(idDoctor: string, idPaciente: string): Observable<any> {
       return this.http.get(this.api.getApiUrl() + `/getMensajesDoctor?idDoctor=${idDoctor}&idPaciente=${idPaciente}`);
     }
+
+    
   }
 
