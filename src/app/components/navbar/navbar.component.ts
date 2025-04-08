@@ -21,13 +21,12 @@ export class NavbarComponent implements OnInit, OnDestroy {
   constructor(private router: Router, private loginService: LoginService) {}
 
   ngOnInit(): void {
-   
     // Suscribirse al estado de autenticación
     this.authSubscription = this.loginService.isLoggedIn$.subscribe(
       (loggedIn) => {
         this.isLoggedIn = loggedIn;
         var user= this.loginService.obtenerUsuario();
-        console.log(user,"User96577");
+        console.log(user,"User");
         
         this.credentials = user?.usuario;
         console.log(this.credentials,"CREDENTIALS");

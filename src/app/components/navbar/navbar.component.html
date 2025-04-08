@@ -20,21 +20,23 @@
   <div class="navbar-right">
     <div class="navbar-right-container navbar-pc">
       <!-- Opciones visibles solo cuando NO estás autenticado -->
-      <div >
-        <label class="txt-option" (click)="navigate('/debug')">Debug</label>
-      </div>
-      <div >
-        <label class="txt-option" (click)="navigate('/chats')">Chats</label>
-      </div>
+
       <div *ngIf="!isLoggedIn">
         <label class="txt-option" (click)="navigate('/login')">Login</label>
       </div>
-      
-      <div *ngIf="!isLoggedIn">
-        <label class="txt-option" (click)="navigate('/registro')">Register</label>
-      </div>
+
+
 
       <!-- Opciones visibles solo cuando estás autenticado -->
+      <div *ngIf="isLoggedIn">
+        <label class="txt-option" (click)="navigate('/debug')">Debug</label>
+      </div>
+      <div *ngIf="isLoggedIn">
+        <label class="txt-option" (click)="navigate('/chats')">Chats</label>
+      </div>
+      <div *ngIf="isLoggedIn  && credentials?.tipo === 'Administrador'">
+        <label class="txt-option" (click)="navigate('/registro')">Register</label>
+      </div>
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="navigate('/lista-pacientes')">Patients</label>
       </div>
@@ -47,17 +49,12 @@
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="navigate('/calendario')">Calendar</label>
       </div>
-    
+
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="logout()">Logout</label>
       </div>
     </div>
   </div>
-
-
-
-
-
 </nav>
 
 
@@ -66,9 +63,7 @@
     <div class="p-1 menu-button txt-c">
       Menu
     </div>
-
   </div>
-
 
   <div id="navbar-mobile" class=" navbar-mobile">
     <div class="flex-ai">
