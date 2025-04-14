@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { UserService } from 'src/app/services/user.service';
@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./chat-container.component.scss']
 })
 export class ChatContainerComponent implements OnInit {
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   contacts: any[] = []; // Lista de pacientes asociados al doctor
   selectedContact: any = null; // Paciente seleccionado
   credentials: any; // Credenciales del usuario autenticado
@@ -103,11 +104,12 @@ export class ChatContainerComponent implements OnInit {
   
         // Ordenar los mensajes por fecha
         contact.messages.sort((a: any, b: any) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
+
+        // Asignar el contacto seleccionado
+        this.selectedContact = contact;
+        this.scrollBottom();
       });
     });
-  
-    // Asignar el contacto seleccionado
-    this.selectedContact = contact;
   
     // Mostrar la información del paciente en la consola
     console.log('Nombre del paciente:', contact.name);
@@ -135,11 +137,20 @@ export class ChatContainerComponent implements OnInit {
             sender: 'doctor', // Indicar que el mensaje es del doctor
           });
           this.messageText = ''; // Limpiar el campo de texto
+          this.scrollBottom();
         },
         (error) => {
           console.error('Error al enviar el mensaje:', error);
         }
       );
     }
+  }
+
+  private scrollBottom(): void {
+    setTimeout(() => {
+      if (this.messagesContainer) {
+        this.messagesContainer.nativeElement.scrollTop = this.messagesContainer.nativeElement.scrollHeight;
+      }
+    }, 0);
   }
 }
