@@ -30,7 +30,7 @@
 
 .contact-list div.selected {
   background-color: #f0f2f5;
-  border-left: 4px solid #00a884;
+  border-left: 4px solid #ceb868;
 }
 
 .contact-list div.selected:hover {
@@ -82,7 +82,7 @@
 }
 
 .doctor-message .message-content {
-  background: #d9fdd3;
+  background: #fffaec;
   color: #111b21;
   border-radius: 7.5px 0 7.5px 7.5px;
   padding: 8px 12px;
@@ -132,7 +132,7 @@
 }
 
 .send-button {
-  background: #00a884;
+  background: #d6c27d;
   color: white;
   border: none;
   padding: 12px 20px;
@@ -145,7 +145,7 @@
 }
 
 .send-button:hover:not(:disabled) {
-  background: #008f72;
+  background: #ceb868;
 }
 
 .send-button:disabled {
