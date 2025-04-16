@@ -24,16 +24,15 @@ import { ReturnComponent } from './pages/pasarela/return/return.component';
 import { CheckoutComponent } from './pages/pasarela/checkout/checkout.component';
 
 export const routes: Routes = [
-    { path: "debug", component: DebugComponent },
+    { path: "chats", component: DebugComponent, canActivate: [authGuard] },
     { path: "login", component: UserLoginComponent },
-    { path: "registro", component: UserRegisterComponent },
+    { path: "registro", component: UserRegisterComponent, canActivate: [authGuard]},
     { path: "list", component: ListComponent, canActivate: [authGuard] },
     { path: "dropdown", component: DropdownComponent, canActivate: [authGuard] },
     { path: "table", component: TableComponent, canActivate: [authGuard] },
     { path: "semaforo", component: SemaforoComponent, canActivate: [authGuard]  },
     { path: "cita", component: ListElementCitaComponent, canActivate: [authGuard] },
     { path: "lista-citas", component: ListCitaComponent, canActivate: [authGuard] },
-    { path: "lista-usuarios", component:UserListComponent, canActivate: [authGuard] },
     { path: "lista-usuarios", component:UserListComponent, canActivate: [authGuard] },
     { path: 'lista-mensajes', component: MensajesComponent, canActivate: [authGuard] },
     { path: "detallespaciente/:id", component: PacienteDetalleComponent, canActivate: [authGuard] },
@@ -42,7 +41,7 @@ export const routes: Routes = [
     { path: "lista-pacientes", component:PacientesComponent, canActivate: [authGuard]},
     { path: "configuracion", component:ConfiguracionComponent, canActivate: [authGuard]},
     { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
-    { path: "chats",component:ChatsComponent,canActivate:[authGuard]},
+    { path: "messages",component:ChatsComponent,canActivate:[authGuard]},
     { path: "return", component: ReturnComponent },
     { path: "checkout/:id", component: CheckoutComponent},
     

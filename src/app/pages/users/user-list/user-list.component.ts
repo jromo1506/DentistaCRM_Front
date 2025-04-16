@@ -11,7 +11,7 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   selector: 'app-user-list',
   standalone: true,
-  imports: [CommonModule, FormsModule, FormUserComponent,UserListElementComponent],
+  imports: [CommonModule, FormsModule,UserListElementComponent],
   templateUrl: './user-list.component.html',
   styleUrls: ['./user-list.component.scss']
 })

@@ -61,7 +61,6 @@ export class UserRegisterComponent implements OnInit {
       next: (response) => {
         this.swalService.success('Usuario registrado con éxito');
         this.registerForm.reset();
-        this.router.navigate(['/login']);
       },
       error: (error) => {
         console.error('Error:', error);

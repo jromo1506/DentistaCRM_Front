@@ -1,12 +1,10 @@
 <nav class="navbar">
 
-
   <!-- Menú inicial (pantallas grandes) -->
   <!-- Íconos en la derecha -->
   <div class="navbar-left">
     <img src="../../../assets/logos/diente.png">
   </div>
-
 
   <!-- Logo centrado -->
   <div class="navbar-center">
@@ -14,25 +12,21 @@
       <h2 class="dental-clinic">DENTAL CLINIC BOUTIQUE</h2>
       <p class="dr-arce">By Dr. Arce</p>
     </div>
-
   </div>
-  <!-- podrias hacer que la el contenido del navbar-right no salga tan junto me refiero a que cuando se ve el navar se ve algo asi "LoginRegisterDebug. . ." y se requiere que se vea con espacios entre cada uno siendo tambien responsivo-->
+
+  <!-- vista en computadores -->
   <div class="navbar-right">
     <div class="navbar-right-container navbar-pc">
       <!-- Opciones visibles solo cuando NO estás autenticado -->
-
       <div *ngIf="!isLoggedIn">
         <label class="txt-option" (click)="navigate('/login')">Login</label>
       </div>
-
-
-
-      <!-- Opciones visibles solo cuando estás autenticado -->
-      <div *ngIf="isLoggedIn">
-        <label class="txt-option" (click)="navigate('/debug')">Debug</label>
+      <!-- Opciones visibles solo cuando estás autenticado-->
+      <div *ngIf="isLoggedIn && ['Administrador', 'Doctor'].includes(credentials?.tipo)">
+        <label class="txt-option" (click)="navigate('/chats')">Chats</label>
       </div>
       <div *ngIf="isLoggedIn">
-        <label class="txt-option" (click)="navigate('/chats')">Chats</label>
+        <label class="txt-option" (click)="navigate('/messages')">Messages</label>
       </div>
       <div *ngIf="isLoggedIn  && credentials?.tipo === 'Administrador'">
         <label class="txt-option" (click)="navigate('/registro')">Register</label>
@@ -40,54 +34,68 @@
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="navigate('/lista-pacientes')">Patients</label>
       </div>
-      <div *ngIf="isLoggedIn">
+      <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)">
         <label class="txt-option" (click)="navigate('/lista-usuarios')">Users</label>
       </div>
       <div *ngIf="isLoggedIn">
-        <label class="txt-option" (click)="navigate('/lista-mensajes')">Messages</label>
+        <label class="txt-option" (click)="navigate('/lista-mensajes')">Filters</label>
       </div>
-      <div *ngIf="isLoggedIn">
+      <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)">
         <label class="txt-option" (click)="navigate('/calendario')">Calendar</label>
       </div>
-
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="logout()">Logout</label>
       </div>
     </div>
   </div>
+
 </nav>
 
-
+<!-- vista en celulares -->
 <nav class="mobile-menubar">
   <div class="w-100 flex-c" (click)="openMobile()">
     <div class="p-1 menu-button txt-c">
       Menu
     </div>
   </div>
-
-  <div id="navbar-mobile" class=" navbar-mobile">
-    <div class="flex-ai">
-      <i class="fa-solid fa-user-doctor"></i>
-      <label class="txt-option ml-1" (click)="navigate('/debug')">Debug</label>
+  <div id="navbar-mobile" class="navbar-mobile">
+    <!-- Opciones cuando NO está autenticado -->
+    <div *ngIf="!isLoggedIn" class="mobile-menu-item">
+      <i class="fa-solid fa-right-to-bracket"></i>
+      <label class="txt-option" (click)="navigate('/login')">Login</label>
     </div>
-    <div class="flex-ai">
-      <i class="fa-solid fa-user-doctor"></i>
-      <label class="txt-option ml-1" (click)="navigate('/login')">Login</label>
+    <!-- Opciones cuando está autenticado -->
+    <div *ngIf="isLoggedIn && ['Administrador', 'Doctor'].includes(credentials?.tipo)" class="mobile-menu-item">
+      <i class="fa-solid fa-comment-dots"></i>
+      <label class="txt-option" (click)="navigate('/chats')">Chats</label>
     </div>
-    <div class="flex-ai">
+    <div *ngIf="isLoggedIn" class="mobile-menu-item">
+      <i class="fa-solid fa-envelope"></i>
+      <label class="txt-option" (click)="navigate('/messages')">Messages</label>
+    </div>
+    <div *ngIf="isLoggedIn && credentials?.tipo === 'Administrador'" class="mobile-menu-item">
+      <i class="fa-solid fa-user-plus"></i>
+      <label class="txt-option" (click)="navigate('/registro')">Register</label>
+    </div>
+    <div *ngIf="isLoggedIn" class="mobile-menu-item">
       <i class="fa-solid fa-hospital-user"></i>
-      <label class="txt-option ml-1" (click)="navigate('/registro')">Register </label>
+      <label class="txt-option" (click)="navigate('/lista-pacientes')">Patients</label>
     </div>
-    <div class="flex-ai">
-      <i class="fa-regular fa-address-book"></i>
-      <label class="txt-option ml-1" (click)="navigate('/lista-pacientes')">Patient list </label>
+    <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)" class="mobile-menu-item">
+      <i class="fa-solid fa-users"></i>
+      <label class="txt-option" (click)="navigate('/lista-usuarios')">Users</label>
     </div>
-
-    <div class="flex-ai">
-      <i class="fa-regular fa-calendar-check"></i>
-      <label class="txt-option ml-1" (click)="navigate('/lista-citas')">Appointments </label>
+    <div *ngIf="isLoggedIn" class="mobile-menu-item">
+      <i class="fa-solid fa-filter"></i>
+      <label class="txt-option" (click)="navigate('/lista-mensajes')">Filters</label>
+    </div>
+    <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)" class="mobile-menu-item">
+      <i class="fa-solid fa-calendar-days"></i>
+      <label class="txt-option" (click)="navigate('/calendario')">Calendar</label>
+    </div>
+    <div *ngIf="isLoggedIn" class="mobile-menu-item logout-item">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <label class="txt-option" (click)="logout()">Logout</label>
     </div>
   </div>
-
-
 </nav>

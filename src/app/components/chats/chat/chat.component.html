@@ -1,10 +1,5 @@
 <div class="chat" *ngIf="regresarMensajes==false">
-    <div class="flex-c p-1" (click)="regresarChats()">
-        <div>
-            <i class="fa-solid fa-arrow-left"></i> Regresar
-        </div>
-      
-    </div>
+
     <div class="bs-bb p-1" *ngFor="let msg of mensajes">
         <app-list-element-mensaje [mensaje] = "msg"></app-list-element-mensaje>
     </div>

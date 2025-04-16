@@ -8,24 +8,33 @@ import { PacientesService } from 'src/app/services/pacientes.service';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './element-paciente.component.html',
-  styleUrls: ['./element-paciente.component.scss']
+  styleUrls: ['./element-paciente.component.scss'],
 })
 export class ElementPacienteComponent {
-  @Input() paciente: any; // Recibe el paciente como entrada
-  
+  @Input() paciente: any;
 
-  constructor(private router: Router, private pacientesService: PacientesService) {
+  constructor(
+    private router: Router,
+    private pacientesService: PacientesService
+  ) {}
 
+  formatearFecha(fechaNacimiento: string): string {
+    if (!fechaNacimiento) return 'No proporcionada';
+
+    // Usar fecha en formato ISO (YYYY-MM-DD) sin ajustar por zona horaria
+    const [año, mes, dia] = fechaNacimiento.split('T')[0].split('-');
+
+    if (!año || !mes || !dia) return 'No proporcionada';
+
+    return `${mes.padStart(2, '0')}/${dia.padStart(2, '0')}/${año}`;
   }
 
   verDetalles(paciente: any) {
-    // Redirigimos a la página de detalles pasando el id del paciente
-    this.router.navigate(['/perfil', "paciente", paciente.nombre]); // O usa 'paciente.id' si tienes un campo id único
+    this.router.navigate(['/perfil', 'paciente', paciente.nombre]);
   }
 
-
-  verPerfil(idPaciente:string){
-    this.router.navigate(['/perfil',"paciente",idPaciente])
+  verPerfil(idPaciente: string) {
+    this.router.navigate(['/perfil', 'paciente', idPaciente]);
   }
 
   eliminarPaciente() {
@@ -33,11 +42,10 @@ export class ElementPacienteComponent {
       this.pacientesService.eliminarPaciente(this.paciente._id).subscribe({
         next: () => {
           alert('Paciente eliminado correctamente.');
-          // Aquí puedes actualizar la lista de pacientes o emitir un evento para que el padre actualice la lista
         },
         error: (err) => {
           alert('Error al eliminar el paciente: ' + err.message);
-        }
+        },
       });
     }
   }

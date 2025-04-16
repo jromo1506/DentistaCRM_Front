@@ -43,11 +43,6 @@ export class ChatComponent {
   
 
   
-  regresarChats(){
-  window.location.reload();
-
-  }
-
 
 
 }
