@@ -10,7 +10,7 @@ import { UserService } from './user.service';
 export class MensajesService {
   private mensajesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   mensaje$: Observable<any[]> = this.mensajesSubject.asObservable();
-  
+
   idDoctor = "";
 
   constructor(private api: GlobalApiService, private http: HttpClient) { }
@@ -73,6 +73,6 @@ export class MensajesService {
       return this.http.get(this.api.getApiUrl() + `/getMensajesDoctor?idDoctor=${idDoctor}&idPaciente=${idPaciente}`);
     }
 
-    
+
   }
 
