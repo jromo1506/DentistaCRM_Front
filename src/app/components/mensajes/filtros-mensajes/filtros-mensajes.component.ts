@@ -22,7 +22,7 @@ export class FiltrosMensajesComponent {
     this.filterForm = this.fb.group({
       estado: [''], // Default value
       orden: [''], // Default value
-      telefono: ['']
+      search: ['']
     });
 
     var user= this.loginService.obtenerUsuario();
@@ -32,7 +32,7 @@ export class FiltrosMensajesComponent {
       this.idsPacientes=pacientes;
     });
 
-    
+
   }
 
 
@@ -40,17 +40,25 @@ export class FiltrosMensajesComponent {
     const formValues = this.filterForm.value; // Obtener los valores del formulario
     let queryParams = '';
 
+    const filtros ={
+      search: formValues.telefono,
+      sortOrder: formValues.orden,
+      sortBy: 'createdAt'
+    }
+
     Object.keys(formValues).forEach((key) => {
-      const value = formValues[key]; // Obtener el valor del campo
-      if (value && value.trim() !== '') { // Verificar si no está vacío
+      const value = formValues[key];
+      if (value && value.trim() !== '') {
         queryParams += queryParams ? `&${key}=${value}` : `?${key}=${value}`;
       }
     });
-    this.mensajeService.obtenerMensajesFiltrados(queryParams,this.idsPacientes);
+
+    for (const [key, value ] of Object.entries(filtros)){
+      if (value && value.trim() !== '') {
+        queryParams += queryParams ? `&${key}=${value}` : `?${key}=${value}`
+      }
+    }
+
+    this.mensajeService.obtenerMensajesFiltrados(queryParams, this.idsPacientes);
   }
-
-
-
-
-
 }
