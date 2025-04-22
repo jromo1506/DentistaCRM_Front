@@ -119,4 +119,30 @@ export class PerfilComponent {
 
     return edad;
   }
+
+  guardarAlergias() {
+    this.pacienteService.guardarAlergias(this.paciente._id, { alergias: this.paciente.alergias }).subscribe({
+      next: (res) => {
+        alert('Alergias actualizadas correctamente');
+      },
+      error: (err) => {
+        console.error('Error al guardar alergias:', err);
+        alert('Error al guardar alergias');
+      }
+    });
+  }
+
+  guardarMedicamentos() {
+    this.pacienteService.guardarMedicamentos(this.paciente._id, { medicamentos: this.paciente.medicamentos }).subscribe({
+      next: (res) => {
+        alert('Medicamentos actualizados correctamente');
+      },
+      error: (err) => {
+        console.error('Error al guardar medicamentos:', err);
+        alert('Error al guardar medicamentos');
+      }
+    });
+  }
+
+
 }

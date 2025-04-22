@@ -36,5 +36,12 @@ export class PacientesService {
     return this.http.delete(this.api.getApiUrl() + "/paciente/" + id);
   }
 
+  guardarAlergias(id: string, data: any) {
+    return this.http.put(this.api.getApiUrl() +`/paciente/${id}/alergias`, data);
+  }
+
+  guardarMedicamentos(id: string, data: any) {
+    return this.http.put(this.api.getApiUrl() +`/paciente/${id}/medicamentos`, data);
+  }
 
 }

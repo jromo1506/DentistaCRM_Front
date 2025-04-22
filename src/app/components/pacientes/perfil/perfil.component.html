@@ -34,26 +34,32 @@
           </div>
         </div>
       </div>
-
       <div class="profile-side mt-1">
+        <!-- Alergias -->
         <div class="list-title flex-sb">
-          <div> Alergias</div>
+          <div>Alergias</div>
           <div>
             <i class="fa-solid fa-square-plus"></i>
           </div>
         </div>
         <div>
-          <textarea class="w-100 bs-bb" rows="5"></textarea>
+          <textarea class="w-100 bs-bb" rows="5" [(ngModel)]="paciente.alergias"></textarea>
         </div>
-
-        <div class="list-title flex-sb mt-2">
-          <div> Medicamentos</div>
+        <div class="mt-2">
+          <button class="btn-guardar" (click)="guardarAlergias()">Guardar Alergias</button>
+        </div>
+        <!-- Medicamentos -->
+        <div class="list-title flex-sb mt-4">
+          <div>Medicamentos</div>
           <div>
             <i class="fa-solid fa-square-plus"></i>
           </div>
         </div>
         <div>
-          <textarea class="w-100 bs-bb" rows="5"></textarea>
+          <textarea class="w-100 bs-bb" rows="5" [(ngModel)]="paciente.medicamentos"></textarea>
+        </div>
+        <div class="mt-2">
+          <button class="btn-guardar" (click)="guardarMedicamentos()">Guardar Medicamentos</button>
         </div>
       </div>
     </div>
