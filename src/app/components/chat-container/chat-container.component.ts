@@ -118,6 +118,10 @@ export class ChatContainerComponent implements OnInit {
     console.log('-----------------');
   }
 
+  deselectContact(): void {
+    this.selectedContact = null;
+  }
+
   // Función para enviar un mensaje
   sendMessage(): void {
     if (this.selectedContact && this.messageText.trim()) {

@@ -1,5 +1,5 @@
 <div class="chat-container">
-  <div class="contact-list">
+  <div class="contact-list"  [class.hidden-mobile]="selectedContact">
     <!-- Lista de contactos (pacientes) -->
     <div *ngFor="let contact of contacts" 
          (click)="selectContact(contact)" 
@@ -7,10 +7,10 @@
       {{ contact.name }} ({{ contact.phone }})
     </div>
   </div>
-  <div class="message-view">
+  <div class="message-view" [class.full-width]="selectedContact">
     <!-- Mensajes del contacto seleccionado -->
     <div *ngIf="selectedContact" class="message-container">
-      <h3 class="title">{{ selectedContact.name }}</h3>
+      <h3 class="title"> <button class="back-button" (click)="deselectContact()">&lt;</button> {{ selectedContact.name }}</h3>
       <div class="messages" #messagesContainer>
         <div *ngFor="let message of selectedContact.messages" 
              [class.doctor-message]="message.sender === 'doctor'" 

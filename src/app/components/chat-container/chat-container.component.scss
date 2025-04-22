@@ -61,7 +61,21 @@
   color: #111b21;
   border-bottom: 1px solid #e9edef;
 }
+.back-button {
+  background: #ceb868;
+  border: none;
+  border-radius: 50%;
+  font-size: 1.5rem;
+  margin-right: 2vw;
+  cursor: pointer;
+  padding: 0 8px;
+  color: white;
+  transition: background-color 0.3s ease;
+}
 
+.back-button:hover {
+  background: #d6c27d;
+}
 .messages {
   flex: 1;
   overflow-y: auto;
@@ -165,4 +179,50 @@
 .messages::-webkit-scrollbar-thumb {
   background: rgba(0,0,0,0.2);
   border-radius: 3px;
+}
+
+
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .chat-container {
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+  }
+
+  .contact-list {
+    width: 100%;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-list.hidden-mobile {
+    display: none;
+  }
+
+  .message-view {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #f0f2f5;
+  }
+
+  .message-view.full-width {
+    display: flex;
+  }
+
+  .close-button {
+    display: none;
+  }
+
+  .message-input {
+    padding: 10px 15px;
+  }
+
+  .send-button {
+    padding: 10px 15px;
+  }
 }
