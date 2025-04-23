@@ -8,6 +8,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class PacientesService {
 
+
   private pacientesSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
   paciente$:Observable<any[]> = this.pacientesSubject.asObservable();
 
@@ -43,5 +44,14 @@ export class PacientesService {
   guardarMedicamentos(id: string, data: any) {
     return this.http.put(this.api.getApiUrl() +`/paciente/${id}/medicamentos`, data);
   }
+
+  buscarPorTelefono(telefono: string): Observable<any> {
+    return this.http.get(this.api.getApiUrl() + `/buscarPacientePorTelefono/${telefono}`);
+  }
+
+  actualizarLista(pacientes: any[]) {
+    this.pacientesSubject.next(pacientes);
+  }
+
 
 }
