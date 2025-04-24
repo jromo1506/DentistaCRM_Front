@@ -2,6 +2,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-element-paciente',
@@ -38,15 +39,40 @@ export class ElementPacienteComponent {
   }
 
   eliminarPaciente() {
-    if (confirm('¿Estás seguro de que deseas eliminar este paciente?')) {
-      this.pacientesService.eliminarPaciente(this.paciente._id).subscribe({
-        next: () => {
-          alert('Paciente eliminado correctamente.');
-        },
-        error: (err) => {
-          alert('Error al eliminar el paciente: ' + err.message);
-        },
-      });
-    }
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará permanentemente al paciente.',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.pacientesService.eliminarPaciente(this.paciente._id).subscribe({
+          next: () => {
+            Swal.fire({
+              title: '¡Eliminado!',
+              text: 'El paciente fue eliminado correctamente.',
+              icon: 'success',
+              background: '#f0f4f8', // Color de fondo
+              color: '#333333',
+              confirmButtonColor: '#4caf50',
+            });
+
+          },
+          error: (err) => {
+            Swal.fire({
+              title: 'Error',
+              text: 'No se pudo eliminar el paciente: ' + err.message,
+              icon: 'error',
+            });
+          },
+        });
+      }
+    });
   }
+
 }
