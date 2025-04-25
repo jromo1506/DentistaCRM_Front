@@ -44,5 +44,5 @@ export const routes: Routes = [
     { path: "messages",component:ChatsComponent,canActivate:[authGuard]},
     { path: "return", component: ReturnComponent },
     { path: "checkout/:id", component: CheckoutComponent},
-    
+
 ];

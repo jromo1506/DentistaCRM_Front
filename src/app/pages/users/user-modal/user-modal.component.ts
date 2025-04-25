@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-modal',
@@ -16,7 +17,7 @@ export class UserModalComponent implements OnInit {
   pacientes: any[] = []; // Almacena la lista de pacientes
 
   constructor(private pacientesService: PacientesService, private userService: UserService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     // Cargar pacientes cuando se inicializa el componente
@@ -35,27 +36,39 @@ export class UserModalComponent implements OnInit {
       alert('Por favor, selecciona un paciente');
       return;
     }
-  
+
     // Verificar si el paciente ya está asignado
     if (this.usuario.idPacientes.includes(pacienteId)) {
-      alert('Este paciente ya está asignado a este doctor.');
+      Swal.fire('Paciente ya asignado', 'Este paciente ya está asignado a este doctor.', 'warning');
       return;
     }
-  
-    // Si no está asignado, procede con la asignación
+
+
+
+
     this.userService.asignarPacientes(this.usuario._id, [pacienteId]).subscribe({
       next: (response) => {
         console.log('Paciente asignado exitosamente:', response);
-        alert('Paciente asignado exitosamente');
+        Swal.fire({
+          title: 'Éxito',
+          text: 'Paciente asignado exitosamente',
+          icon: 'success',
+          confirmButtonText: 'Aceptar'
+        });
         // Actualizar la lista de pacientes del doctor
         this.usuario.idPacientes.push(pacienteId);
       },
       error: (error) => {
         console.error('Error al asignar paciente:', error);
-        alert('Error al asignar paciente');
+        Swal.fire({
+          title: 'Error',
+          text: 'Error al asignar paciente',
+          icon: 'error',
+          confirmButtonText: 'Aceptar'
+        });
       },
     });
   }
-  
-  
+
+
 }

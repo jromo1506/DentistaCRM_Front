@@ -81,7 +81,7 @@ export class ChatContainerComponent implements OnInit {
   selectContact(contact: any): void {
     // Reiniciar los mensajes del contacto seleccionado
     contact.messages = [];
-  
+
     // Cargar mensajes del paciente
     this.mensajesService.obtenerMensajesPorPacient(contact.id).subscribe((mensajesPaciente: any) => {
       mensajesPaciente.forEach((msg: any) => {
@@ -91,7 +91,7 @@ export class ChatContainerComponent implements OnInit {
           fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
         });
       });
-  
+
       // Cargar mensajes del doctor
       this.mensajesService.obtenerMensajesDoctor(this.credentials.id, contact.id).subscribe((mensajesDoctor: any) => {
         mensajesDoctor.forEach((msg: any) => {
@@ -101,7 +101,7 @@ export class ChatContainerComponent implements OnInit {
             fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
           });
         });
-  
+
         // Ordenar los mensajes por fecha
         contact.messages.sort((a: any, b: any) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
 
@@ -110,7 +110,7 @@ export class ChatContainerComponent implements OnInit {
         this.scrollBottom();
       });
     });
-  
+
     // Mostrar la información del paciente en la consola
     console.log('Nombre del paciente:', contact.name);
     console.log('Id del paciente:', contact.id);
@@ -139,6 +139,7 @@ export class ChatContainerComponent implements OnInit {
           this.selectedContact.messages.push({
             text: this.messageText,
             sender: 'doctor', // Indicar que el mensaje es del doctor
+            fecha: new Date().toISOString(),
           });
           this.messageText = ''; // Limpiar el campo de texto
           this.scrollBottom();
@@ -157,4 +158,15 @@ export class ChatContainerComponent implements OnInit {
       }
     }, 0);
   }
+
+//filtro
+searchTerm: string = '';
+
+filteredContacts(): any[] {
+  const term = this.searchTerm.toLowerCase();
+  return this.contacts.filter(contact =>
+    contact.name.toLowerCase().includes(term) ||
+    contact.phone.toString().includes(term)
+  );
+}
 }

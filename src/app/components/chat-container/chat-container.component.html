@@ -1,8 +1,19 @@
 <div class="chat-container">
   <div class="contact-list"  [class.hidden-mobile]="selectedContact">
+    <!-- 🔍 Input de búsqueda -->
+    <div class="search-wrapper">
+      <input type="text"
+             [(ngModel)]="searchTerm"
+             placeholder="🔍 Buscar"
+             class="search-bar"
+             name="searchInput">
+      <button *ngIf="searchTerm"
+              (click)="searchTerm = ''"
+              class="clear-btn" aria-label="Limpiar">✕</button>
+    </div>
     <!-- Lista de contactos (pacientes) -->
-    <div *ngFor="let contact of contacts" 
-         (click)="selectContact(contact)" 
+    <div *ngFor="let contact of filteredContacts()"
+         (click)="selectContact(contact)"
          [class.selected]="contact === selectedContact">
       {{ contact.name }} ({{ contact.phone }})
     </div>
@@ -12,20 +23,23 @@
     <div *ngIf="selectedContact" class="message-container">
       <h3 class="title"> <button class="back-button" (click)="deselectContact()">&lt;</button> {{ selectedContact.name }}</h3>
       <div class="messages" #messagesContainer>
-        <div *ngFor="let message of selectedContact.messages" 
-             [class.doctor-message]="message.sender === 'doctor'" 
+        <div *ngFor="let message of selectedContact.messages"
+             [class.doctor-message]="message.sender === 'doctor'"
              [class.patient-message]="message.sender !== 'doctor'">
-          <div class="message-content">{{ message.text }}</div>
+             <div class="message-content">
+              {{ message.text }}
+              <span class="message-time">{{ message.fecha | date:'shortTime' }}</span>
+            </div>
         </div>
       </div>
     </div>
     <form class="message-form" (ngSubmit)="sendMessage()" *ngIf="selectedContact">
-      <input type="text" 
-             [(ngModel)]="messageText" 
+      <input type="text"
+             [(ngModel)]="messageText"
              placeholder="Escribe un mensaje..."
              name="messageInput"
              class="message-input">
-      <button type="submit" 
+      <button type="submit"
               [disabled]="!messageText"
               class="send-button">
         Enviar
