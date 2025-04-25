@@ -34,7 +34,7 @@
       <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="navigate('/lista-pacientes')">Patients</label>
       </div>
-      <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)">
+      <div *ngIf="isLoggedIn && ['Administrador'].includes(credentials?.tipo)">
         <label class="txt-option" (click)="navigate('/lista-usuarios')">Users</label>
       </div>
       <div *ngIf="isLoggedIn">
@@ -81,7 +81,7 @@
       <i class="fa-solid fa-hospital-user"></i>
       <label class="txt-option" (click)="navigate('/lista-pacientes')">Patients</label>
     </div>
-    <div *ngIf="isLoggedIn && ['Administrador', 'Recepcionista'].includes(credentials?.tipo)" class="mobile-menu-item">
+    <div *ngIf="isLoggedIn && ['Administrador'].includes(credentials?.tipo)" class="mobile-menu-item">
       <i class="fa-solid fa-users"></i>
       <label class="txt-option" (click)="navigate('/lista-usuarios')">Users</label>
     </div>
