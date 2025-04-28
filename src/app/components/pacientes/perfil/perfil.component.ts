@@ -7,6 +7,7 @@ import { CitaService } from 'src/app/services/cita.service';
 import { FormsModule } from '@angular/forms';
 import { Cita } from 'src/app/models/worker-record.model';
 import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-perfil',
@@ -24,6 +25,7 @@ export class PerfilComponent {
   pago: number = 0;
   horaInicio: string = '';
   horaFin: string = '';
+  fechaCita: Date = new Date();
 
   citas: Cita[] = []; // Arreglo para almacenar las citas
 
@@ -74,6 +76,8 @@ export class PerfilComponent {
       pago: this.pago || 0,
       horaInicio: this.horaInicio || '',
       horaFin: this.horaFin || '',
+      fechaCita: this.fechaCita || ''
+      ,
       fecha: new Date()
 
     };
@@ -81,12 +85,23 @@ export class PerfilComponent {
     this.citaService.addCita(nuevaCita).subscribe(
       (response) => {
         console.log('Cita creada:', response);
-        alert('La cita se creó correctamente.');
+        Swal.fire({
+          icon: 'success',
+          title: '¡Cita creada!',
+          text: 'La cita se creó correctamente.',
+          timer: 2000,
+          showConfirmButton: false
+        });
         this.obtenerCitasPorPaciente(this.paciente._id); // Actualizar la lista de citas
       },
       (error: any) => {
         console.error('Error al crear la cita:', error);
-        alert('No se pudo crear la cita. Por favor, inténtalo de nuevo.');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudo crear la cita. Por favor, inténtalo de nuevo.',
+          confirmButtonText: 'Entendido'
+        });
       }
     );
   }
@@ -123,11 +138,22 @@ export class PerfilComponent {
   guardarAlergias() {
     this.pacienteService.guardarAlergias(this.paciente._id, { alergias: this.paciente.alergias }).subscribe({
       next: (res) => {
-        alert('Alergias actualizadas correctamente');
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Alergias actualizadas correctamente',
+          timer: 2000,
+          showConfirmButton: false
+        });
       },
       error: (err) => {
         console.error('Error al guardar alergias:', err);
-        alert('Error al guardar alergias');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudieron guardar las alergias',
+          confirmButtonText: 'Entendido'
+        });
       }
     });
   }
@@ -135,14 +161,31 @@ export class PerfilComponent {
   guardarMedicamentos() {
     this.pacienteService.guardarMedicamentos(this.paciente._id, { medicamentos: this.paciente.medicamentos }).subscribe({
       next: (res) => {
-        alert('Medicamentos actualizados correctamente');
+        Swal.fire({
+          icon: 'success',
+          title: '¡Éxito!',
+          text: 'Medicamentos actualizados correctamente',
+          timer: 2000,
+          showConfirmButton: false
+        });
       },
       error: (err) => {
         console.error('Error al guardar medicamentos:', err);
-        alert('Error al guardar medicamentos');
+        Swal.fire({
+          icon: 'error',
+          title: 'Error',
+          text: 'No se pudieron guardar los medicamentos',
+          confirmButtonText: 'Entendido'
+        });
       }
     });
   }
+
+  abrirChat(paciente: any) {
+    localStorage.setItem('chat-telefono', paciente.telefonoWhatsapp);
+    this.router.navigate(['/chats']);
+  }
+
 
 
 }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SemaforoComponent } from '../semaforo/semaforo.component';
 import { DatePipe } from '@angular/common';
 import { MensajesService } from 'src/app/services/mensajes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-list-element-mensaje',
@@ -14,7 +15,10 @@ import { MensajesService } from 'src/app/services/mensajes.service';
 export class ListElementMensajeComponent {
   @Input() mensaje: any;
 
-  constructor(private mensajesService: MensajesService) { }
+  constructor(
+    private mensajesService: MensajesService,
+    private router: Router
+  ) { }
 
   eliminarMensaje(id: string) {
     if (confirm('¿Estás seguro de que deseas eliminar este mensaje?')) {
@@ -30,6 +34,11 @@ export class ListElementMensajeComponent {
         }
       );
     }
+  }
+
+  verChat(telefono: string): void {
+    localStorage.setItem('chat-telefono', telefono);
+    this.router.navigate(['/chats']);
   }
 
 

@@ -28,7 +28,7 @@
              [class.patient-message]="message.sender !== 'doctor'">
              <div class="message-content">
               {{ message.text }}
-              <span class="message-time">{{ message.fecha | date:'shortTime' }}</span>
+              <span class="message-time">{{ message.fecha | date:'EEEE d MMMM HH:mm'}}</span>
             </div>
         </div>
       </div>

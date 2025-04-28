@@ -15,5 +15,6 @@ export interface Cita {
    id: string;
     horaFin: string;
     horaInicio: string;
+    fechaCita:Date; 
   }
-  
+

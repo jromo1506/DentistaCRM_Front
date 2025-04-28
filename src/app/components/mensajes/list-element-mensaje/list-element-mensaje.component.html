@@ -10,23 +10,21 @@
         <div>
             <app-semaforo [estado]="mensaje.estado"></app-semaforo>
         </div>
-       
-      
+
+
     </div>
     <div class="bar"></div>
     <div>
         <div class="name-date flex-sb">
             <div>{{ mensaje.fecha | date:'dd/MM/yyyy hh:mm a':'GMT-0600' }}</div>
-            
+
         </div>
         <div class="desc">
                  {{mensaje.mensaje}}
         </div>
      </div>
-    <div >
-        <!-- <button>Ver</button>
-        <button>Modificar</button> -->
-       
-       
+    <div>
+      <button *ngIf="mensaje.estado === 'urgente'" (click)="verChat(mensaje.telefono)">Ver</button>
+
     </div>
 </div>

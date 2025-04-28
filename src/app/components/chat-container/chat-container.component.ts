@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, ViewChild, ElementRef, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { UserService } from 'src/app/services/user.service';
 import { LoginService } from 'src/app/services/login.service';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-chat-container',
@@ -12,6 +15,7 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './chat-container.component.html',
   styleUrls: ['./chat-container.component.scss']
 })
+
 export class ChatContainerComponent implements OnInit {
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   contacts: any[] = []; // Lista de pacientes asociados al doctor
@@ -47,6 +51,7 @@ export class ChatContainerComponent implements OnInit {
 
             // Organizar los mensajes por paciente
             this.contacts = this.organizarMensajesPorPaciente(mensajesFiltrados);
+            this.buscarChatDesdeLocalStorage();
           });
         } else {
           console.error('idsPacientes no es un arreglo válido:', idsPacientes);
@@ -159,6 +164,7 @@ export class ChatContainerComponent implements OnInit {
     }, 0);
   }
 
+
 //filtro
 searchTerm: string = '';
 
@@ -169,4 +175,32 @@ filteredContacts(): any[] {
     contact.phone.toString().includes(term)
   );
 }
+
+buscarChatDesdeLocalStorage(): void {
+  const telefono = localStorage.getItem('chat-telefono');
+
+  if (telefono) {
+    const telefonoLimpio = telefono.replace(/\s+/g, '');
+
+    const chatExistente = this.contacts.find(contact =>
+      contact.phone.replace(/\s+/g, '') === telefonoLimpio
+    );
+
+    if (chatExistente) {
+      this.selectContact(chatExistente);
+    } else {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Chat no encontrado',
+        text: 'No existe un chat con este paciente.',
+        confirmButtonText: 'Aceptar'
+      }).then(() => {
+        this.deselectContact();
+      });
+    }
+
+    localStorage.removeItem('chat-telefono');
+  }
+}
+
 }

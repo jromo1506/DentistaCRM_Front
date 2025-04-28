@@ -179,6 +179,20 @@ button {
   border-radius: 15px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+.btn-chat {
+  padding: 4px 10px;
+  border: none;
+  background-color: #4caf50;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.btn-chat:hover {
+  background-color: #43a047;
+}
+
 
 
 /* Estilos para pantallas pequeñas */

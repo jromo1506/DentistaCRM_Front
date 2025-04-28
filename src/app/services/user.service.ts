@@ -14,7 +14,7 @@ export class UserService {
   addUser(nuevo: any): Observable<usuario> {
     return this.http.post<usuario>(`${this.api.getApiUrl()}/user/`, nuevo);
   }
-  
+
   obtenerUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.api.getApiUrl()}/user/`);
   }
@@ -30,7 +30,8 @@ export class UserService {
   eliminarUsuario(id: string): Observable<any> {
     return this.http.delete<any>(`${this.api.getApiUrl()}/user/${id}`);
   }
-  
-  
- 
+  buscarPacientePorTelefono(telefono: string) {
+    return this.http.get<any>(`/api/pacientes/buscar?telefono=${telefono}`);
+  }
+
 }
