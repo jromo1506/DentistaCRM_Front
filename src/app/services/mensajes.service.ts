@@ -73,6 +73,8 @@ export class MensajesService {
       return this.http.get(this.api.getApiUrl() + `/getMensajesDoctor?idDoctor=${idDoctor}&idPaciente=${idPaciente}`);
     }
 
-
+    marcarMensajeComoAtendido(mensajeEstado: { mensajeId: string }): Observable<any> {
+      return this.http.post<any>(this.api.getApiUrl() + `/mensajes/marcar-atendidos`, mensajeEstado);
+    }
   }
 

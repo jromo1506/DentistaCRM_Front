@@ -13,10 +13,12 @@
     </div>
     <!-- Lista de contactos (pacientes) -->
     <div *ngFor="let contact of filteredContacts()"
-         (click)="selectContact(contact)"
-         [class.selected]="contact === selectedContact">
-      {{ contact.name }} ({{ contact.phone }})
-    </div>
+     (click)="selectContact(contact)"
+     [class.selected]="contact === selectedContact"
+     [class.contact-urgente]="contact.alertaEstado === 'urgente'"
+     [class.contact-noleido]="contact.alertaEstado === 'noleido'">
+  {{ contact.name }} ({{ contact.phone }})
+</div>
   </div>
   <div class="message-view" [class.full-width]="selectedContact">
     <!-- Mensajes del contacto seleccionado -->

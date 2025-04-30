@@ -67,20 +67,45 @@ export class ChatContainerComponent implements OnInit {
     mensajes.forEach((mensaje) => {
       if (!pacientesMap.has(mensaje.idPaciente)) {
         pacientesMap.set(mensaje.idPaciente, {
-          id: mensaje.idPaciente, // Asegúrate de que el mensaje tenga esta propiedad
+          id: mensaje.idPaciente,
           name: mensaje.nombrePaciente,
           phone: mensaje.telefono,
           messages: [],
+          alertaEstado: 'ninguno',
         });
       }
-      pacientesMap.get(mensaje.idPaciente).messages.push({
+
+      const paciente = pacientesMap.get(mensaje.idPaciente); // 👈 aquí defines la variable correctamente
+
+      paciente.messages.push({
+
         text: mensaje.mensaje,
-        sender: 'patient', // Mensajes del paciente
+        sender: 'patient',
+        fecha: mensaje.fecha,
+        estado: mensaje.estado
       });
+      console.log('Mensaje agregado:', mensaje.fecha);
+      console.log('Mensaje agregado:', mensaje.estado);
     });
 
+    for (const paciente of pacientesMap.values()) {
+      const mensajes = paciente.messages;
+
+      if (mensajes.length === 0) continue;
+
+      const ultimo = mensajes[mensajes.length - 1];
+
+      if (ultimo.sender === 'patient') {
+        if (ultimo.estado === 'urgente') {
+          paciente.alertaEstado = 'urgente';
+        } else if (ultimo.estado === 'noleido'){
+          paciente.alertaEstado = 'noleido';
+        }
+      }
+    }
     return Array.from(pacientesMap.values());
   }
+
 
   // Función para seleccionar un contacto (paciente)
   selectContact(contact: any): void {
@@ -101,9 +126,11 @@ export class ChatContainerComponent implements OnInit {
       this.mensajesService.obtenerMensajesDoctor(this.credentials.id, contact.id).subscribe((mensajesDoctor: any) => {
         mensajesDoctor.forEach((msg: any) => {
           contact.messages.push({
+            id: msg._id,
             text: msg.mensaje,
             sender: 'doctor', // Mensajes del doctor
             fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
+            estado: msg.estado,
           });
         });
 
@@ -140,6 +167,12 @@ export class ChatContainerComponent implements OnInit {
       this.mensajesService.enviarMensajeDoctor(nuevoMensaje).subscribe(
         (response) => {
           console.log('Mensaje enviado:', response);
+          const nuevoMensajeEnviado = {
+            id: response.mensajeId,
+            text: this.messageText,
+            sender: 'doctor',
+            fecha: new Date().toISOString(),
+          };
           // Agregar el mensaje a la lista de mensajes del contacto seleccionado
           this.selectedContact.messages.push({
             text: this.messageText,
@@ -147,7 +180,9 @@ export class ChatContainerComponent implements OnInit {
             fecha: new Date().toISOString(),
           });
           this.messageText = ''; // Limpiar el campo de texto
+          this.marcarMensajeComoAtendido();
           this.scrollBottom();
+          this.contacts = [...this.contacts];
         },
         (error) => {
           console.error('Error al enviar el mensaje:', error);
@@ -163,6 +198,34 @@ export class ChatContainerComponent implements OnInit {
       }
     }, 0);
   }
+
+  private marcarMensajeComoAtendido(): void {
+    const mensajesPaciente = (this.selectedContact.messages as any[])
+      .filter((m) => m.sender === 'patient' && (m.estado === 'urgente' || m.estado === 'noleido'));
+
+    const mensajePendiente = mensajesPaciente[mensajesPaciente.length - 1];
+
+    if (!mensajePendiente || !mensajePendiente.id) {
+      console.warn('No hay mensajes pendientes que marcar como atendidos');
+      return;
+    }
+
+    const mensajeEstado = {
+      mensajeId: mensajePendiente.id
+    };
+
+    this.mensajesService.marcarMensajeComoAtendido(mensajeEstado).subscribe(
+      (response) => {
+        console.log('Mensaje marcado como atendido:', response);
+        mensajePendiente.estado = 'atendido';
+      },
+      (error) => {
+        console.error('Error al marcar mensaje como atendido:', error);
+      }
+    );
+  }
+
+
 
 
 //filtro
@@ -203,4 +266,33 @@ buscarChatDesdeLocalStorage(): void {
   }
 }
 
+
+esUltimoMensajeUrgente(contact: any): boolean {
+  const mensajes = contact.messages || [];
+  if (mensajes.length === 0) return false;
+
+  const ultimoMensaje = mensajes[mensajes.length - 1];
+  console.log('Revisando urgencia en:', contact.phone, ultimoMensaje);
+
+  return ultimoMensaje.sender !== 'doctor' && ultimoMensaje.estado === 'urgente';
 }
+esMensajeUrgenteViejo(contact: any): boolean {
+  const mensajes = contact.messages || [];
+  if (mensajes.length === 0) return false;
+
+  const ultimoMensaje = mensajes[mensajes.length - 1];
+
+  if (ultimoMensaje.sender === 'doctor' || ultimoMensaje.estado !== 'urgente') {
+    return false;
+  }
+
+  const fechaMensaje = new Date(ultimoMensaje.fecha).getTime();
+  const unaHora = 60 * 60 * 1000;
+  const ahora = Date.now();
+
+  return ahora - fechaMensaje > unaHora;
+}
+
+
+}
+
