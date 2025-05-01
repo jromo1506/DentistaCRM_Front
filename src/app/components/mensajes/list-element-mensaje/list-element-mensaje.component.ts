@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 })
 export class ListElementMensajeComponent {
   @Input() mensaje: any;
+  @Input() fecha: string='';
 
   constructor(
     private mensajesService: MensajesService,

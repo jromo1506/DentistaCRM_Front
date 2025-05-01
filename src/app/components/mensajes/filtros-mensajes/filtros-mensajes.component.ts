@@ -23,6 +23,7 @@ export class FiltrosMensajesComponent {
       estado: [''], // Default value
       orden: [''], // Default value
       search: ['']
+
     });
 
     var user= this.loginService.obtenerUsuario();
@@ -35,6 +36,7 @@ export class FiltrosMensajesComponent {
 
   }
 
+  mensajes: any[] = [];
 
   obtenerFiltros(){
     const formValues = this.filterForm.value; // Obtener los valores del formulario
@@ -53,11 +55,14 @@ export class FiltrosMensajesComponent {
       }
     });
 
+
+
     for (const [key, value ] of Object.entries(filtros)){
       if (value && value.trim() !== '') {
         queryParams += queryParams ? `&${key}=${value}` : `?${key}=${value}`
       }
     }
+
 
     this.mensajeService.obtenerMensajesFiltrados(queryParams, this.idsPacientes);
   }

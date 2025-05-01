@@ -58,6 +58,32 @@ export class ChatContainerComponent implements OnInit {
         }
       });
     }
+
+  }
+  refrescarMensajes(): void {
+    if (this.credentials?.tipo !== 'Doctor') return;
+
+    this.userService.getIdsPacientes(this.credentials.id).subscribe((pacientes: any) => {
+      const idsPacientes = pacientes.idPacientes;
+
+      if (Array.isArray(idsPacientes)) {
+        this.mensajesService.obtenerMensajesFiltrado('', idsPacientes).subscribe((mensajes: any) => {
+          const mensajesFiltrados = mensajes.filter((mensaje: any) =>
+            idsPacientes.includes(mensaje.idPaciente)
+          );
+
+          this.contacts = this.organizarMensajesPorPaciente(mensajesFiltrados);
+
+          // Si había un contacto seleccionado, volver a seleccionarlo con sus mensajes actualizados
+          if (this.selectedContact) {
+            const contactoActualizado = this.contacts.find(c => c.id === this.selectedContact.id);
+            if (contactoActualizado) {
+              this.selectContact(contactoActualizado);
+            }
+          }
+        });
+      }
+    });
   }
 
   // Función para organizar los mensajes por paciente
@@ -78,7 +104,7 @@ export class ChatContainerComponent implements OnInit {
       const paciente = pacientesMap.get(mensaje.idPaciente); // 👈 aquí defines la variable correctamente
 
       paciente.messages.push({
-
+        id: mensaje.idPaciente,
         text: mensaje.mensaje,
         sender: 'patient',
         fecha: mensaje.fecha,
@@ -86,6 +112,8 @@ export class ChatContainerComponent implements OnInit {
       });
       console.log('Mensaje agregado:', mensaje.fecha);
       console.log('Mensaje agregado:', mensaje.estado);
+      console.log('Mensaje agregado:', mensaje.idPaciente);
+      paciente.messages.sort((a: any, b: any) => new Date(a.fecha).getTime() - new Date(b.fecha).getTime());
     });
 
     for (const paciente of pacientesMap.values()) {
@@ -96,13 +124,25 @@ export class ChatContainerComponent implements OnInit {
       const ultimo = mensajes[mensajes.length - 1];
 
       if (ultimo.sender === 'patient') {
+        const fechaMensaje = new Date(ultimo.fecha).getTime();
+        const unaHora = 60 * 60 * 1000;
+        const ahora = Date.now();
+
         if (ultimo.estado === 'urgente') {
           paciente.alertaEstado = 'urgente';
-        } else if (ultimo.estado === 'noleido'){
-          paciente.alertaEstado = 'noleido';
+        } else if (ultimo.estado === 'noleido' && ahora - fechaMensaje > unaHora) {
+          paciente.alertaEstado = 'noleido-viejo'; // amarillo
+        } else if (ultimo.estado === 'nuevo') {
+          paciente.alertaEstado = 'nuevo'; // gris
+        } else {
+          paciente.alertaEstado = 'noleido'; // blanco (normal no leído)
         }
+      } else {
+        paciente.alertaEstado = 'atendido'; // blanco también
       }
     }
+
+
     return Array.from(pacientesMap.values());
   }
 
@@ -116,9 +156,11 @@ export class ChatContainerComponent implements OnInit {
     this.mensajesService.obtenerMensajesPorPacient(contact.id).subscribe((mensajesPaciente: any) => {
       mensajesPaciente.forEach((msg: any) => {
         contact.messages.push({
+          id: msg._id,
           text: msg.mensaje,
           sender: 'patient', // Mensajes del paciente
           fecha: msg.fecha, // Asegúrate de que el mensaje tenga una propiedad fecha
+          estado: msg.estado
         });
       });
 
@@ -140,6 +182,7 @@ export class ChatContainerComponent implements OnInit {
         // Asignar el contacto seleccionado
         this.selectedContact = contact;
         this.scrollBottom();
+        this.refrescarMensajes();
       });
     });
 
@@ -183,6 +226,7 @@ export class ChatContainerComponent implements OnInit {
           this.marcarMensajeComoAtendido();
           this.scrollBottom();
           this.contacts = [...this.contacts];
+          this.refrescarMensajes();
         },
         (error) => {
           console.error('Error al enviar el mensaje:', error);

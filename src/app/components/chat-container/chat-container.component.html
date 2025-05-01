@@ -16,7 +16,10 @@
      (click)="selectContact(contact)"
      [class.selected]="contact === selectedContact"
      [class.contact-urgente]="contact.alertaEstado === 'urgente'"
-     [class.contact-noleido]="contact.alertaEstado === 'noleido'">
+     [class.contact-noleido]="contact.alertaEstado === 'noleido'"
+     [class.contact-noleido-viejo]="contact.alertaEstado === 'noleido-viejo'"
+     [class.contact-nuevo]="contact.alertaEstado === 'nuevo'"
+     [class.contact-atendido]="contact.alertaEstado === 'atendido'">
   {{ contact.name }} ({{ contact.phone }})
 </div>
   </div>

@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SemaforoComponent {
   @Input() estado:string="";
+  @Input() fecha: string = '';
 
      constructor(private loginService: LoginService, private router: Router) {
         if (!this.loginService.existeUsuario()) {
@@ -31,17 +32,28 @@ export class SemaforoComponent {
   };
 
   estadoMapping: { [key: string]: number } = {
-    'noLeido': 0,
-    'leido': 1,
-    'esperandoRespuesta': 2,
+    'noleido': 0,
+    'atendido': 1,
     'urgente': 3
   };
 
 
-  ngOnInit(){
-   this.status = this.estadoMapping[this.estado] || 0;
-  }
+  ngOnInit() {
+    if (this.estado === 'noleido' && this.fecha) {
+      const ahora = new Date();
+      const fechaMensaje = new Date(this.fecha);
+      const diferenciaMs = ahora.getTime() - fechaMensaje.getTime();
+      const unaHoraMs = 60 * 60 * 1000;
 
+      // Si pasó más de una hora sin ser atendido, mostrar amarillo
+      if (diferenciaMs >= unaHoraMs) {
+        this.status = 2; // amarillo
+        return;
+      }
+    }
+    // Si no es noLeido o no pasó una hora, usar el estado normal
+    this.status = this.estadoMapping[this.estado] || 0;
+  }
 
 
   // Obtiene el color activo basado en el estado
