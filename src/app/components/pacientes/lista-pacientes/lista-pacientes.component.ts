@@ -17,10 +17,10 @@ import { PacientesService } from 'src/app/services/pacientes.service';
 export class ListaPacientesComponent {
   pacientes: any[]=[];
   @ViewChild(FormComponent) formComponent!: FormComponent;
-  
+
   constructor(private router: Router, private swalService: SwalService,private pacienteService:PacientesService) {}
 
- 
+
   ngOnInit() {
     this.pacienteService.paciente$.subscribe((pacientes:any[])=>{
       this.pacientes=pacientes;
@@ -45,7 +45,7 @@ export class ListaPacientesComponent {
       const pacientesActualizados = this.pacientes.filter(p => p.nombre !== paciente.nombre);
       localStorage.setItem('pacientes', JSON.stringify(pacientesActualizados));
       this.swalService.success('Paciente eliminado correctamente');
-    }
+    } 
   }
 
   editarPaciente(paciente: any) {

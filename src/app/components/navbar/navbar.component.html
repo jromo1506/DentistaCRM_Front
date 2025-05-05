@@ -44,6 +44,9 @@
         <label class="txt-option" (click)="navigate('/calendario')">Calendar</label>
       </div>
       <div *ngIf="isLoggedIn">
+        <label class="txt-option" (click)="navigate('/lista-negra')">Filters</label>
+      </div>
+      <div *ngIf="isLoggedIn">
         <label class="txt-option" (click)="logout()">Logout</label>
       </div>
     </div>

@@ -3,21 +3,55 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { PacientesService } from 'src/app/services/pacientes.service';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login.service';
+import { ModalComponent } from '../../modal/modal.component';
+import { FormsModule } from '@angular/forms';
+import { ListaNegraService } from 'src/app/services/lista-negra.service';
 
 @Component({
   selector: 'app-element-paciente',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ModalComponent, FormsModule],
   templateUrl: './element-paciente.component.html',
   styleUrls: ['./element-paciente.component.scss'],
 })
 export class ElementPacienteComponent {
   @Input() paciente: any;
-
+  user: any;
+  usuarioActual: any;
+  showListaNegraModal = false;
+  razon = '';
+  detalles = '';
+  tipo = 'permanente';
+  private limpiarFormulario(): void {
+    this.razon = '';
+    this.detalles = '';
+    this.tipo = 'permanente';
+  }
   constructor(
     private router: Router,
-    private pacientesService: PacientesService
+    private pacientesService: PacientesService,
+    private listaNegraService: ListaNegraService,
+    private loginService: LoginService
   ) {}
+
+  ngOnInit(): void {
+    const userData = this.loginService.obtenerUsuario();
+    console.log(userData, "User desde componente paciente");
+
+    this.user = userData?.usuario; // o ajusta según cómo esté estructurado
+  }
+
+  abrirListaNegra(paciente: any) {
+    this.paciente = paciente; // por si en el futuro cambia el contexto
+    this.showListaNegraModal = true;
+    this.limpiarFormulario(); // limpia el formulario cada vez
+  }
+
+  onCloseListaNegraModal() {
+    this.showListaNegraModal = false;
+    this.limpiarFormulario();
+  }
 
   formatearFecha(fechaNacimiento: string): string {
     if (!fechaNacimiento) return 'No proporcionada';
@@ -37,6 +71,10 @@ export class ElementPacienteComponent {
   verPerfil(idPaciente: string) {
     this.router.navigate(['/perfil', 'paciente', idPaciente]);
   }
+
+
+
+
 
   eliminarPaciente() {
     Swal.fire({
@@ -75,4 +113,30 @@ export class ElementPacienteComponent {
     });
   }
 
-}
+
+  agregarListaNegra() {
+    const datos = {
+      pacienteId: this.paciente._id,
+      razon: this.razon,
+      detalles: this.detalles,
+      tipo: this.tipo,
+      evidencia: [],
+      agregadoPor: this.user.id || this.user._id
+    };
+
+    console.log('Enviando a lista negra:', datos);
+
+    this.listaNegraService.agregarPaciente(datos).subscribe({
+      next: (res) => {
+        console.log('Paciente agregado a lista negra:', res);
+        this.showListaNegraModal = false;
+      },
+      error: (err) => {
+        console.error('Error al agregar a lista negra', err);
+      }
+    });
+  }
+
+  }
+
+

@@ -4,16 +4,43 @@
             <div>{{paciente.nombre}} {{paciente.apeP}} {{paciente.apeM}}</div>
             <div>{{formatearFecha(paciente.fechaNac)}}</div>
         </div>
-       
+
         <div class="desc">
-            <div> 
-                <strong>Telefono: </strong>{{paciente.telefonoWhatsapp}}- 
+            <div>
+                <strong>Telefono: </strong>{{paciente.telefonoWhatsapp}}-
                 <strong> Correo: </strong>{{paciente.correoElectronico || 'No proporcionado'}}
             </div>
         </div>
     </div>
     <div class="list-options">
         <button>Asignar</button>
-        <button (click)="eliminarPaciente()">Eliminar</button>
+        <!-- <button (click)="eliminarPaciente()">Eliminar</button> -->
+        <button (click)="abrirListaNegra(paciente)">Lista negra</button>
     </div>
+    <app-modal [title]="'Agregar a Lista Negra'" [isVisible]="showListaNegraModal" (close)="onCloseListaNegraModal()">
+      <form (ngSubmit)="agregarListaNegra()">
+        <div class="bar"></div>
+        <div>
+          <label for="razon">Razón *</label><br />
+          <input id="razon" type="text" class="input-modal w-75" [(ngModel)]="razon" name="razon" required maxlength="200" />
+        </div>
+
+        <div class="mt-1">
+          <label for="detalles">Detalles</label><br />
+          <textarea id="detalles" rows="4" class="input-modal w-75" [(ngModel)]="detalles" name="detalles" maxlength="1000"></textarea>
+        </div>
+
+        <div class="mt-1">
+          <label for="tipo">Tipo</label>
+          <select id="tipo" [(ngModel)]="tipo" name="tipo" class="input-modal w-50" required>
+            <option value="permanente">Permanente</option>
+            <option value="temporal">Temporal</option>
+          </select>
+        </div>
+
+        <div class="bar mt-2"></div>
+        <button class="btn-aceptar" type="submit">Aceptar</button>
+      </form>
+    </app-modal>
+
 </div>

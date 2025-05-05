@@ -132,8 +132,8 @@ export class ChatContainerComponent implements OnInit {
           paciente.alertaEstado = 'urgente';
         } else if (ultimo.estado === 'noleido' && ahora - fechaMensaje > unaHora) {
           paciente.alertaEstado = 'noleido-viejo'; // amarillo
-        } else if (ultimo.estado === 'nuevo') {
-          paciente.alertaEstado = 'nuevo'; // gris
+        } else if (ultimo.estado === 'noleido') {
+          paciente.alertaEstado = 'noleido'; // gris
         } else {
           paciente.alertaEstado = 'noleido'; // blanco (normal no leído)
         }
