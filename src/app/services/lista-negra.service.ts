@@ -18,6 +18,12 @@ export class ListaNegraService {
       error: (err) => console.error('Error obteniendo lista negra', err),
     });
   }
+  getPacientesListaNegra() {
+    return this.http.get<any>(this.api.getApiUrl()+ `/lista-negra`);
+  }
+  obtenerListaNegra(){
+    return this.http.get<any>(this.api.getApiUrl() + "/lista-negra");
+  }
 
   agregarPaciente(paciente: any): Observable<any> {
     return this.http.post(this.api.getApiUrl() + '/lista-negra', paciente);
@@ -35,5 +41,17 @@ export class ListaNegraService {
   eliminarYActualizar(id: string): void {
     this.eliminar(id).subscribe(() => this.obtenerTodos());
   }
+  obtenerFiltrados(query: string): Observable<any> {
+    const separator = query ? `?${query}` : '';
+    return this.http.get<any>(`${this.api.getApiUrl()}/lista-negra-filtrada${separator}`);
+  }
+  getDatosListaNegraPorPaciente(pacienteId: string): Observable<any> {
+    return this.http.get(this.api.getApiUrl() + `/lista-negra/paciente/${pacienteId}`);
+  }
+
+  removerPacienteYActualizar(pacienteId: string): Observable<any> {
+    return this.http.delete(this.api.getApiUrl() + `/lista-negra/remover/${pacienteId}`);
+  }
+
 }
 

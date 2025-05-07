@@ -1,0 +1,108 @@
+.paciente-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+}
+
+.paciente-cell {
+
+  padding: 10px;
+
+  display: flex;
+  // justify-content: center; /* Centra el contenido en la celda */
+  // align-items: center; /* Asegura que el contenido esté alineado verticalmente */
+}
+
+.paciente-cell button {
+  padding: 8px 15px;
+  background-color: #282927;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.paciente-cell button:hover {
+  background-color: #4f5553;
+}
+
+.paciente-row:hover {
+  background-color: #f1f1f1;
+}
+
+
+
+*{
+  font-family: "Inter", serif;
+}
+
+
+.list-element{
+display: flex;
+margin: 10px 2px;
+border-radius: 5px;
+// width: 100%;
+background-color: #f4f4f4;
+
+box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.127);
+}
+
+.list-element:hover{
+background-color: rgb(213, 213, 213);
+cursor: pointer;
+}
+
+.list-info{
+font-size: .8rem;
+font-weight: 300;
+width: 90%;
+
+box-sizing: border-box;
+padding: 10px;
+color: rgb(41, 39, 39);
+
+}
+
+.name-date{
+display: flex;
+justify-content: space-between;
+font-size: .9rem;
+}
+
+.desc{
+font-size: .8rem;
+margin: 8px 0px;
+text-align: justify;
+}
+
+.other-data{
+font-size: .6rem;
+display: flex;
+justify-content: space-between;
+}
+
+.list-options{
+background-color: rgb(188, 187, 187);
+display: flex;
+flex-direction: column;
+justify-content: space-around;
+width: 20%;
+box-sizing: border-box;
+padding: 5px;
+}
+
+button{
+width: 100%;
+border-radius: 5px;
+border: 1px solid gray
+}
+
+
+button:hover{
+background-color: #c7c7c7;
+}
+
+
+

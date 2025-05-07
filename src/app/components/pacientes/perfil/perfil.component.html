@@ -66,10 +66,25 @@
         <div class="mt-2">
           <button class="btn-guardar" (click)="guardarMedicamentos()">Guardar Medicamentos</button>
         </div>
+        <div class="mt-2">
+          <button class="eliminar-btn" *ngIf="listaNegra"  >Eliminar Paciente</button>
+        </div>
       </div>
     </div>
 
     <div class="appointment-side ml-1">
+      <div *ngIf="listaNegra" class="lista-negra-box ">
+        <h2>Este Cliente esta en lista negra</h2>
+        <p><strong>Agregado por:</strong> {{ listaNegra.agregadoPor?.usuario }} ({{ listaNegra.agregadoPor?.tipo }})</p>
+        <p><strong>Razón:</strong> {{ listaNegra.razon }}</p>
+        <p><strong>Detalles:</strong> {{ listaNegra.detalles }}</p>
+        <p><strong>Tipo:</strong> {{ listaNegra.tipo }}</p>
+        <button class="eliminar-btn" *ngIf="listaNegra" (click)="eliminarDeListaNegra()">
+          Eliminar Paciente de Lista Negra
+        </button>
+      </div>
+
+
       <div class="p-2 flex-sb">
         <div>
           <h3>Citas y trabajos realizados</h3>

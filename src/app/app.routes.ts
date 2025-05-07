@@ -22,6 +22,8 @@ import { ChatsComponent } from './pages/chats/chats.component';
 import { PasarelaComponent } from './pages/pasarela/pasarela.component';
 import { ReturnComponent } from './pages/pasarela/return/return.component';
 import { CheckoutComponent } from './pages/pasarela/checkout/checkout.component';
+import {PacientesListadosComponent} from './pages/pacientes-listados/pacientes-listados.component'
+import {ListaPacientesLnComponent} from './components/black-list/lista-pacientes-ln/lista-pacientes-ln.component'
 
 export const routes: Routes = [
     { path: "chats", component: DebugComponent, canActivate: [authGuard] },
@@ -42,6 +44,7 @@ export const routes: Routes = [
     { path: "configuracion", component:ConfiguracionComponent, canActivate: [authGuard]},
     { path: "calendario", component: CalendarioComponent, canActivate: [authGuard]},
     { path: "messages",component:ChatsComponent,canActivate:[authGuard]},
+    { path: "lista-negra", component:PacientesListadosComponent,canActivate:[authGuard]},
     { path: "return", component: ReturnComponent },
     { path: "checkout/:id", component: CheckoutComponent},
 

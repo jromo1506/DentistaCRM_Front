@@ -1,0 +1,15 @@
+
+
+<div class="m-1">
+  <div class="">
+    <div class="lista-container">
+      <div class="paciente-header">
+        <div class="paciente-cell">Lista de pacientes</div>
+      </div>
+      <div *ngFor="let entrada of pacientesListaNegra">
+        <app-lista-negra [entrada]="entrada"></app-lista-negra>
+      </div>
+    </div>
+
+  </div>
+</div>

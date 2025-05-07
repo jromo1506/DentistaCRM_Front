@@ -23,6 +23,7 @@ export class ElementPacienteComponent {
   razon = '';
   detalles = '';
   tipo = 'permanente';
+  pacientesEnListaNegra: any[] = [];
   private limpiarFormulario(): void {
     this.razon = '';
     this.detalles = '';
@@ -36,10 +37,21 @@ export class ElementPacienteComponent {
   ) {}
 
   ngOnInit(): void {
+    this.pacientesService.obtenerPacientesEnListaNegra().subscribe({
+      next: (pacientes) => {
+        this.pacientesEnListaNegra = pacientes;
+      },
+      error: (err) => {
+        console.error('Error al obtener pacientes en lista negra', err);
+      }
+    });
     const userData = this.loginService.obtenerUsuario();
     console.log(userData, "User desde componente paciente");
 
     this.user = userData?.usuario; // o ajusta según cómo esté estructurado
+  }
+  estaEnListaNegra(pacienteId: string): boolean {
+    return this.pacientesEnListaNegra.some((paciente) => paciente._id === pacienteId);
   }
 
   abrirListaNegra(paciente: any) {
@@ -130,12 +142,39 @@ export class ElementPacienteComponent {
       next: (res) => {
         console.log('Paciente agregado a lista negra:', res);
         this.showListaNegraModal = false;
+
+        // Mostrar alerta de éxito
+        Swal.fire({
+          icon: 'success',
+          title: 'Paciente agregado a lista negra',
+          text: 'El paciente ha sido agregado correctamente.',
+          confirmButtonText: 'Aceptar'
+        });
       },
       error: (err) => {
         console.error('Error al agregar a lista negra', err);
+
+        // Mostrar alerta si ya está en lista negra
+        if (err.status === 400 && err.error.message === 'Paciente ya está en lista negra') {
+          Swal.fire({
+            icon: 'warning',
+            title: 'El paciente ya está en la lista negra',
+            text: 'Este paciente ya ha sido agregado previamente.',
+            confirmButtonText: 'Aceptar'
+          });
+        } else {
+          // Mostrar alerta genérica de error
+          Swal.fire({
+            icon: 'error',
+            title: 'Error al agregar paciente',
+            text: 'Ocurrió un problema al intentar agregar al paciente.',
+            confirmButtonText: 'Aceptar'
+          });
+        }
       }
     });
   }
+
 
   }
 

@@ -1,4 +1,4 @@
-<div class="list-element">
+<div class="list-element" *ngIf="!estaEnListaNegra(paciente._id)">
     <div class="list-info" (click)="verPerfil(paciente._id)">
         <div class="name-date">
             <div>{{paciente.nombre}} {{paciente.apeP}} {{paciente.apeM}}</div>

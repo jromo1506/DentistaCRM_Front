@@ -1,1 +1,23 @@
-<p>lista-negra works!</p>
+
+<div class="list-element">
+  <div class="list-info" (click)="verPerfil(entrada.paciente._id)">
+    <div class="name-date">
+      <strong>{{ entrada.paciente.nombre }} {{ entrada.paciente.apeP }} {{ entrada.paciente.apeM }}</strong>
+      <strong>📞 {{ entrada.paciente.telefonoWhatsapp }}</strong><br>
+      <br>
+    </div>
+
+    <div class="desc">
+      <div>
+        <strong>Tipo:</strong> {{ entrada?.tipo }}<br>
+        <strong>Razón:</strong> {{ entrada?.razon }}<br>
+        <strong>Fecha de Agregado:</strong> {{ formatearFecha(entrada?.fechaAgregado) }}
+      </div>
+    </div>
+  </div>
+
+  <div class="list-options">
+    <strong>Detalles</strong> {{entrada.detalles}}
+  </div>
+</div>
+

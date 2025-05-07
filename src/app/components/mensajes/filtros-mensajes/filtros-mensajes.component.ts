@@ -5,6 +5,7 @@ import { EventEmitter } from '@angular/core';
 import { MensajesService } from 'src/app/services/mensajes.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserService } from 'src/app/services/user.service';
+import { differenceInMilliseconds } from 'date-fns';
 
 @Component({
   selector: 'app-filtros-mensajes',
@@ -37,7 +38,7 @@ export class FiltrosMensajesComponent {
   }
 
   mensajes: any[] = [];
-
+  
   obtenerFiltros(){
     const formValues = this.filterForm.value; // Obtener los valores del formulario
     let queryParams = '';

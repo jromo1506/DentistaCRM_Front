@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalComponent } from '../../modal/modal.component';
 import { PacientesService } from 'src/app/services/pacientes.service';
+import { ListaNegraService } from 'src/app/services/lista-negra.service';
 import { CitaService } from 'src/app/services/cita.service';
 import { FormsModule } from '@angular/forms';
 import { Cita } from 'src/app/models/worker-record.model';
@@ -26,14 +27,19 @@ export class PerfilComponent {
   horaInicio: string = '';
   horaFin: string = '';
   fechaCita: Date = new Date();
-
+  listaNegra: any = null;
   citas: Cita[] = []; // Arreglo para almacenar las citas
 
   onCloseModal() {
     this.showModal = false;
   }
 
-    constructor(private loginService: LoginService, private router: Router, private route: ActivatedRoute, private pacienteService: PacientesService,
+    constructor(
+      private loginService: LoginService,
+      private router: Router,
+      private route: ActivatedRoute,
+      private pacienteService: PacientesService,
+      private listaNegraService: ListaNegraService,
       private citaService: CitaService) {
       if (!this.loginService.existeUsuario()) {
         // Si no está autenticado, redirigir al login
@@ -42,15 +48,21 @@ export class PerfilComponent {
     }
 
 
-  ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id) {
-      this.pacienteService.getPacienteById(id).subscribe((res) => {
-        this.paciente = res;
-        this.obtenerCitasPorPaciente(id); // Filtrar citas por paciente
-      });
+    ngOnInit(): void {
+      const id = this.route.snapshot.paramMap.get('id');
+      if (id) {
+        this.pacienteService.getPacienteById(id).subscribe((res) => {
+          this.paciente = res;
+          this.obtenerCitasPorPaciente(id); // Filtrar citas por paciente
+
+          this.listaNegraService.getDatosListaNegraPorPaciente(id).subscribe((res) => {
+            if (res.enListaNegra) {
+              this.listaNegra = res.datos;
+            }
+          });
+        });
+      }
     }
-  }
 
   obtenerCitasPorPaciente(id: string) {
     this.citaService.getCitasPorPaciente(id).subscribe(
@@ -186,6 +198,34 @@ export class PerfilComponent {
     this.router.navigate(['/chats']);
   }
 
+  eliminarDeListaNegra(): void {
+    if (!this.paciente || !this.paciente._id) return;
+
+    Swal.fire({
+      title: '¿Estás seguro?',
+      text: 'Esta acción eliminará al paciente de la lista negra',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí, eliminar',
+      cancelButtonText: 'Cancelar'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.listaNegraService.removerPacienteYActualizar(this.paciente._id).subscribe({
+          next: () => {
+            Swal.fire('¡Eliminado!', 'El paciente ha sido eliminado de la lista negra.', 'success');
+            this.listaNegra = null;
+            this.paciente.enListaNegra = false;
+          },
+          error: (err) => {
+            console.error('Error al eliminar de lista negra:', err);
+            Swal.fire('Error', 'No se pudo eliminar al paciente de la lista negra.', 'error');
+          }
+        });
+      }
+    });
+  }
+  }
 
 
-}
+
+

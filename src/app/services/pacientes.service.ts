@@ -53,5 +53,11 @@ export class PacientesService {
     this.pacientesSubject.next(pacientes);
   }
 
+  esPacienteEnListaNegra(pacienteId: string): Observable<boolean> {
+    return this.http.get<boolean>(`${this.api.getApiUrl()}/lista-negra/verificar/${pacienteId}`);
+  }
 
+  obtenerPacientesEnListaNegra(): Observable<any[]> {
+    return this.http.get<any[]>(this.api.getApiUrl() + "/pacientes/lista-negra");
+  }
 }

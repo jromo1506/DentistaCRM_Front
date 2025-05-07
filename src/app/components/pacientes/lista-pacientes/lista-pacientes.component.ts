@@ -45,7 +45,7 @@ export class ListaPacientesComponent {
       const pacientesActualizados = this.pacientes.filter(p => p.nombre !== paciente.nombre);
       localStorage.setItem('pacientes', JSON.stringify(pacientesActualizados));
       this.swalService.success('Paciente eliminado correctamente');
-    } 
+    }
   }
 
   editarPaciente(paciente: any) {
